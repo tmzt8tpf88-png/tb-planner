@@ -88,8 +88,8 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 <body>
 <nav>
   <div class="logo">⚔️ TB</div>
-  <div class="tab on"  onclick="goPage('summary',this)">📋 Summary</div>
-  <div class="tab"     onclick="goPage('data',this)">⚙️ My Data</div>
+  <div class="tab on"  onclick="goPage('data',this)">⚙️ My Data</div>
+  <div class="tab"     onclick="goPage('summary',this)">📋 Summary</div>
   <div class="tab"     onclick="goPage('g5',this)">G5</div>
   <div class="tab"     onclick="goPage('g6',this)">G6</div>
   <div class="tab"     onclick="goPage('g7',this)">G7</div>
@@ -99,14 +99,14 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 </nav>
 
 <!-- RIEPILOGO -->
-<div id="page-summary" class="pg on">
+<div id="page-summary" class="pg">
   <div class="card"><div class="ct">Progression G3 → G8</div><div id="sum-table"></div></div>
   <div class="card"><div class="ct">Coin budget — G5 → G8</div><div id="sum-coins"></div></div>
   <div class="card"><div class="ct">Resources needed for Academy</div><div id="sum-rss"></div></div>
 </div>
 
 <!-- DATI -->
-<div id="page-data" class="pg">
+<div id="page-data" class="pg on">
   <div class="card">
     <div class="ct">Your current status</div>
     <div class="row2">
@@ -133,7 +133,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
       <div class="fg"><label>⚙️ Iron (M)</label><input type="number" id="i_iron" value="0" min="0" step="any" oninput="compute()"></div>
       <div class="fg"><label>🪨 Stone (M)</label><input type="number" id="i_stone" value="0" min="0" step="any" oninput="compute()"></div>
     </div>
-    <p class="note" style="margin-top:10px">Resources are needed to upgrade buildings to the level required by each grade's Academy.</p>
+    <p class="note" style="margin-top:10px">Resources are needed to upgrade buildings to the level required dall'Accademia di ogni grado.</p>
   </div>
 </div>
 
@@ -147,7 +147,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 <div id="page-shops" class="pg">
   <div class="card">
     <div class="ct">Shop reference by grade</div>
-    <p class="note" style="margin-bottom:14px">Use your current grade shop to unlock the next. Each Ragnarök buys all available packs.</p>
+    <p class="note" style="margin-bottom:14px">Use your current grade shop to unlock the next. Ogni Ragnarök compra tutti i pack disponibili del shop.</p>
     <div id="shops-content"></div>
   </div>
 </div>
@@ -340,6 +340,7 @@ function renderGrade(g,r,i){
   var q=r.q,sh=r.sh;
   var vp_ok=r.vp_tot>=q.vp;
   var vp_miss=Math.max(q.vp-r.vp_tot,0);
+  var vp_miss_before_shop=Math.max(q.vp-r.vp_c,0);
   var pct=Math.min(100,r.vp_tot/q.vp*100);
   var col=GCOL[g];
   var gn=parseInt(g.replace('G',''));
@@ -355,14 +356,24 @@ function renderGrade(g,r,i){
 
   // VP
   h+='<div class="slb">Victory Points</div>';
-  h+='<div class="vprow"><div class="vpl">';
-  h+='<div class="vplb">From combat'+(sh&&r.rn>0?' + shop '+sh.prev:'')+'</div>';
-  h+='<div class="vpn"><span class="vph" style="color:'+col+'">'+fV(r.vp_c)+'</span>';
-  if(sh&&r.rn>0) h+='<span style="color:#444"> + </span><span style="color:#93c5fd;font-size:18px;font-weight:700">'+fV(r.rn*r.vpr)+'</span><span style="font-size:11px;color:#666"> from shop</span>';
-  h+='<span style="color:#333"> / </span><span class="vpnd">'+fV(q.vp)+' needed</span></div>';
-  h+=bar(pct,vp_ok)+'</div>';
-  h+='<div class="vpm"><div style="font-size:11px;color:#666">Missing</div>';
-  h+='<div class="vpmv" style="color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+(vp_ok?'✅ ok':fV(vp_miss))+'</div></div></div>';
+  // Box VP: mostra richiesti / hai / missing in modo chiaro
+  h+='<div class="shopbox" style="margin-bottom:12px">';
+  // Riga 1: VP richiesti vs disponibili
+  h+='<div class="irow"><span class="ilb" style="font-size:12px">🎯 VP required</span>';
+  h+='<span class="iv" style="font-size:16px;color:#f5a623">'+fV(q.vp)+'</span></div>';
+  h+='<div class="irow"><span class="ilb" style="font-size:12px">⚔️ From combat</span>';
+  h+='<span class="iv" style="color:'+col+'">'+fV(r.vp_c)+'</span></div>';
+  if(sh&&r.rn>0){
+    h+='<div class="irow"><span class="ilb" style="font-size:12px">❌ Still missing</span>';
+    h+='<span class="iv" style="color:#ff6b6b">'+fV(vp_miss_before_shop)+'</span></div>';
+    h+='<div class="irow"><span class="ilb" style="font-size:12px">🏪 Do '+r.rn+' Ragnarök (shop '+sh.prev+')</span>';
+    h+='<span class="iv" style="color:#93c5fd">+'+fV(r.rn*r.vpr)+'</span></div>';
+  }
+  h+='<div class="irow" style="border-top:1px solid #444;margin-top:2px;padding-top:8px">';
+  h+='<span class="ilb" style="font-size:12px;font-weight:700">✅ Total VP</span>';
+  h+='<span class="iv" style="font-size:16px;color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_tot)+(r.vp_av>0?' (+'+fV(r.vp_av)+' leftover)':'')+'</span></div>';
+  h+=bar(pct,vp_ok);
+  h+='</div>';
 
   if(!sh){
     h+='<p class="note">⚔️ Fight only — nessun acquisto al shop a questo grado.</p>';
@@ -376,7 +387,7 @@ function renderGrade(g,r,i){
     h+='🐺 '+sh.w.n+' pack × '+fV(sh.w.vp)+' = <strong>'+fV(sh.w.n*sh.w.vp)+'</strong> VP — costo '+fM(sh.w.c*sh.w.n)+'<br>';
     h+='🐉 '+sh.d.n+' pack × '+fV(sh.d.vp)+' = <strong>'+fV(sh.d.n*sh.d.vp)+'</strong> VP — costo '+fM(sh.d.c*sh.d.n)+'<br>';
     if(r.rn>0){
-      h+='<br>After <strong>'+r.rn+' Ragnarök</strong>: <span style="color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_tot)+' VP</span> '+(vp_ok?'✅ (+'+fV(r.vp_av)+' leftover)':'⚠️ still -'+fV(vp_miss));
+      h+='<br>Dopo <strong>'+r.rn+' Ragnarök</strong>: <span style="color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_tot)+' VP</span> '+(vp_ok?'✅ (+'+fV(r.vp_av)+' di leftover)':'⚠️ ancora -'+fV(vp_miss));
     }
     h+='</div></div>';
 
@@ -403,7 +414,7 @@ function renderGrade(g,r,i){
       h+='<div class="ccnm">'+c.nm+'</div>';
       h+='<div class="ccav">'+fM(c.av)+'</div>';
       h+='<div class="ccdt">needed: '+fM(c.cost)+'</div>';
-      h+='<div class="ccst" style="color:'+(c.ok?'#2ecc71':'#ff6b6b')+'">'+(c.ok?'✅ remaining '+fM(c.after):'⚠️ short by '+fM(miss2))+'</div>';
+      h+='<div class="ccst" style="color:'+(c.ok?'#2ecc71':'#ff6b6b')+'">'+(c.ok?'✅ remaining '+fM(c.after):'⚠️ missing '+fM(miss2))+'</div>';
       h+='</div>';
     }
     h+='</div>';
@@ -412,10 +423,10 @@ function renderGrade(g,r,i){
   // Requisiti
   if(q.acc>1||q.hero>0||q.proj>0){
     h+='<div class="div"></div><div class="slb">Academy / Hero / Projects requirements</div>';
-    if(q.acc>1){var ok2=r.am===0;h+='<div class="irow"><span class="ilb">🏛️ Academy</span><div class="iv '+(ok2?'okc':'warnc')+'">'+(ok2?'✅ L'+q.acc+' reached':'→ Upgrade to L'+q.acc+' (you are L'+i.acc+', short by '+r.am+' levels)')+'</div></div>';}
-    if(q.hero>0){var ok3=r.hm===0;h+='<div class="irow"><span class="ilb">🦸 Hero</span><div class="iv '+(ok3?'okc':'warnc')+'">'+(ok3?'✅ Lv'+q.hero+' reached':'→ Reach Lv'+q.hero+' (you are Lv'+i.hero+', short by '+r.hm+')')+'</div></div>';}
-    if(q.proj>0){var ok4=r.pm===0;h+='<div class="irow"><span class="ilb">📜 Projects</span><div class="iv '+(ok4?'okc':'warnc')+'">'+(ok4?'✅ '+q.proj.toLocaleString()+' — you have enough':'→ Buy '+r.pm.toLocaleString()+' more (you have '+i.proj.toLocaleString()+', needed '+q.proj.toLocaleString()+')')+'</div></div>';}
-    if(r.gm>0) h+='<div class="irow"><span class="ilb">💰 Gold</span><div class="iv warnc">⚠️ Missing '+r.gm.toLocaleString()+' oro (you have '+i.gold.toLocaleString()+', needed '+r.gn_need.toLocaleString()+')</div></div>';
+    if(q.acc>1){var ok2=r.am===0;h+='<div class="irow"><span class="ilb">🏛️ Accademia</span><div class="iv '+(ok2?'okc':'warnc')+'">'+(ok2?'✅ L'+q.acc+' reached':'→ Upgrade to L'+q.acc+' (sei L'+i.acc+', missing '+r.am+' levels)')+'</div></div>';}
+    if(q.hero>0){var ok3=r.hm===0;h+='<div class="irow"><span class="ilb">🦸 Eroe</span><div class="iv '+(ok3?'okc':'warnc')+'">'+(ok3?'✅ Lv'+q.hero+' reached':'→ Reach Lv'+q.hero+' (sei Lv'+i.hero+', missing '+r.hm+')')+'</div></div>';}
+    if(q.proj>0){var ok4=r.pm===0;h+='<div class="irow"><span class="ilb">📜 Progetti</span><div class="iv '+(ok4?'okc':'warnc')+'">'+(ok4?'✅ '+q.proj.toLocaleString()+' — you have enough':'→ Buy '+r.pm.toLocaleString()+' more (hai '+i.proj.toLocaleString()+', needed '+q.proj.toLocaleString()+')')+'</div></div>';}
+    if(r.gm>0) h+='<div class="irow"><span class="ilb">💰 Oro</span><div class="iv warnc">⚠️ Mancano '+r.gm.toLocaleString()+' oro (hai '+i.gold.toLocaleString()+', needed '+r.gn_need.toLocaleString()+')</div></div>';
   }
 
   // RSS
@@ -423,17 +434,17 @@ function renderGrade(g,r,i){
     h+='<div class="div"></div><div class="slb">Building resources for Academy L'+q.acc+'</div>';
     h+='<div class="rss-grid">';
     var rss_list=[
-      {nm:'🪵 Wood',need:r.wood_need,miss:r.wood_miss,have:i.wood,col:'#92400e'},
-      {nm:'⚙️ Iron', need:r.iron_need, miss:r.iron_miss, have:i.iron, col:'#374151'},
-      {nm:'🪨 Stone',need:r.stone_need,miss:r.stone_miss,have:i.stone,col:'#6b7280'}
+      {nm:'🪵 Legno',need:r.wood_need,miss:r.wood_miss,have:i.wood,col:'#92400e'},
+      {nm:'⚙️ Ferro', need:r.iron_need, miss:r.iron_miss, have:i.iron, col:'#374151'},
+      {nm:'🪨 Pietra',need:r.stone_need,miss:r.stone_miss,have:i.stone,col:'#6b7280'}
     ];
     for(var ri=0;ri<rss_list.length;ri++){
       var rs=rss_list[ri];
       h+='<div class="rss-card" style="border-top:3px solid '+rs.col+'">';
       h+='<div class="rss-nm">'+rs.nm+'</div>';
       h+='<div class="rss-need">'+fM(rs.need)+' needed</div>';
-      h+='<div class="rss-have">you have: '+fM(rs.have)+'</div>';
-      h+='<div class="rss-st" style="color:'+(rs.miss===0?'#2ecc71':'#ff6b6b')+'">'+(rs.miss===0?'✅ ok':'⚠️ short by '+fM(rs.miss))+'</div>';
+      h+='<div class="rss-have">hai: '+fM(rs.have)+'</div>';
+      h+='<div class="rss-st" style="color:'+(rs.miss===0?'#2ecc71':'#ff6b6b')+'">'+(rs.miss===0?'✅ ok':'⚠️ missing '+fM(rs.miss))+'</div>';
       h+='</div>';
     }
     h+='</div>';
@@ -449,7 +460,7 @@ function renderGrade(g,r,i){
 function renderSummary(i,res){
   // Tabella progressione
   var h='<table class="stable">';
-  h+='<tr><th>Grade</th><th>Status</th><th>VP you have</th><th>VP needed</th><th>Ragnarök</th><th>🐺 Wolf</th><th>🐺 Remaining</th><th>🐉 Dragon</th><th>🐉 Remaining</th><th>Acc.</th><th>Eroe</th></tr>';
+  h+='<tr><th>Grade</th><th>Status</th><th>VP you have</th><th>VP needed</th><th>Ragnarök</th><th>🐺 Wolf</th><th>🐺 Rimane</th><th>🐉 Dragon</th><th>🐉 Rimane</th><th>Acc.</th><th>Eroe</th></tr>';
   var grades=['G3','G4','G5','G6','G7','G8'];
   for(var idx=0;idx<grades.length;idx++){
     var g=grades[idx],r=res[g],col=GCOL[g];
@@ -501,7 +512,7 @@ function renderSummary(i,res){
 
   // RSS
   var rh='<table class="stable">';
-  rh+='<tr><th>Grade</th><th>Acc. richiesta</th><th>🪵 Wood</th><th>⚙️ Iron</th><th>🪨 Stone</th></tr>';
+  rh+='<tr><th>Grade</th><th>Acc. richiesta</th><th>🪵 Legno</th><th>⚙️ Ferro</th><th>🪨 Pietra</th></tr>';
   for(var j=0;j<gds.length;j++){
     var g=gds[j],r2=res[g],col=GCOL[g];
     var ok_r=!r2.wood_miss&&!r2.iron_miss&&!r2.stone_miss;
@@ -514,7 +525,7 @@ function renderSummary(i,res){
     rh+='</tr>';
   }
   rh+='</table>';
-  rh+='<p class="note" style="margin-top:10px">⚠️ RSS values are estimates — fill in the RSS Data sheet in the Excel file for precise per-building values.</p>';
+  rh+='<p class="note" style="margin-top:10px">⚠️ RSS values are estimates — compila il foglio Dati RSS nel file Excel per valori precisi edificio per edificio.</p>';
   document.getElementById('sum-rss').innerHTML=rh;
 }
 
