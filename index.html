@@ -88,8 +88,8 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 <body>
 <nav>
   <div class="logo">⚔️ TB</div>
-  <div class="tab on"  onclick="goPage('summary',this)">📋 Riepilogo</div>
-  <div class="tab"     onclick="goPage('data',this)">⚙️ Dati</div>
+  <div class="tab on"  onclick="goPage('data',this)">⚙️ I Miei Dati</div>
+  <div class="tab"     onclick="goPage('summary',this)">📋 Riepilogo</div>
   <div class="tab"     onclick="goPage('g5',this)">G5</div>
   <div class="tab"     onclick="goPage('g6',this)">G6</div>
   <div class="tab"     onclick="goPage('g7',this)">G7</div>
@@ -99,14 +99,14 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 </nav>
 
 <!-- RIEPILOGO -->
-<div id="page-summary" class="pg on">
+<div id="page-summary" class="pg">
   <div class="card"><div class="ct">Progressione G3 → G8</div><div id="sum-table"></div></div>
   <div class="card"><div class="ct">Budget monete — G5 → G8</div><div id="sum-coins"></div></div>
   <div class="card"><div class="ct">Risorse necessarie per Accademia</div><div id="sum-rss"></div></div>
 </div>
 
 <!-- DATI -->
-<div id="page-data" class="pg">
+<div id="page-data" class="pg on">
   <div class="card">
     <div class="ct">Il tuo stato attuale</div>
     <div class="row2">
@@ -340,6 +340,7 @@ function renderGrade(g,r,i){
   var q=r.q,sh=r.sh;
   var vp_ok=r.vp_tot>=q.vp;
   var vp_miss=Math.max(q.vp-r.vp_tot,0);
+  var vp_miss_before_shop=Math.max(q.vp-r.vp_c,0);
   var pct=Math.min(100,r.vp_tot/q.vp*100);
   var col=GCOL[g];
   var gn=parseInt(g.replace('G',''));
@@ -355,14 +356,24 @@ function renderGrade(g,r,i){
 
   // VP
   h+='<div class="slb">Victory Points</div>';
-  h+='<div class="vprow"><div class="vpl">';
-  h+='<div class="vplb">Da combattimento'+(sh&&r.rn>0?' + negozio '+sh.prev:'')+'</div>';
-  h+='<div class="vpn"><span class="vph" style="color:'+col+'">'+fV(r.vp_c)+'</span>';
-  if(sh&&r.rn>0) h+='<span style="color:#444"> + </span><span style="color:#93c5fd;font-size:18px;font-weight:700">'+fV(r.rn*r.vpr)+'</span><span style="font-size:11px;color:#666"> dal negozio</span>';
-  h+='<span style="color:#333"> / </span><span class="vpnd">'+fV(q.vp)+' necessari</span></div>';
-  h+=bar(pct,vp_ok)+'</div>';
-  h+='<div class="vpm"><div style="font-size:11px;color:#666">Mancano</div>';
-  h+='<div class="vpmv" style="color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+(vp_ok?'✅ ok':fV(vp_miss))+'</div></div></div>';
+  // Box VP: mostra richiesti / hai / mancano in modo chiaro
+  h+='<div class="shopbox" style="margin-bottom:12px">';
+  // Riga 1: VP richiesti vs disponibili
+  h+='<div class="irow"><span class="ilb" style="font-size:12px">🎯 VP richiesti</span>';
+  h+='<span class="iv" style="font-size:16px;color:#f5a623">'+fV(q.vp)+'</span></div>';
+  h+='<div class="irow"><span class="ilb" style="font-size:12px">⚔️ Hai da combattimento</span>';
+  h+='<span class="iv" style="color:'+col+'">'+fV(r.vp_c)+'</span></div>';
+  if(sh&&r.rn>0){
+    h+='<div class="irow"><span class="ilb" style="font-size:12px">❌ Mancano ancora</span>';
+    h+='<span class="iv" style="color:#ff6b6b">'+fV(vp_miss_before_shop)+'</span></div>';
+    h+='<div class="irow"><span class="ilb" style="font-size:12px">🏪 Fai '+r.rn+' Ragnarök (negozio '+sh.prev+')</span>';
+    h+='<span class="iv" style="color:#93c5fd">+'+fV(r.rn*r.vpr)+'</span></div>';
+  }
+  h+='<div class="irow" style="border-top:1px solid #444;margin-top:2px;padding-top:8px">';
+  h+='<span class="ilb" style="font-size:12px;font-weight:700">✅ Totale VP</span>';
+  h+='<span class="iv" style="font-size:16px;color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_tot)+(r.vp_av>0?' (+'+fV(r.vp_av)+' avanzo)':'')+'</span></div>';
+  h+=bar(pct,vp_ok);
+  h+='</div>';
 
   if(!sh){
     h+='<p class="note">⚔️ Solo combattimento — nessun acquisto al negozio a questo grado.</p>';
