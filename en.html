@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Total Battle — Guardsmen Planner</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;font-size:14px;background:#0f1117;color:#e8eaf0;min-height:100vh}
+nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:center;padding:0 12px;position:sticky;top:0;z-index:99;overflow-x:auto}
+.logo{font-size:15px;font-weight:700;color:#f5a623;padding:12px 14px 12px 0;border-right:1px solid #2a2d3a;margin-right:4px;white-space:nowrap}
+.tab{padding:12px 12px;cursor:pointer;color:#8b8fa8;font-size:12px;border-bottom:2px solid transparent;white-space:nowrap;user-select:none}
+.tab.on{color:#f5a623;border-bottom-color:#f5a623}
+.pg{display:none;padding:16px 14px;max-width:880px;margin:0 auto}
+.pg.on{display:block}
+.card{background:#1a1d27;border:1px solid #2a2d3a;border-radius:10px;padding:16px;margin-bottom:13px}
+.ct{font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+.fg{display:flex;flex-direction:column;gap:4px}
+.fg label{font-size:11px;color:#8b8fa8}
+.fg input{background:#22263a;border:1px solid #333;border-radius:6px;color:#e8eaf0;font-size:15px;font-weight:700;padding:9px 10px;outline:none;width:100%}
+.fg input:focus{border-color:#f5a623}
+.hint{font-size:11px;color:#444;margin-top:2px}
+.stable{width:100%;border-collapse:collapse;font-size:12px}
+.stable th{background:#22263a;color:#555;font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:7px 9px;text-align:left;border-bottom:1px solid #2a2d3a}
+.stable td{padding:8px 9px;border-bottom:1px solid #1e2030;vertical-align:middle}
+.stable tr:last-child td{border-bottom:none}
+.gb{border-radius:10px;overflow:hidden;margin-bottom:14px;border:1px solid #2a2d3a}
+.gh{display:flex;justify-content:space-between;align-items:center;padding:12px 16px}
+.gt{font-size:16px;font-weight:700}
+.gsub{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
+.gst{font-size:12px;font-weight:700;padding:4px 11px;border-radius:20px}
+.ok-b{background:rgba(46,204,113,.15);color:#2ecc71}
+.warn-b{background:rgba(255,107,107,.15);color:#ff6b6b}
+.gbody{background:#1a1d27;padding:14px 16px}
+.vprow{display:flex;align-items:center;gap:12px;background:#22263a;border-radius:8px;padding:12px 14px;margin-bottom:12px}
+.vpl{flex:1}
+.vplb{font-size:11px;color:#666;margin-bottom:2px}
+.vpn{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.vph{font-size:22px;font-weight:700}
+.vpnd{font-size:13px;color:#666}
+.pbar{height:5px;background:#22263a;border-radius:3px;margin-top:7px;overflow:hidden}
+.pfill{height:100%;border-radius:3px;transition:width .3s}
+.vpm{text-align:right;min-width:80px}
+.vpmv{font-size:19px;font-weight:700}
+.slb{font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.8px;margin:12px 0 7px}
+.shopbox{background:#22263a;border-radius:8px;padding:12px 14px;margin-bottom:10px}
+.rn-big{font-size:32px;font-weight:700;color:#f5a623;line-height:1}
+.rn-lbl{font-size:11px;color:#666;margin-top:2px}
+.irow{display:flex;align-items:flex-start;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1e2030;gap:8px}
+.irow:last-child{border-bottom:none}
+.ilb{color:#8b8fa8;font-size:13px;min-width:110px}
+.iv{font-size:13px;font-weight:600;text-align:right}
+.idet{font-size:12px;color:#666;text-align:right;margin-top:2px}
+.ccgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.cc{background:#22263a;border-radius:8px;padding:10px 12px}
+.ccnm{font-size:11px;color:#666;margin-bottom:4px}
+.ccav{font-size:15px;font-weight:700}
+.ccdt{font-size:11px;color:#666;margin-top:2px}
+.ccst{font-size:12px;font-weight:700;margin-top:4px}
+.sreftbl{width:100%;border-collapse:collapse;font-size:12px}
+.sreftbl th{background:#22263a;color:#555;font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:7px 9px;text-align:left;border-bottom:1px solid #2a2d3a}
+.sreftbl td{padding:7px 9px;border-bottom:1px solid #1e2030}
+.sreftbl tr:last-child td{border-bottom:none}
+.sim-card{background:#22263a;border-radius:8px;padding:12px;margin-bottom:10px}
+.sim-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.sim-lbl{font-size:12px;color:#8b8fa8;flex:1}
+.sim-inp{width:72px;background:#0f1117;border:1px solid #333;border-radius:5px;color:#e8eaf0;font-size:13px;font-weight:700;padding:5px 7px;text-align:center;outline:none}
+.sim-inp:focus{border-color:#f5a623}
+.sim-max{font-size:10px;color:#444}
+.sim-vp{background:#0f1117;border-radius:7px;padding:10px;text-align:center;margin-top:10px}
+.sim-coins{margin-top:8px}
+.scrow{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid #1e2030}
+.scrow:last-child{border-bottom:none}
+.rss-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}
+.rss-card{background:#22263a;border-radius:8px;padding:10px 12px}
+.rss-nm{font-size:11px;color:#666;margin-bottom:4px}
+.rss-need{font-size:14px;font-weight:700}
+.rss-have{font-size:11px;color:#666;margin-top:2px}
+.rss-st{font-size:12px;font-weight:700;margin-top:4px}
+.okc{color:#2ecc71}.warnc{color:#ff6b6b}.infoc{color:#f5a623}.mutec{color:#666}
+.div{height:1px;background:#2a2d3a;margin:11px 0}
+.note{font-size:12px;color:#555;font-style:italic;line-height:1.6;padding:8px 0}
+@media(max-width:580px){.row2,.row3,.ccgrid,.rss-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">⚔️ TB</div>
+  <div class="tab on"  onclick="goPage('summary',this)">📋 Summary</div>
+  <div class="tab"     onclick="goPage('data',this)">⚙️ My Data</div>
+  <div class="tab"     onclick="goPage('g5',this)">G5</div>
+  <div class="tab"     onclick="goPage('g6',this)">G6</div>
+  <div class="tab"     onclick="goPage('g7',this)">G7</div>
+  <div class="tab"     onclick="goPage('g8',this)">G8</div>
+  <div class="tab"     onclick="goPage('shops',this)">🏪 Shops</div>
+  <div class="tab"     onclick="goPage('sim',this)">🎮 Simulator</div>
+</nav>
+
+<!-- RIEPILOGO -->
+<div id="page-summary" class="pg on">
+  <div class="card"><div class="ct">Progression G3 → G8</div><div id="sum-table"></div></div>
+  <div class="card"><div class="ct">Coin budget — G5 → G8</div><div id="sum-coins"></div></div>
+  <div class="card"><div class="ct">Resources needed for Academy</div><div id="sum-rss"></div></div>
+</div>
+
+<!-- DATI -->
+<div id="page-data" class="pg">
+  <div class="card">
+    <div class="ct">Your current status</div>
+    <div class="row2">
+      <div class="fg"><label>⚔️ Current VP (B)</label><input type="number" id="i_vp" value="13" min="0" step="any" oninput="compute()"><div class="hint">Total VP in billions</div></div>
+      <div class="fg"><label>🏰 Guard Grade</label><input type="number" id="i_guard" value="2" min="2" max="8" step="1" oninput="compute()"><div class="hint">Your current grade (2-8)</div></div>
+      <div class="fg"><label>🏛️ Academy Level</label><input type="number" id="i_acc" value="10" min="1" max="45" step="1" oninput="compute()"></div>
+      <div class="fg"><label>🦸 Hero Level</label><input type="number" id="i_hero" value="1" min="1" step="1" oninput="compute()"></div>
+      <div class="fg"><label>📜 Available Projects</label><input type="number" id="i_proj" value="0" min="0" step="1" oninput="compute()"></div>
+      <div class="fg"><label>💰 Available Gold</label><input type="number" id="i_gold" value="0" min="0" step="1" oninput="compute()"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">Your coins</div>
+    <div class="row3">
+      <div class="fg"><label>🐺 Wolf Coins (M)</label><input type="number" id="i_wolf" value="1260" min="0" step="any" oninput="compute()"></div>
+      <div class="fg"><label>🐉 Dragonn Coins (M)</label><input type="number" id="i_dragon" value="30" min="0" step="any" oninput="compute()"></div>
+      <div class="fg"><label>🌲 Forest Coins (M)</label><input type="number" id="i_forest" value="100" min="0" step="any" oninput="compute()"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">Building Resources (for Academy)</div>
+    <div class="row3">
+      <div class="fg"><label>🪵 Wood (M)</label><input type="number" id="i_wood" value="0" min="0" step="any" oninput="compute()"></div>
+      <div class="fg"><label>⚙️ Iron (M)</label><input type="number" id="i_iron" value="0" min="0" step="any" oninput="compute()"></div>
+      <div class="fg"><label>🪨 Stone (M)</label><input type="number" id="i_stone" value="0" min="0" step="any" oninput="compute()"></div>
+    </div>
+    <p class="note" style="margin-top:10px">Resources are needed to upgrade buildings to the level required by each grade's Academy.</p>
+  </div>
+</div>
+
+<!-- PAGINE GRADO -->
+<div id="page-g5" class="pg"><div id="c-g5"></div></div>
+<div id="page-g6" class="pg"><div id="c-g6"></div></div>
+<div id="page-g7" class="pg"><div id="c-g7"></div></div>
+<div id="page-g8" class="pg"><div id="c-g8"></div></div>
+
+<!-- NEGOZI -->
+<div id="page-shops" class="pg">
+  <div class="card">
+    <div class="ct">Shop reference by grade</div>
+    <p class="note" style="margin-bottom:14px">Use your current grade shop to unlock the next. Each Ragnarök buys all available packs.</p>
+    <div id="shops-content"></div>
+  </div>
+</div>
+
+<!-- SIMULATORE -->
+<div id="page-sim" class="pg">
+  <div class="card">
+    <div class="ct">Ragnarök Purchase Simulator</div>
+    <p class="note" style="margin-bottom:14px">Enter the packs you want to buy — coins cascade automatically from G5 to G8.</p>
+    <div id="sim-content"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// COSTANTI — tutti i dati dai fogli Excel
+// ═══════════════════════════════════════════
+var GR = {
+  G3:{vp:.0511,acc:15,hero:0,  proj:0,     gold:0,      pv:0},
+  G4:{vp:.64,  acc:20,hero:0,  proj:0,     gold:0,      pv:.0511},
+  G5:{vp:9,    acc:25,hero:40, proj:25000, gold:256000, pv:.6911},
+  G6:{vp:102,  acc:30,hero:100,proj:51000, gold:510000, pv:9.6911},
+  G7:{vp:1332, acc:35,hero:140,proj:112000,gold:1120000,pv:111.6911},
+  G8:{vp:12000,acc:40,hero:200,proj:196000,gold:1960000,pv:1443.6911}
+};
+
+// Negozi: to unlock Gn usi il shop G(n-1)
+// VPR = VP lupo+drago per Ragnarök (senza foresta)
+// I pack foresta sono separati (Forest Tournament, non Ragnarök)
+var SHOPS = {
+  G5:{
+    w:{n:150,vp:0.310,c:0.5},   // lupo: 150pk × 310M VP, 500K/pk
+    d:{n:3,  vp:1.2,  c:0.65},  // drago: 3pk × 1.2B VP, 650K/pk
+    f1:{n:2,   vp:1.6,  c:1.0}, // foresta1: 2pk × 1.6B, 1M/pk
+    f2:{n:150, vp:0.186,c:0.5}, // foresta2: 150pk × 186M, 500K/pk
+    prev:'G4', wc:75, dc:1.95, vpr:50.1
+  },
+  G6:{
+    w:{n:190,vp:2.8,  c:0.5},
+    d:{n:3,  vp:13,   c:0.5},   // drago G6: 500K/pk
+    f1:{n:190,vp:1.68,c:0.65},
+    f2:{n:3,  vp:11.7,c:1.0},
+    prev:'G5', wc:95, dc:1.5, vpr:571
+  },
+  G7:{
+    w:{n:510,vp:6.6,  c:0.5},
+    d:{n:4,  vp:27,   c:0.65},
+    f1:{n:8,  vp:24.3,c:0.65},
+    f2:{n:510,vp:3.96,c:0.65},
+    prev:'G6', wc:255, dc:2.6, vpr:3474
+  },
+  G8:{
+    // Per sbloccare G8 si usa il shop G7 (stesso di G7)
+    w:{n:510,vp:6.6,  c:0.5},
+    d:{n:4,  vp:27,   c:0.65},
+    // Nessuna foresta disponibile
+    prev:'G7', wc:255, dc:2.6, vpr:3474
+  }
+};
+
+var GCOL = {
+  G3:'#f97316',G4:'#eab308',
+  G5:'#e53935',G6:'#c62828',
+  G7:'#7b1fa2',G8:'#1565c0'
+};
+
+// RSS needede per accademia (valori approssimativi in M — da compilare con dati reali)
+// Struttura: {legno, ferro, pietra} in M per portare accademia al livello richiesto
+var RSS_ACC = {
+  G5:{legno:500,  ferro:300,  pietra:400},   // da L acc a L25
+  G6:{legno:1500, ferro:900,  pietra:1200},  // da L25 a L30
+  G7:{legno:5000, ferro:3000, pietra:4000},  // da L30 a L35
+  G8:{legno:15000,ferro:9000, pietra:12000}  // da L35 a L40
+};
+
+// Pack simulatore
+var simPacks = {
+  G5:{w:0,d:0,f1:0,f2:0},
+  G6:{w:0,d:0,f1:0,f2:0},
+  G7:{w:0,d:0,f1:0,f2:0},
+  G8:{w:0,d:0}
+};
+
+// ═══════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════
+function fV(v){
+  if(v===undefined||v===null||isNaN(v))return'—';
+  if(v>=1000)return parseFloat((v/1000).toFixed(3).replace(/\.?0+$/,''))+'T';
+  if(v>=1)return parseFloat(v.toFixed(2))+'B';
+  return Math.round(v*1000)+'M';
+}
+function fM(v){
+  if(v===undefined||v===null||isNaN(v))return'—';
+  var a=Math.abs(v),s=v<0?'-':'';
+  if(a>=1000)return s+parseFloat((a/1000).toFixed(2).replace(/\.?0+$/,''))+'B';
+  if(a>=1)return s+parseFloat(a.toFixed(3).replace(/\.?0+$/,''))+'M';
+  return s+Math.round(a*1000)+'K';
+}
+function bar(p,ok){
+  return '<div class="pbar"><div class="pfill" style="width:'+Math.min(p,100).toFixed(1)+'%;background:'+(ok?'#2ecc71':'#e74c3c')+'"></div></div>';
+}
+function gi(){
+  return{
+    vp:    parseFloat(document.getElementById('i_vp').value)||0,
+    guard: parseInt(document.getElementById('i_guard').value)||2,
+    acc:   parseInt(document.getElementById('i_acc').value)||1,
+    hero:  parseInt(document.getElementById('i_hero').value)||1,
+    proj:  parseInt(document.getElementById('i_proj').value)||0,
+    gold:  parseInt(document.getElementById('i_gold').value)||0,
+    wolf:  parseFloat(document.getElementById('i_wolf').value)||0,
+    dragon:parseFloat(document.getElementById('i_dragon').value)||0,
+    forest:parseFloat(document.getElementById('i_forest').value)||0,
+    wood:  parseFloat(document.getElementById('i_wood').value)||0,
+    iron:  parseFloat(document.getElementById('i_iron').value)||0,
+    stone: parseFloat(document.getElementById('i_stone').value)||0
+  };
+}
+
+// ═══════════════════════════════════════════
+// CALCOLA
+// ═══════════════════════════════════════════
+function calcAll(){
+  var i=gi();
+  var wolf=i.wolf,dragon=i.dragon,forest=i.forest;
+  var proj=i.proj,gold=i.gold;
+  var res={};
+
+  var grades=['G3','G4','G5','G6','G7','G8'];
+  for(var idx=0;idx<grades.length;idx++){
+    var g=grades[idx];
+    var q=GR[g];
+    var sh=SHOPS[g];
+    var vpr=sh?sh.vpr:0;
+    var wcu=sh?sh.wc:0;
+    var dcu=sh?sh.dc:0;
+
+    var vp_c=Math.max(i.vp-q.pv,0);
+    var rn=0,wc=0,dc=0;
+    if(vpr>0){
+      var miss=Math.max(q.vp-vp_c,0);
+      if(miss>0) rn=Math.ceil(miss/vpr);
+      wc=rn*wcu;
+      dc=rn*dcu;
+    }
+    var vp_tot=vp_c+rn*vpr;
+    var vp_av=Math.max(vp_tot-q.vp,0);
+
+    var pu=idx>=2?q.proj:0;
+    var pm=Math.max(pu-proj,0);
+    var gn=q.gold+pm*10;
+    var gm=Math.max(gn-gold,0);
+
+    // RSS accademia
+    var rss=RSS_ACC[g]||{legno:0,ferro:0,pietra:0};
+    var acc_from=idx>0?GR[grades[idx-1]].acc:0;
+    // Semplificato: se acc già al livello richiesto, no RSS
+    var acc_ok=i.acc>=q.acc;
+    var wood_need=acc_ok?0:rss.legno;
+    var iron_need=acc_ok?0:rss.ferro;
+    var stone_need=acc_ok?0:rss.pietra;
+    var wood_miss=Math.max(wood_need-i.wood,0);
+    var iron_miss=Math.max(iron_need-i.iron,0);
+    var stone_miss=Math.max(stone_need-i.stone,0);
+
+    res[g]={
+      q:q,sh:sh,vp_c:vp_c,rn:rn,vpr:vpr,vp_tot:vp_tot,vp_av:vp_av,
+      wc:wc,dc:dc,
+      wa:wolf,da:dragon,fa:forest,
+      wo:Math.max(wolf-wc,0),doo:Math.max(dragon-dc,0),fo:forest,
+      w_ok:wolf>=wc,d_ok:dragon>=dc,
+      pm:pm,gm:gm,gn_need:gn,
+      hm:Math.max((q.hero||0)-i.hero,0),
+      am:Math.max(q.acc-i.acc,0),
+      wood_need:wood_need,iron_need:iron_need,stone_need:stone_need,
+      wood_miss:wood_miss,iron_miss:iron_miss,stone_miss:stone_miss
+    };
+    wolf=Math.max(wolf-wc,0);
+    dragon=Math.max(dragon-dc,0);
+    proj=Math.max(proj-pu,0);
+    gold=Math.max(gold-gn,0);
+  }
+  return{i:i,res:res};
+}
+
+// ═══════════════════════════════════════════
+// RENDER GRADO
+// ═══════════════════════════════════════════
+function renderGrade(g,r,i){
+  var q=r.q,sh=r.sh;
+  var vp_ok=r.vp_tot>=q.vp;
+  var vp_miss=Math.max(q.vp-r.vp_tot,0);
+  var pct=Math.min(100,r.vp_tot/q.vp*100);
+  var col=GCOL[g];
+  var gn=parseInt(g.replace('G',''));
+  var allOk=vp_ok&&!r.am&&!r.hm&&!r.pm&&!r.gm&&!r.wood_miss&&!r.iron_miss&&!r.stone_miss;
+  var done=i.guard>=gn;
+
+  var h='<div class="gb">';
+  h+='<div class="gh" style="background:'+col+'20;border-left:4px solid '+col+'">';
+  h+='<div><div class="gt" style="color:'+col+'">Grade '+g+'</div>';
+  h+='<div class="gsub">'+(sh?'You are at '+sh.prev+' — usa il shop '+sh.prev+' to unlock '+g:'Fight only')+'</div></div>';
+  h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completato':allOk?'✅ Ready':'⚠️ Incompleto')+'</span>';
+  h+='</div><div class="gbody">';
+
+  // VP
+  h+='<div class="slb">Victory Points</div>';
+  h+='<div class="vprow"><div class="vpl">';
+  h+='<div class="vplb">From combat'+(sh&&r.rn>0?' + shop '+sh.prev:'')+'</div>';
+  h+='<div class="vpn"><span class="vph" style="color:'+col+'">'+fV(r.vp_c)+'</span>';
+  if(sh&&r.rn>0) h+='<span style="color:#444"> + </span><span style="color:#93c5fd;font-size:18px;font-weight:700">'+fV(r.rn*r.vpr)+'</span><span style="font-size:11px;color:#666"> from shop</span>';
+  h+='<span style="color:#333"> / </span><span class="vpnd">'+fV(q.vp)+' needed</span></div>';
+  h+=bar(pct,vp_ok)+'</div>';
+  h+='<div class="vpm"><div style="font-size:11px;color:#666">Missing</div>';
+  h+='<div class="vpmv" style="color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+(vp_ok?'✅ ok':fV(vp_miss))+'</div></div></div>';
+
+  if(!sh){
+    h+='<p class="note">⚔️ Fight only — nessun acquisto al shop a questo grado.</p>';
+  } else {
+    h+='<div class="slb">Ragnarök plan — shop '+sh.prev+'</div>';
+    h+='<div class="shopbox">';
+    h+='<div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:12px">';
+    h+='<div><div class="rn-big">'+r.rn+'</div><div class="rn-lbl">Ragnarök needed</div></div>';
+    h+='<div style="font-size:12px;color:#8b8fa8;flex:1;line-height:1.7">';
+    h+='Each Ragnarök (max <strong style="color:#e8eaf0">'+fV(r.vpr)+' VP</strong>):<br>';
+    h+='🐺 '+sh.w.n+' pack × '+fV(sh.w.vp)+' = <strong>'+fV(sh.w.n*sh.w.vp)+'</strong> VP — costo '+fM(sh.w.c*sh.w.n)+'<br>';
+    h+='🐉 '+sh.d.n+' pack × '+fV(sh.d.vp)+' = <strong>'+fV(sh.d.n*sh.d.vp)+'</strong> VP — costo '+fM(sh.d.c*sh.d.n)+'<br>';
+    if(r.rn>0){
+      h+='<br>After <strong>'+r.rn+' Ragnarök</strong>: <span style="color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_tot)+' VP</span> '+(vp_ok?'✅ (+'+fV(r.vp_av)+' leftover)':'⚠️ still -'+fV(vp_miss));
+    }
+    h+='</div></div>';
+
+    // Forest (separata, non Ragnarök)
+    if(sh.f1&&g!='G8'){
+      h+='<div class="div"></div>';
+      h+='<div style="font-size:12px;color:#22c55e;font-weight:600;margin-bottom:6px">🌲 Forest Tournament — optional (reduces Ragnarök)</div>';
+      h+='<div style="font-size:12px;color:#8b8fa8">F1: '+sh.f1.n+' pack × '+fV(sh.f1.vp)+' = <strong>'+fV(sh.f1.n*sh.f1.vp)+'</strong> VP — '+fM(sh.f1.c*sh.f1.n)+'/torneo</div>';
+      if(sh.f2) h+='<div style="font-size:12px;color:#8b8fa8;margin-top:3px">F2: '+sh.f2.n+' pack × '+fV(sh.f2.vp)+' = <strong>'+fV(sh.f2.n*sh.f2.vp)+'</strong> VP — '+fM(sh.f2.c*sh.f2.n)+'/torneo</div>';
+    }
+    h+='</div>';
+
+    // Monete
+    h+='<div class="slb">Coin budget for '+r.rn+' Ragnarök</div>';
+    h+='<div class="ccgrid">';
+    var coins=[
+      {nm:'🐺 Wolf Coins',av:r.wa,cost:r.wc,ok:r.w_ok,after:r.wo,col:'#3b82f6'},
+      {nm:'🐉 Dragonn Coins',av:r.da,cost:r.dc,ok:r.d_ok,after:r.doo,col:'#ef4444'}
+    ];
+    for(var ci=0;ci<coins.length;ci++){
+      var c=coins[ci];
+      var miss2=Math.max(c.cost-c.av,0);
+      h+='<div class="cc" style="border-top:3px solid '+c.col+'">';
+      h+='<div class="ccnm">'+c.nm+'</div>';
+      h+='<div class="ccav">'+fM(c.av)+'</div>';
+      h+='<div class="ccdt">needed: '+fM(c.cost)+'</div>';
+      h+='<div class="ccst" style="color:'+(c.ok?'#2ecc71':'#ff6b6b')+'">'+(c.ok?'✅ remaining '+fM(c.after):'⚠️ short by '+fM(miss2))+'</div>';
+      h+='</div>';
+    }
+    h+='</div>';
+  }
+
+  // Requisiti
+  if(q.acc>1||q.hero>0||q.proj>0){
+    h+='<div class="div"></div><div class="slb">Academy / Hero / Projects requirements</div>';
+    if(q.acc>1){var ok2=r.am===0;h+='<div class="irow"><span class="ilb">🏛️ Academy</span><div class="iv '+(ok2?'okc':'warnc')+'">'+(ok2?'✅ L'+q.acc+' reached':'→ Upgrade to L'+q.acc+' (you are L'+i.acc+', short by '+r.am+' levels)')+'</div></div>';}
+    if(q.hero>0){var ok3=r.hm===0;h+='<div class="irow"><span class="ilb">🦸 Hero</span><div class="iv '+(ok3?'okc':'warnc')+'">'+(ok3?'✅ Lv'+q.hero+' reached':'→ Reach Lv'+q.hero+' (you are Lv'+i.hero+', short by '+r.hm+')')+'</div></div>';}
+    if(q.proj>0){var ok4=r.pm===0;h+='<div class="irow"><span class="ilb">📜 Projects</span><div class="iv '+(ok4?'okc':'warnc')+'">'+(ok4?'✅ '+q.proj.toLocaleString()+' — you have enough':'→ Buy '+r.pm.toLocaleString()+' more (you have '+i.proj.toLocaleString()+', needed '+q.proj.toLocaleString()+')')+'</div></div>';}
+    if(r.gm>0) h+='<div class="irow"><span class="ilb">💰 Gold</span><div class="iv warnc">⚠️ Missing '+r.gm.toLocaleString()+' oro (you have '+i.gold.toLocaleString()+', needed '+r.gn_need.toLocaleString()+')</div></div>';
+  }
+
+  // RSS
+  if(r.wood_need>0||r.iron_need>0||r.stone_need>0){
+    h+='<div class="div"></div><div class="slb">Building resources for Academy L'+q.acc+'</div>';
+    h+='<div class="rss-grid">';
+    var rss_list=[
+      {nm:'🪵 Wood',need:r.wood_need,miss:r.wood_miss,have:i.wood,col:'#92400e'},
+      {nm:'⚙️ Iron', need:r.iron_need, miss:r.iron_miss, have:i.iron, col:'#374151'},
+      {nm:'🪨 Stone',need:r.stone_need,miss:r.stone_miss,have:i.stone,col:'#6b7280'}
+    ];
+    for(var ri=0;ri<rss_list.length;ri++){
+      var rs=rss_list[ri];
+      h+='<div class="rss-card" style="border-top:3px solid '+rs.col+'">';
+      h+='<div class="rss-nm">'+rs.nm+'</div>';
+      h+='<div class="rss-need">'+fM(rs.need)+' needed</div>';
+      h+='<div class="rss-have">you have: '+fM(rs.have)+'</div>';
+      h+='<div class="rss-st" style="color:'+(rs.miss===0?'#2ecc71':'#ff6b6b')+'">'+(rs.miss===0?'✅ ok':'⚠️ short by '+fM(rs.miss))+'</div>';
+      h+='</div>';
+    }
+    h+='</div>';
+  }
+
+  h+='</div></div>';
+  return h;
+}
+
+// ═══════════════════════════════════════════
+// RENDER SUMMARY
+// ═══════════════════════════════════════════
+function renderSummary(i,res){
+  // Tabella progressione
+  var h='<table class="stable">';
+  h+='<tr><th>Grade</th><th>Status</th><th>VP you have</th><th>VP needed</th><th>Ragnarök</th><th>🐺 Wolf</th><th>🐺 Remaining</th><th>🐉 Dragon</th><th>🐉 Remaining</th><th>Acc.</th><th>Eroe</th></tr>';
+  var grades=['G3','G4','G5','G6','G7','G8'];
+  for(var idx=0;idx<grades.length;idx++){
+    var g=grades[idx],r=res[g],col=GCOL[g];
+    var gn=parseInt(g.replace('G','')),done=i.guard>=gn;
+    var vp_ok=r.vp_tot>=r.q.vp;
+    var allOk=vp_ok&&!r.am&&!r.hm&&!r.pm&&!r.gm;
+    var st=done?'<span class="okc">✅ Done</span>':allOk?'<span class="okc">✅ Ready</span>':vp_ok?'<span class="infoc">⚡ Almost</span>':'<span class="warnc">⚠️ No</span>';
+    h+='<tr>';
+    h+='<td style="font-weight:700;color:'+col+'">'+g+'</td>';
+    h+='<td>'+st+'</td>';
+    h+='<td style="color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_tot)+'</td>';
+    h+='<td style="color:#555">'+fV(r.q.vp)+'</td>';
+    h+='<td style="color:#f5a623">'+(r.rn>0?r.rn+'×':'—')+'</td>';
+    h+='<td style="color:'+(r.w_ok?'#e8eaf0':'#ff6b6b')+'">'+(r.wc>0?'−'+fM(r.wc):'—')+'</td>';
+    h+='<td style="color:'+(r.w_ok?'#2ecc71':'#ff6b6b')+'">'+fM(r.wo)+'</td>';
+    h+='<td style="color:'+(r.d_ok?'#e8eaf0':'#ff6b6b')+'">'+(r.dc>0?'−'+fM(r.dc):'—')+'</td>';
+    h+='<td style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+fM(r.doo)+'</td>';
+    h+='<td style="color:'+(r.am===0?'#2ecc71':'#ff6b6b')+'">L'+i.acc+'→L'+r.q.acc+(r.am>0?' (−'+r.am+')':' ✅')+'</td>';
+    h+='<td style="color:'+(r.hm===0||!r.q.hero?'#2ecc71':'#ff6b6b')+'">'+(r.q.hero?i.hero+'→'+r.q.hero+(r.hm>0?' (−'+r.hm+')':' ✅'):'—')+'</td>';
+    h+='</tr>';
+  }
+  h+='</table>';
+  document.getElementById('sum-table').innerHTML=h;
+
+  // Monete
+  var gds=['G5','G6','G7','G8'];
+  var twc=0,tdc=0;
+  for(var j=0;j<gds.length;j++){twc+=res[gds[j]].wc;tdc+=res[gds[j]].dc;}
+  var ch='<div class="row2">';
+  // Wolf
+  ch+='<div style="background:#22263a;border-radius:8px;padding:12px;border-top:3px solid #3b82f6">';
+  ch+='<div style="font-size:11px;font-weight:700;color:#555;text-transform:uppercase;margin-bottom:8px">🐺 Wolf Coins</div>';
+  ch+='<div class="scrow"><span class="mutec">Available</span><span>'+fM(i.wolf)+'</span></div>';
+  for(var j=0;j<gds.length;j++){
+    if(res[gds[j]].wc>0) ch+='<div class="scrow"><span class="mutec">'+gds[j]+' ('+res[gds[j]].rn+'× Ragnarök)</span><span class="warnc">−'+fM(res[gds[j]].wc)+'</span></div>';
+  }
+  ch+='<div class="scrow" style="font-weight:700;border-top:1px solid #2a2d3a;margin-top:4px;padding-top:6px"><span>Rimangono</span><span class="'+(i.wolf>=twc?'okc':'warnc')+'">'+fM(Math.max(i.wolf-twc,0))+'</span></div>';
+  ch+='</div>';
+  // Dragon
+  ch+='<div style="background:#22263a;border-radius:8px;padding:12px;border-top:3px solid #ef4444">';
+  ch+='<div style="font-size:11px;font-weight:700;color:#555;text-transform:uppercase;margin-bottom:8px">🐉 Dragonn Coins</div>';
+  ch+='<div class="scrow"><span class="mutec">Available</span><span>'+fM(i.dragon)+'</span></div>';
+  for(var j=0;j<gds.length;j++){
+    if(res[gds[j]].dc>0) ch+='<div class="scrow"><span class="mutec">'+gds[j]+' ('+res[gds[j]].rn+'× Ragnarök)</span><span class="warnc">−'+fM(res[gds[j]].dc)+'</span></div>';
+  }
+  ch+='<div class="scrow" style="font-weight:700;border-top:1px solid #2a2d3a;margin-top:4px;padding-top:6px"><span>Rimangono</span><span class="'+(i.dragon>=tdc?'okc':'warnc')+'">'+fM(Math.max(i.dragon-tdc,0))+'</span></div>';
+  ch+='</div></div>';
+  document.getElementById('sum-coins').innerHTML=ch;
+
+  // RSS
+  var rh='<table class="stable">';
+  rh+='<tr><th>Grade</th><th>Acc. richiesta</th><th>🪵 Wood</th><th>⚙️ Iron</th><th>🪨 Stone</th></tr>';
+  for(var j=0;j<gds.length;j++){
+    var g=gds[j],r2=res[g],col=GCOL[g];
+    var ok_r=!r2.wood_miss&&!r2.iron_miss&&!r2.stone_miss;
+    rh+='<tr>';
+    rh+='<td style="font-weight:700;color:'+col+'">'+g+'</td>';
+    rh+='<td>L'+r2.q.acc+'</td>';
+    rh+='<td style="color:'+(r2.wood_miss?'#ff6b6b':'#2ecc71')+'">'+(r2.wood_miss?'⚠️ −'+fM(r2.wood_miss):'✅ '+fM(r2.wood_need))+'</td>';
+    rh+='<td style="color:'+(r2.iron_miss?'#ff6b6b':'#2ecc71')+'">'+(r2.iron_miss?'⚠️ −'+fM(r2.iron_miss):'✅ '+fM(r2.iron_need))+'</td>';
+    rh+='<td style="color:'+(r2.stone_miss?'#ff6b6b':'#2ecc71')+'">'+(r2.stone_miss?'⚠️ −'+fM(r2.stone_miss):'✅ '+fM(r2.stone_need))+'</td>';
+    rh+='</tr>';
+  }
+  rh+='</table>';
+  rh+='<p class="note" style="margin-top:10px">⚠️ RSS values are estimates — fill in the RSS Data sheet in the Excel file for precise per-building values.</p>';
+  document.getElementById('sum-rss').innerHTML=rh;
+}
+
+// ═══════════════════════════════════════════
+// RENDER NEGOZI
+// ═══════════════════════════════════════════
+function renderShops(){
+  var defs=[
+    {g:'G5',prev:'G4',vpr:50.1, wc:75,  dc:1.95,
+     rows:[
+       {ico:'🐺',nm:'Wolf',  n:150,vp:0.310,tot:46.5,  c:0.5,ctot:75},
+       {ico:'🐉',nm:'Dragon', n:3,  vp:1.2,  tot:3.6,   c:0.65,ctot:1.95},
+       {ico:'🌲',nm:'Forest 1',n:2,  vp:1.6,tot:3.2, c:1.0, ctot:2.0, opt:true},
+       {ico:'🌲',nm:'Forest 2',n:150,vp:0.186,tot:27.9,c:0.5,ctot:75, opt:true}
+     ]},
+    {g:'G6',prev:'G5',vpr:571, wc:95, dc:1.5,
+     rows:[
+       {ico:'🐺',nm:'Wolf',  n:190,vp:2.8,  tot:532,   c:0.5, ctot:95},
+       {ico:'🐉',nm:'Dragon', n:3,  vp:13,   tot:39,    c:0.5, ctot:1.5},
+       {ico:'🌲',nm:'Forest 1',n:190,vp:1.68,tot:319.2,c:0.65,ctot:123.5,opt:true},
+       {ico:'🌲',nm:'Forest 2',n:3,  vp:11.7,tot:35.1, c:1.0, ctot:3.0, opt:true}
+     ]},
+    {g:'G7',prev:'G6',vpr:3474, wc:255, dc:2.6,
+     rows:[
+       {ico:'🐺',nm:'Wolf',  n:510,vp:6.6,  tot:3366,  c:0.5, ctot:255},
+       {ico:'🐉',nm:'Dragon', n:4,  vp:27,   tot:108,   c:0.65,ctot:2.6},
+       {ico:'🌲',nm:'Forest 1',n:8,  vp:24.3,tot:194.4,c:0.65,ctot:5.2,opt:true},
+       {ico:'🌲',nm:'Forest 2',n:510,vp:3.96,tot:2020, c:0.65,ctot:331.5,opt:true}
+     ]},
+    {g:'G8',prev:'G7',vpr:3474, wc:255, dc:2.6,
+     note:'Per sbloccare G8 si usa lo stesso shop G7. Nessuna Forest disponibile.',
+     rows:[
+       {ico:'🐺',nm:'Wolf',  n:510,vp:6.6,  tot:3366,  c:0.5, ctot:255},
+       {ico:'🐉',nm:'Dragon', n:4,  vp:27,   tot:108,   c:0.65,ctot:2.6}
+     ]}
+  ];
+  var h='';
+  for(var i=0;i<defs.length;i++){
+    var s=defs[i],col=GCOL[s.g];
+    h+='<div style="margin-bottom:22px">';
+    h+='<div style="font-size:14px;font-weight:700;color:'+col+';padding:8px 0 6px;border-bottom:1px solid #2a2d3a;margin-bottom:4px">';
+    h+='Unlock '+s.g+' — Negozio '+s.prev;
+    h+=' <span style="font-size:12px;color:#555;font-weight:400">— max '+fV(s.vpr)+' VP per Ragnarök (Wolf+Dragon)</span></div>';
+    if(s.note) h+='<p class="note" style="margin-bottom:6px">ℹ️ '+s.note+'</p>';
+    h+='<table class="sreftbl"><tr><th>Negozio</th><th>Pack</th><th>VP/pack</th><th>VP totali</th><th>Costo/pack</th><th>Costo totale</th><th></th></tr>';
+    for(var j=0;j<s.rows.length;j++){
+      var row=s.rows[j];
+      h+='<tr>';
+      h+='<td>'+row.ico+' '+row.nm+'</td>';
+      h+='<td><strong>'+row.n+'</strong></td>';
+      h+='<td>'+fV(row.vp)+'</td>';
+      h+='<td><strong>'+fV(row.tot)+'</strong></td>';
+      h+='<td>'+fM(row.c)+'</td>';
+      h+='<td><strong>'+fM(row.ctot)+'</strong></td>';
+      h+='<td>'+(row.opt?'<span style="font-size:10px;color:#22c55e">🌲 Forest Tournament</span>':'')+'</td>';
+      h+='</tr>';
+    }
+    // Totale riga
+    h+='<tr style="background:rgba(255,255,255,.03)">';
+    h+='<td colspan="3" style="color:#555;font-size:11px">Total per Ragnarök (Wolf+Dragonn only)</td>';
+    h+='<td><strong style="color:#f5a623">'+fV(s.vpr)+'</strong></td>';
+    h+='<td></td><td><strong>'+fM(s.wc+s.dc)+'</strong></td><td></td>';
+    h+='</tr>';
+    h+='</table></div>';
+  }
+  document.getElementById('shops-content').innerHTML=h;
+}
+
+// ═══════════════════════════════════════════
+// RENDER SIMULATORE
+// ═══════════════════════════════════════════
+function renderSim(){
+  var i=gi();
+  var wolf=i.wolf,dragon=i.dragon,forest=i.forest;
+  var grades=['G5','G6','G7','G8'];
+  var h='';
+  for(var idx=0;idx<grades.length;idx++){
+    var g=grades[idx];
+    var sh=SHOPS[g];
+    var col=GCOL[g];
+    var sp=simPacks[g];
+    var vp_w=(sp.w||0)*sh.w.vp;
+    var vp_d=(sp.d||0)*sh.d.vp;
+    var vp_f1=sh.f1?(sp.f1||0)*sh.f1.vp:0;
+    var vp_f2=sh.f2?(sp.f2||0)*sh.f2.vp:0;
+    var vp_tot=vp_w+vp_d+vp_f1+vp_f2;
+    var cw=(sp.w||0)*sh.w.c;
+    var cd=(sp.d||0)*sh.d.c;
+    var cf1=sh.f1?(sp.f1||0)*sh.f1.c:0;
+    var cf2=sh.f2?(sp.f2||0)*sh.f2.c:0;
+    var wolf_after=Math.max(wolf-cw,0);
+    var drag_after=Math.max(dragon-cd,0);
+    var fore_after=Math.max(forest-cf1-cf2,0);
+
+    h+='<div class="gb" style="margin-bottom:12px">';
+    h+='<div class="gh" style="background:'+col+'20;border-left:4px solid '+col+';padding:10px 14px">';
+    h+='<div><div class="gt" style="color:'+col+';font-size:14px">'+g+' — Negozio '+sh.prev+'</div>';
+    h+='<div class="gsub">max '+fV(sh.vpr)+' VP per Ragnarök (Wolf+Dragon)</div></div>';
+    h+='<div style="background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center">';
+    h+='<div style="font-size:20px;font-weight:700;color:'+col+'">'+fV(vp_tot)+'</div>';
+    h+='<div style="font-size:10px;color:#555">VP selected</div></div></div>';
+    h+='<div class="gbody"><div class="row2">';
+
+    // Pack inputs
+    h+='<div class="sim-card">';
+    h+='<div style="font-size:12px;font-weight:700;color:'+col+';margin-bottom:10px">Packs to buy</div>';
+    var pack_defs=[
+      {key:'w', ico:'🐺', nm:'Wolf', max:sh.w.n, vp:sh.w.vp, c:sh.w.c},
+      {key:'d', ico:'🐉', nm:'Dragon', max:sh.d.n, vp:sh.d.vp, c:sh.d.c}
+    ];
+    if(sh.f1) pack_defs.push({key:'f1',ico:'🌲',nm:'Forest 1',max:sh.f1.n,vp:sh.f1.vp,c:sh.f1.c,fore:true});
+    if(sh.f2) pack_defs.push({key:'f2',ico:'🌲',nm:'Forest 2',max:sh.f2.n,vp:sh.f2.vp,c:sh.f2.c,fore:true});
+    for(var pi=0;pi<pack_defs.length;pi++){
+      var pd=pack_defs[pi];
+      var nval=sp[pd.key]||0;
+      h+='<div class="sim-row">';
+      h+='<span class="sim-lbl">'+pd.ico+' '+pd.nm+'</span>';
+      h+='<input class="sim-inp" type="number" min="0" max="'+pd.max+'" value="'+nval+'" oninput="setPack(\''+g+'\',\''+pd.key+'\',this.value)">';
+      h+='<span class="sim-max">max '+pd.max+'</span>';
+      h+='</div>';
+      h+='<div style="font-size:10px;color:#555;margin:-2px 0 6px 0">→ '+fV(nval*pd.vp)+' VP · '+fM(nval*pd.c)+(pd.fore?' (Forest Tournament)':'')+'</div>';
+    }
+    h+='</div>';
+
+    // Coin balance
+    h+='<div class="sim-card">';
+    h+='<div style="font-size:12px;font-weight:700;color:'+col+';margin-bottom:10px">Coin balance</div>';
+    h+='<div class="sim-coins">';
+    h+='<div class="scrow"><span style="color:#3b82f6">🐺 Wolf</span><span>'+fM(wolf)+'</span></div>';
+    h+='<div class="scrow"><span class="mutec">spent</span><span class="warnc">−'+fM(cw)+'</span></div>';
+    h+='<div class="scrow" style="font-weight:700"><span>remaining</span><span class="'+(wolf>=cw?'okc':'warnc')+'">'+fM(wolf_after)+'</span></div>';
+    h+='<div style="height:6px"></div>';
+    h+='<div class="scrow"><span style="color:#ef4444">🐉 Dragon</span><span>'+fM(dragon)+'</span></div>';
+    h+='<div class="scrow"><span class="mutec">spent</span><span class="warnc">−'+fM(cd)+'</span></div>';
+    h+='<div class="scrow" style="font-weight:700"><span>remaining</span><span class="'+(dragon>=cd?'okc':'warnc')+'">'+fM(drag_after)+'</span></div>';
+    if(cf1>0||cf2>0){
+      h+='<div style="height:6px"></div>';
+      h+='<div class="scrow"><span style="color:#22c55e">🌲 Forest</span><span>'+fM(forest)+'</span></div>';
+      h+='<div class="scrow"><span class="mutec">spent</span><span class="warnc">−'+fM(cf1+cf2)+'</span></div>';
+      h+='<div class="scrow" style="font-weight:700"><span>remaining</span><span class="'+(forest>=cf1+cf2?'okc':'warnc')+'">'+fM(fore_after)+'</span></div>';
+    }
+    h+='</div></div></div></div></div>';
+
+    wolf=wolf_after;
+    dragon=drag_after;
+    forest=fore_after;
+  }
+  document.getElementById('sim-content').innerHTML=h;
+}
+
+function setPack(g,type,val){
+  var sh=SHOPS[g],key_map={w:sh.w,d:sh.d,f1:sh.f1,f2:sh.f2};
+  var shop=key_map[type];
+  var max_val=shop?shop.n:0;
+  simPacks[g][type]=Math.min(Math.max(parseInt(val)||0,0),max_val);
+  renderSim();
+}
+
+// ═══════════════════════════════════════════
+// COMPUTE PRINCIPALE
+// ═══════════════════════════════════════════
+function compute(){
+  var d=calcAll();
+  var grades=['G5','G6','G7','G8'];
+  for(var j=0;j<grades.length;j++){
+    var g=grades[j];
+    var el=document.getElementById('c-'+g.toLowerCase());
+    if(el) el.innerHTML=renderGrade(g,d.res[g],d.i);
+  }
+  renderSummary(d.i,d.res);
+  renderShops();
+  renderSim();
+}
+
+function goPage(id,el){
+  var pages=document.querySelectorAll('.pg');
+  for(var j=0;j<pages.length;j++) pages[j].classList.remove('on');
+  var tabs=document.querySelectorAll('.tab');
+  for(var j=0;j<tabs.length;j++) tabs[j].classList.remove('on');
+  document.getElementById('page-'+id).classList.add('on');
+  el.classList.add('on');
+}
+
+compute();
+</script>
+</body>
+</html>
