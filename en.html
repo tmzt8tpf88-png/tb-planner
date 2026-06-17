@@ -121,11 +121,11 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
   <!-- RICERCHE — nella pagina dati, sempre nel DOM -->
   <div class="card" style="border-color:#333">
     <div class="ct">📚 Research progress — select your current level</div>
-    <p class="note" style="margin-bottom:12px">For each grade enter your research progress. The app calculates the exact VP you need.</p>
+    <p class="note" style="margin-bottom:12px">Enter your research progress for each grade. The app calculates the exact VP you still need.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
 
-      <div style="border:1px solid #e5393533;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#e53935;margin-bottom:10px">G5 → unlock G6</div>
+      <div id="res-block-g5" data-col="#e53935" style="border:1px solid #e5393533;border-radius:8px;padding:12px">
+        <div style="font-size:12px;font-weight:700;color:#e53935;margin-bottom:10px">📋 To unlock G6</div><div style="font-size:11px;color:#555;margin-bottom:8px">Training cost IV + March speed IV (you are at G5)</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g5_t" onchange="compute()">
@@ -142,8 +142,8 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
         </div>
       </div>
 
-      <div style="border:1px solid #c6282833;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:10px">G6 → unlock G7</div>
+      <div id="res-block-g6" data-col="#c62828" style="border:1px solid #c6282833;border-radius:8px;padding:12px">
+        <div style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:10px">📋 To unlock G7</div><div style="font-size:11px;color:#555;margin-bottom:8px">Training cost V + March speed V (you are at G6)</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g6_t" onchange="compute()">
@@ -160,8 +160,8 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
         </div>
       </div>
 
-      <div style="border:1px solid #7b1fa233;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#7b1fa2;margin-bottom:10px">G7 → unlock G8</div>
+      <div id="res-block-g7" data-col="#7b1fa2" style="border:1px solid #7b1fa233;border-radius:8px;padding:12px">
+        <div style="font-size:12px;font-weight:700;color:#7b1fa2;margin-bottom:10px">📋 To unlock G8</div><div style="font-size:11px;color:#555;margin-bottom:8px">Training cost VI + March speed VI (you are at G7)</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g7_t" onchange="compute()">
@@ -178,8 +178,8 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
         </div>
       </div>
 
-      <div style="border:1px solid #1565c033;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#1565c0;margin-bottom:10px">G8 — 1 guard (minimum goal)</div>
+      <div id="res-block-g8" data-col="#1565c0" style="border:1px solid #1565c033;border-radius:8px;padding:12px">
+        <div style="font-size:12px;font-weight:700;color:#1565c0;margin-bottom:10px">📋 G8 Goal</div><div style="font-size:11px;color:#555;margin-bottom:8px">Training cost VI + March speed VI + 1 G8 guard</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g8_t" onchange="compute()">
@@ -189,7 +189,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
             <select id="g8_m" onchange="compute()">
               <option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option>
             </select></div>
-          <div class="fg"><label>🛡️ Guard G8</label>
+          <div class="fg"><label>🛡️ G8 Guard</label>
             <select id="g8_g" onchange="compute()">
               <option value="0">0/1</option><option value="1">1/1 ✅</option>
             </select></div>
@@ -221,7 +221,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 <div id="page-shops" class="pg">
   <div class="card">
     <div class="ct">Ragnarök shop reference</div>
-    <p class="note" style="margin-bottom:12px">Use the previous grade shop to unlock. Forest is a separate tournament.</p>
+    <p class="note" style="margin-bottom:12px">To unlock un grado usi il negozio del grado precedente. Forest is a separate tournament.</p>
     <div id="shops-content"></div>
   </div>
 </div>
@@ -246,7 +246,7 @@ var RES = {
   G8:[16.9,28,47,78,130,220,370,620,1000,1700]                     // Training cost VI
 };
 var GV={G5:0.9,G6:9,G7:90,G8:900};  // B per guardia
-var GN={G5:4,G6:4,G7:4,G8:1};       // N  guards obiettivo
+var GN={G5:4,G6:4,G7:4,G8:1};       // N guards obiettivo
 
 // Requirements per grado
 var REQ={
@@ -289,14 +289,19 @@ function inp(id){var el=document.getElementById(id);return el?parseFloat(el.valu
 function inpi(id){var el=document.getElementById(id);return el?parseInt(el.value)||0:0;}
 
 function getI(){
+  var guard=inpi('i_guard');
+  // Se il giocatore ha già sbloccato un grado, le ricerche di quel grado sono complete
+  function autoT(g,id){return guard>=parseInt(g.replace('G',''))?10:sel(id);}
+  function autoM(g,id){return guard>=parseInt(g.replace('G',''))?10:sel(id);}
+  function autoG(g,id){var gn=parseInt(g.replace('G',''));return guard>=gn?(g==='G8'?1:4):sel(id);}
   return{
-    vp:inp('i_vp'),guard:inpi('i_guard'),acc:inpi('i_acc'),hero:inpi('i_hero'),
+    vp:inp('i_vp'),guard:guard,acc:inpi('i_acc'),hero:inpi('i_hero'),
     proj:inpi('i_proj'),gold:inpi('i_gold'),
     wolf:inp('i_wolf'),dragon:inp('i_dragon'),forest:inp('i_forest'),
-    g5_t:sel('g5_t'),g5_m:sel('g5_m'),g5_g:sel('g5_g'),
-    g6_t:sel('g6_t'),g6_m:sel('g6_m'),g6_g:sel('g6_g'),
-    g7_t:sel('g7_t'),g7_m:sel('g7_m'),g7_g:sel('g7_g'),
-    g8_t:sel('g8_t'),g8_m:sel('g8_m'),g8_g:sel('g8_g')
+    g5_t:autoT('G5','g5_t'),g5_m:autoM('G5','g5_m'),g5_g:autoG('G5','g5_g'),
+    g6_t:autoT('G6','g6_t'),g6_m:autoM('G6','g6_m'),g6_g:autoG('G6','g6_g'),
+    g7_t:autoT('G7','g7_t'),g7_m:autoM('G7','g7_m'),g7_g:autoG('G7','g7_g'),
+    g8_t:autoT('G8','g8_t'),g8_m:autoM('G8','g8_m'),g8_g:autoG('G8','g8_g')
   };
 }
 
@@ -318,7 +323,7 @@ function calcAll(i){
     var lv_t=i[lk+'_t'],lv_m=i[lk+'_m'],gd=i[lk+'_g'];
     var rem=vpRem(g,lv_t,lv_m,gd);
     var vp_needed=rem.total;
-    // VP disponibili da combattimento (i.vp minus VP già usati nei gradi precedenti completati)
+    // VP from combat (i.vp minus VP già usati nei gradi precedenti completati)
     var vp_used=0;
     ['G5','G6','G7','G8'].slice(0,idx).forEach(function(pg){
       var plk=pg.toLowerCase();
@@ -361,23 +366,23 @@ function renderGrade(g,r,i){
 
   var h='<div class="gb"><div class="gh" style="background:'+col+'20;border-left:4px solid '+col+'">';
   h+='<div><div class="gt" style="color:'+col+'">Grade '+g+'</div>';
-  h+='<div class="gsub">You are at G'+(gn-1)+' — complete research and unlock guards to advance to '+g+'</div></div>';
-  h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completed':allOk?'✅ Ready':'⚠️ Incomplete')+'</span>';
+  h+='<div class="gsub">To unlock '+g+': complete G'+(gn-1)+'  research and unlock G'+(gn-1)+'</div></div>';
+  h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completato':allOk?'✅ Ready':'⚠️ Incomplete')+'</span>';
   h+='</div><div class="gbody">';
 
-  // Research progress (solo visualizzazione — si edit in "Dati")
-  h+='<div class="slb">Research progress <span style="color:#555;font-weight:400;text-transform:none">(edit in ⚙️ My Data)</span></div>';
+  // Avanzamento ricerche (solo visualizzazione — si modifica in "Dati")
+  h+='<div class="slb">G'+(gn-1)+' research to unlock '+g+' <span style="color:#555;font-weight:400;text-transform:none;font-size:10px">(modifica in ⚙️ My Data)</span></div>';
   h+='<div class="ibox">';
   h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv '+(r.lv_t===10?'okc':'infoc')+'">'+r.lv_t+'/10'+(r.lv_t===10?' ✅':'')+'</span></div>';
   h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv '+(r.lv_m===10?'okc':'infoc')+'">'+r.lv_m+'/10'+(r.lv_m===10?' ✅':'')+'</span></div>';
-  h+='<div class="irow"><span class="ilb">🛡️ Guards unlocked</span><span class="iv '+(r.gd>=GN[g]?'okc':'infoc')+'">'+r.gd+'/'+GN[g]+(r.gd>=GN[g]?' ✅':'')+'</span></div>';
+  h+='<div class="irow"><span class="ilb">🛡️ Guards sbloccate</span><span class="iv '+(r.gd>=GN[g]?'okc':'infoc')+'">'+r.gd+'/'+GN[g]+(r.gd>=GN[g]?' ✅':'')+'</span></div>';
   h+='<div class="div"></div>';
   h+='<div class="irow"><span class="ilb" style="font-weight:700">⚔️ VP still needed</span><span class="iv" style="color:'+(r.vp_needed<0.001?'#2ecc71':'#ff6b6b');h+='font-size:16px">'+fV(r.vp_needed)+'</span></div>';
   h+='</div>';
 
   // Tabella ricerche
   if(rv.length>0){
-    h+='<table class="rtbl"><tr><th>Lv</th><th>Training cost</th><th>March speed</th></tr>';
+    h+='<table class="rtbl"><tr><th>Liv.</th><th>Training cost G'+(gn-1)+' ('+fV(rv[rv.length-1])+' max)</th><th>March speed G'+(gn-1)+'</th></tr>';
     for(var j=0;j<rv.length;j++){
       var lv=j+1,t_ok=r.lv_t>=lv,m_ok=r.lv_m>=lv;
       h+='<tr><td>'+lv+'</td>';
@@ -437,7 +442,7 @@ function renderGrade(g,r,i){
 function renderSummary(i,res){
   // Tabella G2→G8
   var h='<table class="stbl">';
-  h+='<tr><th>Grade</th><th>Stato</th><th>VP Target</th><th>VP you have</th><th>Research</th><th>Guards</th><th>Ragnarök</th><th>🐺 Remaining</th><th>🐉 Remaining</th></tr>';
+  h+='<tr><th>Grade</th><th>Stato</th><th>VP Target</th><th>VP you have</th><th>Research</th><th>Guards</th><th>Ragnarök</th><th>🐺 Rimane</th><th>🐉 Rimane</th></tr>';
   
   // G2, G3, G4 (semplificati, no ricerche dinamiche)
   var simple=[
@@ -481,7 +486,7 @@ function renderSummary(i,res){
   function coinCard(nm,col2,avail,gds,field,total){
     var s='<div style="background:#22263a;border-radius:8px;padding:12px;border-top:3px solid '+col2+'">';
     s+='<div style="font-size:11px;color:#555;text-transform:uppercase;font-weight:700;margin-bottom:8px">'+nm+'</div>';
-    s+='<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span class="mutec">Available</span><span>'+fM(avail)+'</span></div>';
+    s+='<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span class="mutec">Disponibili</span><span>'+fM(avail)+'</span></div>';
     gds.forEach(function(g){var v=res[g][field];if(v>0)s+='<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span class="mutec">'+g+' ('+res[g].rn+'×)</span><span class="warnc">−'+fM(v)+'</span></div>';});
     var rem=Math.max(avail-total,0);
     s+='<div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-top:1px solid #2a2d3a;margin-top:4px;font-weight:700"><span>Remaining</span><span style="color:'+(avail>=total?'#2ecc71':'#ff6b6b')+'">'+fM(rem)+(avail<total?' (⚠️−'+fM(total-avail)+')':'')+'</span></div>';
@@ -581,9 +586,47 @@ function sp(g,k,v){
   renderSim();
 }
 
+// ═══════ RESEARCH VISIBILITY ═══════════════════════════
+function updateResearchVisibility(guard){
+  var blocks = {
+    'res-block-g5': {gn:5, label:'G6'},  // ricerche per sbloccare G6
+    'res-block-g6': {gn:6, label:'G7'},
+    'res-block-g7': {gn:7, label:'G8'},
+    'res-block-g8': {gn:8, label:'G8'}
+  };
+  Object.keys(blocks).forEach(function(id){
+    var el=document.getElementById(id);
+    if(!el) return;
+    var info=blocks[id];
+    var prev_gn=info.gn-1; // grado precedente (le ricerche appartengono a questo grado)
+    if(guard>prev_gn){
+      // Already completed: mostra come completato
+      el.style.opacity='0.4';
+      el.style.pointerEvents='none';
+      var lbl=el.querySelector('.res-status');
+      if(lbl) lbl.textContent='✅ Already completed';
+    } else if(guard===prev_gn){
+      // Grade attuale: mostra e abilita
+      el.style.opacity='1';
+      el.style.pointerEvents='auto';
+      el.style.borderColor=el.dataset.col+'88';
+      var lbl=el.querySelector('.res-status');
+      if(lbl) lbl.textContent='← Fill this in';
+    } else {
+      // Futuro: mostra ma in grigio
+      el.style.opacity='0.5';
+      el.style.pointerEvents='none';
+      var lbl=el.querySelector('.res-status');
+      if(lbl) lbl.textContent='(future)';
+    }
+  });
+}
+
 // ═══════ COMPUTE ════════════════════════════════════════
 function compute(){
   var i=getI(),res=calcAll(i);
+  // Aggiorna visibilità riquadri ricerche in base al grado attuale
+  updateResearchVisibility(i.guard);
   ['G5','G6','G7','G8'].forEach(function(g){
     var el=document.getElementById('c-'+g.toLowerCase());
     if(el) el.innerHTML=renderGrade(g,res[g],i);
