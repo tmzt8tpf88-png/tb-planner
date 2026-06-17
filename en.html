@@ -23,27 +23,27 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 .fg input:focus{border-color:#f5a623}
 .hint{font-size:11px;color:#444;margin-top:2px}
 .stable{width:100%;border-collapse:collapse;font-size:12px}
-.stable th{background:#22263a;color:#555;font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:7px 9px;text-align:left;border-bottom:1px solid #2a2d3a}
-.stable td{padding:8px 9px;border-bottom:1px solid #1e2030;vertical-align:middle}
+.stable th{background:#22263a;color:#555;font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:7px 8px;text-align:left;border-bottom:1px solid #2a2d3a}
+.stable td{padding:7px 8px;border-bottom:1px solid #1e2030;vertical-align:middle}
 .stable tr:last-child td{border-bottom:none}
 .gb{border-radius:10px;overflow:hidden;margin-bottom:14px;border:1px solid #2a2d3a}
 .gh{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;flex-wrap:wrap;gap:8px}
 .gt{font-size:16px;font-weight:700}
-.gsub{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
+.gsub{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
 .gst{font-size:12px;font-weight:700;padding:4px 11px;border-radius:20px}
 .ok-b{background:rgba(46,204,113,.15);color:#2ecc71}
 .warn-b{background:rgba(255,107,107,.15);color:#ff6b6b}
 .gbody{background:#1a1d27;padding:14px 16px}
 .ibox{background:#22263a;border-radius:8px;padding:12px 14px;margin-bottom:12px}
-.irow{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1e2030;gap:8px}
+.irow{display:flex;align-items:flex-start;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1e2030;gap:8px}
 .irow:last-child{border-bottom:none}
-.ilb{color:#8b8fa8;font-size:13px;min-width:160px}
+.ilb{color:#8b8fa8;font-size:12px;min-width:160px;padding-top:2px}
 .iv{font-size:13px;font-weight:700;text-align:right}
-.idet{font-size:12px;color:#666;text-align:right;margin-top:2px}
+.idet{font-size:11px;color:#666;text-align:right;margin-top:2px}
 .pbar{height:6px;background:#1a1d27;border-radius:3px;margin-top:8px;overflow:hidden}
 .pfill{height:100%;border-radius:3px;transition:width .3s}
 .slb{font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.8px;margin:14px 0 8px}
-.ccgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+.ccgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
 .cc{background:#22263a;border-radius:8px;padding:10px 12px}
 .ccnm{font-size:11px;color:#666;margin-bottom:5px}
 .ccav{font-size:16px;font-weight:700}
@@ -53,12 +53,12 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 .reftbl th{background:#22263a;color:#555;font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:7px 9px;text-align:left;border-bottom:1px solid #2a2d3a}
 .reftbl td{padding:7px 9px;border-bottom:1px solid #1e2030}
 .reftbl tr:last-child td{border-bottom:none}
-.sim-inp{width:72px;background:#0f1117;border:1px solid #333;border-radius:5px;color:#e8eaf0;font-size:14px;font-weight:700;padding:5px 7px;text-align:center;outline:none}
+.sim-inp{width:70px;background:#0f1117;border:1px solid #333;border-radius:5px;color:#e8eaf0;font-size:13px;font-weight:700;padding:5px 6px;text-align:center;outline:none}
 .sim-inp:focus{border-color:#f5a623}
 .note{font-size:12px;color:#555;font-style:italic;line-height:1.6}
 .okc{color:#2ecc71}.warnc{color:#ff6b6b}.infoc{color:#f5a623}.mutec{color:#666}
 .div{height:1px;background:#2a2d3a;margin:12px 0}
-@media(max-width:580px){.row2,.row3,.ccgrid{grid-template-columns:1fr}.gh{flex-direction:column;align-items:flex-start}}
+@media(max-width:580px){.row2,.row3,.ccgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -74,17 +74,16 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
   <div class="tab"    onclick="goPage('sim',this)">🎮 Simulator</div>
 </nav>
 
-<!-- DATI (prima pagina) -->
 <div id="page-data" class="pg on">
   <div class="card">
     <div class="ct">Your current status</div>
     <div class="row2">
-      <div class="fg"><label>⚔️ Current VP (B)</label><input type="number" id="i_vp" value="0" min="0" step="any" oninput="compute()"><div class="hint">Total VP in billions (e.g. 13.5)</div></div>
-      <div class="fg"><label>🏰 Current Guard Grade</label><input type="number" id="i_guard" value="2" min="2" max="8" step="1" oninput="compute()"><div class="hint">Your current grade (2-8)</div></div>
-      <div class="fg"><label>🏛️ Academy Level</label><input type="number" id="i_acc" value="1" min="1" max="45" step="1" oninput="compute()"></div>
-      <div class="fg"><label>🦸 Hero Level</label><input type="number" id="i_hero" value="1" min="1" step="1" oninput="compute()"></div>
-      <div class="fg"><label>📜 Available Projects</label><input type="number" id="i_proj" value="0" min="0" step="1" oninput="compute()"></div>
-      <div class="fg"><label>💰 Available Gold</label><input type="number" id="i_gold" value="0" min="0" step="1" oninput="compute()"></div>
+      <div class="fg"><label>⚔️ Current VP (B)</label><input type="number" id="i_vp" value="0" min="0" step="any" oninput="compute()"><div class="hint">Total VP in billions</div></div>
+      <div class="fg"><label>🏰 Current Guard Grade</label><input type="number" id="i_guard" value="2" min="2" max="8" oninput="compute()"><div class="hint">Your grade (2-8)</div></div>
+      <div class="fg"><label>🏛️ Academy Level</label><input type="number" id="i_acc" value="1" min="1" max="45" oninput="compute()"></div>
+      <div class="fg"><label>🦸 Hero Level</label><input type="number" id="i_hero" value="1" min="1" oninput="compute()"></div>
+      <div class="fg"><label>📜 Available Projects</label><input type="number" id="i_proj" value="0" min="0" oninput="compute()"></div>
+      <div class="fg"><label>💰 Available Gold</label><input type="number" id="i_gold" value="0" min="0" oninput="compute()"></div>
     </div>
   </div>
   <div class="card">
@@ -96,120 +95,106 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
     </div>
   </div>
   <div class="card">
-    <div class="ct">Building Resources (for Academy) — optional</div>
+    <div class="ct">Building Resources — optional</div>
     <div class="row3">
       <div class="fg"><label>🪵 Wood (M)</label><input type="number" id="i_wood" value="0" min="0" step="any" oninput="compute()"></div>
       <div class="fg"><label>⚙️ Iron (M)</label><input type="number" id="i_iron" value="0" min="0" step="any" oninput="compute()"></div>
       <div class="fg"><label>🪨 Stone (M)</label><input type="number" id="i_stone" value="0" min="0" step="any" oninput="compute()"></div>
     </div>
-    <p class="note" style="margin-top:10px">Resources are needed to upgrade buildings al livello richiesto dall'Accademia di ogni grado.</p>
   </div>
   <div class="card" style="border-color:#f5a623">
     <div class="ct" style="color:#f5a623">⚡ Quick Status</div>
-    <div id="quick-status"></div>
+    <div id="quick-status"><p class="note">Enter your data above...</p></div>
   </div>
 </div>
 
-<!-- RIEPILOGO -->
 <div id="page-summary" class="pg">
   <div class="card"><div class="ct">Progression G3 → G8</div><div id="sum-table"></div></div>
-  <div class="card"><div class="ct">Total coin budget G5 → G8</div><div id="sum-coins"></div></div>
+  <div class="card"><div class="ct">Coin budget G5 → G8</div><div id="sum-coins"></div></div>
 </div>
 
-<!-- GRADI -->
 <div id="page-g5" class="pg"><div id="c-g5"></div></div>
 <div id="page-g6" class="pg"><div id="c-g6"></div></div>
 <div id="page-g7" class="pg"><div id="c-g7"></div></div>
 <div id="page-g8" class="pg"><div id="c-g8"></div></div>
 
-<!-- NEGOZI -->
 <div id="page-shops" class="pg">
   <div class="card">
-    <div class="ct">Ragnarök shop reference by grade</div>
-    <p class="note" style="margin-bottom:16px">To unlock a grade use the previous grade shop. Ogni Ragnarök puoi comprare il massimo dei pack disponibili (Wolf + Dragon). Forest is a separate tournament e reduces the required Ragnarök count.</p>
+    <div class="ct">Tabella negozi Ragnarök</div>
+    <p class="note" style="margin-bottom:14px">Per sbloccare un grado usi il negozio del grado precedente. La Forest è un torneo separato che aggiunge VP extra per Ragnarök.</p>
     <div id="shops-content"></div>
   </div>
 </div>
 
-<!-- SIMULATORE -->
 <div id="page-sim" class="pg">
   <div class="card">
-    <div class="ct">Simulator — enter packs and see VP and coins update in real time</div>
-    <p class="note" style="margin-bottom:14px">Coins remaining after each grade automatically carry over to the next.</p>
+    <div class="ct">Simulatore acquisti</div>
+    <p class="note" style="margin-bottom:14px">Inserisci i pack — le coins scalano in cascata da G5 a G8.</p>
     <div id="sim-content"></div>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════
-// COSTANTI — verificate dal foglio Excel
-// ═══════════════════════════════════════════════════════
+// ═══ COSTANTI ════════════════════════════════════════════
 var GR = {
-  G3:{vp:0.0511, acc:15, hero:0,   proj:0,     gold:0,       pv:0},
-  G4:{vp:0.64,   acc:20, hero:0,   proj:0,     gold:0,       pv:0.0511},
-  G5:{vp:9,      acc:25, hero:40,  proj:25000, gold:256000,  pv:0.6911},
-  G6:{vp:102,    acc:30, hero:100, proj:51000, gold:510000,  pv:9.6911},
-  G7:{vp:1332,   acc:35, hero:140, proj:112000,gold:1120000, pv:111.6911},
-  G8:{vp:9300,   acc:40, hero:200, proj:196000,gold:1960000, pv:1443.6911}
-  // G8: 8.400T ricerche + 900B (1 guardia) = 9.300T
+  G3:{vp:0.0511, acc:15, hero:0,   proj:0,      gold:0,       pv:0},
+  G4:{vp:0.64,   acc:20, hero:0,   proj:0,      gold:0,       pv:0.0511},
+  G5:{vp:9,      acc:25, hero:40,  proj:25000,  gold:256000,  pv:0.6911},
+  G6:{vp:102,    acc:30, hero:100, proj:51000,  gold:510000,  pv:9.6911},
+  G7:{vp:1332,   acc:35, hero:140, proj:112000, gold:1120000, pv:111.6911},
+  G8:{vp:9300,   acc:40, hero:200, proj:196000, gold:1960000, pv:1443.6911}
 };
+// G8 = 8400B ricerche + 900B (1 guardia) = 9300B = 9.3T
 
-// Per sbloccare Gn usi il negozio G(n-1)
-// vpr = VP massimi per Ragnarök (lupo + drago)
-// wc  = costo lupo per Ragnarök (M)
-// dc  = costo drago per Ragnarök (M)
-var SHOPS = {
-  G5:{neg:'G4',
-      vpr_ld:4.66,   vpr_all:4.66,  // G4 no foresta separata
-      wc:30,  dc:1.3,
-      w: {n:60,  vp:0.067, cpk:0.5},
-      d: {n:2,   vp:0.320, cpk:0.65}},
-  G6:{neg:'G5',
-      vpr_ld:50.1,   vpr_all:81.2,  // 50.1 L+D / 81.2 L+D+F
-      wc:75,  dc:1.95, f1c:2.0, f2c:75,
-      w: {n:150, vp:0.310, cpk:0.5},
-      d: {n:3,   vp:1.2,   cpk:0.65},  // R15: 650K/pack
-      f1:{n:2,   vp:1.6,   cpk:1.0},
-      f2:{n:150, vp:0.186, cpk:0.5}},
-  G7:{neg:'G6',
-      vpr_ld:571,    vpr_all:925.3, // 571 L+D / 925.3 L+D+F
-      wc:95,  dc:1.5, f1c:123.5, f2c:3.0,
-      w: {n:190, vp:2.8,   cpk:0.5},
-      d: {n:3,   vp:13,    cpk:0.5},   // R20: 500K/pack
-      f1:{n:190, vp:1.68,  cpk:0.65},
-      f2:{n:3,   vp:11.7,  cpk:1.0}},
-  G8:{neg:'G7',
-      vpr_ld:3474,   vpr_all:5688,  // 3474 L+D / 5688 L+D+F
-      wc:255, dc:2.6, f1c:5.2, f2c:331.5,
-      w: {n:510, vp:6.6,   cpk:0.5},
-      d: {n:4,   vp:27,    cpk:0.65}, // R25: 650K/pack
-      f1:{n:8,   vp:24.3,  cpk:0.65},
-      f2:{n:510, vp:3.96,  cpk:0.65}}
+// Negozi: per sbloccare Gn usi negozio G(n-1)
+// vpr_ld  = VP Wolf+Dragon per Ragnarök
+// vpr_all = VP Wolf+Dragon+Forest per Ragnarök
+var SH = {
+  G5:{neg:'G4', vpr_ld:4.66,  vpr_all:4.66,
+      wc:30,   dc:1.3,   f1c:0,     f2c:0,
+      w:{n:60,  vp:0.067,cpk:0.5},
+      d:{n:2,   vp:0.320,cpk:0.65}},
+  G6:{neg:'G5', vpr_ld:50.1,  vpr_all:81.2,
+      wc:75,   dc:1.95,  f1c:2.0,   f2c:75,
+      w:{n:150, vp:0.310,cpk:0.5},
+      d:{n:3,   vp:1.2,  cpk:0.65},
+      f1:{n:2,  vp:1.6,  cpk:1.0},
+      f2:{n:150,vp:0.186,cpk:0.5}},
+  G7:{neg:'G6', vpr_ld:571,   vpr_all:925.3,
+      wc:95,   dc:1.5,   f1c:123.5, f2c:3.0,
+      w:{n:190, vp:2.8,  cpk:0.5},
+      d:{n:3,   vp:13,   cpk:0.5},
+      f1:{n:190,vp:1.68, cpk:0.65},
+      f2:{n:3,  vp:11.7, cpk:1.0}},
+  G8:{neg:'G7', vpr_ld:3474,  vpr_all:5688,
+      wc:255,  dc:2.6,   f1c:5.2,   f2c:331.5,
+      w:{n:510, vp:6.6,  cpk:0.5},
+      d:{n:4,   vp:27,   cpk:0.65},
+      f1:{n:8,  vp:24.3, cpk:0.65},
+      f2:{n:510,vp:3.96, cpk:0.65}}
 };
 
 var GCOL={G3:'#f97316',G4:'#eab308',G5:'#e53935',G6:'#c62828',G7:'#7b1fa2',G8:'#1565c0'};
-var simPacks={G5:{w:0,d:0,f1:0,f2:0},G6:{w:0,d:0,f1:0,f2:0},G7:{w:0,d:0,f1:0,f2:0},G8:{w:0,d:0}};
+var simPacks={G5:{w:0,d:0,f1:0,f2:0},G6:{w:0,d:0,f1:0,f2:0},G7:{w:0,d:0,f1:0,f2:0},G8:{w:0,d:0,f1:0,f2:0}};
 
-// ═══════════════════════════════════════════════════════
-// HELPERS
-// ═══════════════════════════════════════════════════════
+// ═══ HELPERS ═════════════════════════════════════════════
 function fV(v){
-  if(v===undefined||v===null||isNaN(v))return'—';
-  if(v>=1000)return parseFloat((v/1000).toFixed(3).replace(/\.?0+$/,''))+'T';
-  if(v>=1)return parseFloat(v.toFixed(2))+'B';
+  if(!v&&v!==0)return'—';
+  if(v>=1000)return+(v/1000).toFixed(3).replace(/\.?0+$/,'')+'T';
+  if(v>=1)return+v.toFixed(2)+'B';
   return Math.round(v*1000)+'M';
 }
 function fM(v){
-  if(v===undefined||v===null||isNaN(v))return'—';
+  if(!v&&v!==0)return'—';
   var a=Math.abs(v),s=v<0?'-':'';
-  if(a>=1000)return s+parseFloat((a/1000).toFixed(2).replace(/\.?0+$/,''))+'B';
-  if(a>=1)return s+parseFloat(a.toFixed(2).replace(/\.?0+$/,''))+'M';
+  if(a>=1000)return s+(a/1000).toFixed(2).replace(/\.?0+$/,'')+'B';
+  if(a>=1)return s+a.toFixed(2).replace(/\.?0+$/,'')+'M';
   return s+Math.round(a*1000)+'K';
 }
 function bar(p,ok){
-  return '<div class="pbar"><div class="pfill" style="width:'+Math.min(p,100).toFixed(1)+'%;background:'+(ok?'#2ecc71':'#e74c3c')+'"></div></div>';
+  return '<div class="pbar"><div class="pfill" style="width:'+Math.min(p||0,100).toFixed(1)+'%;background:'+(ok?'#2ecc71':'#e74c3c')+'"></div></div>';
 }
-function gi(){
+function getI(){
   return{
     vp:    parseFloat(document.getElementById('i_vp').value)||0,
     guard: parseInt(document.getElementById('i_guard').value)||2,
@@ -226,354 +211,367 @@ function gi(){
   };
 }
 
-// ═══════════════════════════════════════════════════════
-// CALCOLA TUTTI I GRADI
-// ═══════════════════════════════════════════════════════
-function calcAll(){
-  var i=gi();
-  var wolf=i.wolf, dragon=i.dragon, proj=i.proj, gold=i.gold;
+// ═══ CALCOLA ═════════════════════════════════════════════
+function calcAll(inp){
+  var wolf=inp.wolf, dragon=inp.dragon;
+  var proj=inp.proj, gold=inp.gold;
   var res={};
   var grades=['G3','G4','G5','G6','G7','G8'];
+
   for(var idx=0;idx<grades.length;idx++){
-    var g=grades[idx], q=GR[g], sh=SHOPS[g];
-    // VP da fightmento: quello che rimane dopo i gradi precedenti
-    var vp_c=Math.max(i.vp-q.pv,0);
-    var rn=0, wc=0, dc=0, vp_buy=0;
-    if(sh){
-      var miss=Math.max(q.vp-vp_c,0);
-      if(miss>0) rn=Math.ceil(miss/sh.vpr);
-      wc=rn*sh.wc; dc=rn*sh.dc; vp_buy=rn*sh.vpr;
+    var g=grades[idx];
+    var q=GR[g];
+    var sh=SH[g];
+
+    // VP da combattimento (leftover dopo i gradi precedenti)
+    var vp_c=Math.max(inp.vp-q.pv, 0);
+
+    // Scegli VP/Ragnarök: usa foresta se disponibile
+    var use_forest=(inp.forest>0 && sh && sh.vpr_all>sh.vpr_ld);
+    var vpr=sh?(use_forest?sh.vpr_all:sh.vpr_ld):0;
+    var vpr_ld=sh?sh.vpr_ld:0;
+    var vpr_all=sh?sh.vpr_all:0;
+
+    var rn=0, rn_nofor=0, wc=0, dc=0, vp_buy=0;
+    if(sh && vpr>0){
+      var miss=Math.max(q.vp-vp_c, 0);
+      if(miss>0){
+        rn=Math.ceil(miss/vpr);
+        rn_nofor=Math.ceil(miss/vpr_ld);
+      }
+      wc=rn*sh.wc;
+      dc=rn*sh.dc;
+      vp_buy=rn*vpr;
     }
+
     var vp_tot=vp_c+vp_buy;
-    var vp_av=Math.max(vp_tot-q.vp,0);
-    var vp_miss_shop=Math.max(q.vp-vp_c,0); // VP missing prima del negozio
-    // Progetti e oro
+    var vp_av=Math.max(vp_tot-q.vp, 0);
+    var vp_miss_shop=Math.max(q.vp-vp_c, 0);
+
+    // Projects e oro
     var pu=(idx>=2)?q.proj:0;
-    var pm=Math.max(pu-proj,0);
-    var gn=q.gold+pm*10;
-    var gm=Math.max(gn-gold,0);
+    var pm=Math.max(pu-proj, 0);
+    var gold_need=q.gold+pm*10;
+    var gm=Math.max(gold_need-gold, 0);
+
     res[g]={
-      q:q, sh:sh, vp_c:vp_c, vp_miss_shop:vp_miss_shop,
+      q:q, sh:sh,
+      vp_c:vp_c, vp_tot:vp_tot, vp_av:vp_av, vp_miss_shop:vp_miss_shop,
       rn:rn, rn_nofor:rn_nofor, vpr:vpr, vpr_ld:vpr_ld, vpr_all:vpr_all,
-      use_forest:has_forest&&vpr_all>vpr_ld,
-      vp_tot:vp_tot, vp_av:vp_av,
+      use_forest:use_forest,
       wc:wc, dc:dc,
       wa:wolf, da:dragon,
       wo:Math.max(wolf-wc,0), doo:Math.max(dragon-dc,0),
       w_ok:wolf>=wc, d_ok:dragon>=dc,
-      pm:pm, gm:gm, gn_need:gn,
-      hm:Math.max((q.hero||0)-i.hero,0),
-      am:Math.max(q.acc-i.acc,0)
+      pm:pm, gm:gm, gold_need:gold_need,
+      hm:Math.max((q.hero||0)-inp.hero, 0),
+      am:Math.max(q.acc-inp.acc, 0)
     };
+
     wolf=Math.max(wolf-wc,0);
     dragon=Math.max(dragon-dc,0);
     proj=Math.max(proj-pu,0);
-    gold=Math.max(gold-gn,0);
+    gold=Math.max(gold-gold_need,0);
   }
-  return{i:i,res:res};
+  return res;
 }
 
-// ═══════════════════════════════════════════════════════
-// RENDER PAGINA GRADO
-// ═══════════════════════════════════════════════════════
-function renderGrade(g,r,i){
+// ═══ RENDER GRADO ════════════════════════════════════════
+function renderGrade(g, r, inp){
   var q=r.q, sh=r.sh, col=GCOL[g];
   var vp_ok=r.vp_tot>=q.vp;
-  var pct=Math.min(100,r.vp_tot/q.vp*100);
+  var pct=Math.min(100, r.vp_tot/q.vp*100);
   var gn=parseInt(g.replace('G',''));
-  var done=i.guard>=gn;
+  var done=inp.guard>=gn;
   var allOk=vp_ok&&!r.am&&!r.hm&&!r.pm&&!r.gm;
 
   var h='<div class="gb">';
-  // Header
   h+='<div class="gh" style="background:'+col+'22;border-left:4px solid '+col+'">';
   h+='<div><div class="gt" style="color:'+col+'">Grade '+g+'</div>';
-  h+='<div class="gsub">'+(sh?'You are at G'+(gn-1)+' — use G'+(gn-1)+'  Shop (Ragnarök) to unlock '+g:'Fight only — accumulate VP by fighting')+'</div></div>';
-  h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completato':allOk?'✅ Ready':'⚠️ Incompleto')+'</span>';
-  h+='</div><div class="gbody">';
+  if(sh) h+='<div class="gsub">You are at G'+(gn-1)+' — use G'+(gn-1)+'  Shop (Ragnarök) to unlock '+g+'</div>';
+  else   h+='<div class="gsub">Fight only — accumulate VP</div>';
+  h+='</div>';
+  h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">';
+  h+=(done?'✅ Completato':allOk?'✅ Ready':'⚠️ Incompleto');
+  h+='</span></div>';
+  h+='<div class="gbody">';
 
-  // ── SEZIONE VP ──────────────────────────────────────
+  // VP
   h+='<div class="slb">Victory Points</div>';
   h+='<div class="ibox">';
   h+='<div class="irow"><span class="ilb">🎯 VP required for '+g+'</span><span class="iv infoc">'+fV(q.vp)+'</span></div>';
-  h+='<div class="irow"><span class="ilb">⚔️ VP from combat (you have now)</span><span class="iv" style="color:'+col+'">'+fV(r.vp_c)+'</span></div>';
+  h+='<div class="irow"><span class="ilb">⚔️ From combat</span><span class="iv" style="color:'+col+'">'+fV(r.vp_c)+'</span></div>';
+
   if(sh){
     if(r.vp_miss_shop>0){
-      h+='<div class="irow"><span class="ilb">❌ VP still missing</span><span class="iv warnc">'+fV(r.vp_miss_shop)+'</span></div>';
-      // Mostra entrambi gli scenari se c'è differenza
-      if(r.vpr_all>r.vpr_ld){
-        h+='<div class="irow"><span class="ilb">🏪 Ragnarök without Forest</span><span class="iv" style="color:#aaa">'+r.rn_nofor+'× <span style="font-size:11px">('+fV(r.vpr_ld)+'/ragn)</span></span></div>';
-        h+='<div class="irow"><span class="ilb">🌲 Ragnarök with Forest</span><span class="iv" style="color:#22c55e;font-size:18px">'+r.rn+'× <span style="font-size:11px">('+fV(r.vpr_all)+'/ragn)</span></span></div>';
-        if(r.rn<r.rn_nofor) h+='<div style="font-size:11px;color:#22c55e;padding:4px 0">✅ Forest reduces by '+(r.rn_nofor-r.rn)+' Ragnarök!</div>';
+      h+='<div class="irow"><span class="ilb">❌ Missing</span><span class="iv warnc">'+fV(r.vp_miss_shop)+'</span></div>';
+      if(r.vpr_all>r.vpr_ld && r.rn<r.rn_nofor){
+        h+='<div class="irow"><span class="ilb">Ragnarök without Forest</span><span class="iv mutec">'+r.rn_nofor+'×</span></div>';
+        h+='<div class="irow"><span class="ilb">🌲 Ragnarök with Forest</span><span class="iv okc" style="font-size:18px">'+r.rn+'× <span style="font-size:11px">(save '+(r.rn_nofor-r.rn)+' Ragnarök)</span></span></div>';
       } else {
-        h+='<div class="irow"><span class="ilb">🏪 Ragnarök needed at shop G'+(gn-1)+'</span><span class="iv" style="color:#f5a623;font-size:20px">'+r.rn+'×</span></div>';
+        h+='<div class="irow"><span class="ilb">🏪 Ragnarök needed</span><span class="iv infoc" style="font-size:20px">'+r.rn+'×</span></div>';
       }
-      h+='<div class="irow"><span class="ilb">📦 Total VP with '+r.rn+' Ragnarök</span><span class="iv" style="color:#93c5fd">+'+fV(r.rn*r.vpr)+'</span></div>';
+      h+='<div class="irow"><span class="ilb">📦 VP from shop ('+r.rn+' Ragnarök)</span><span class="iv" style="color:#93c5fd">+'+fV(r.rn*r.vpr)+'</span></div>';
     } else {
-      h+='<div class="irow"><span class="ilb">✅ VP sufficient without shop</span><span class="iv okc">No Ragnarök needed</span></div>';
+      h+='<div class="irow"><span class="ilb">✅ No Ragnarök needed</span><span class="iv okc">You already have enough VP</span></div>';
     }
   }
+
   h+='<div class="div"></div>';
-  h+='<div class="irow"><span class="ilb" style="font-weight:700">✅ Total VP available</span><span class="iv" style="font-size:18px;color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_tot)+(r.vp_av>0?' <span style="font-size:12px;color:#666">(+'+fV(r.vp_av)+' avanzo)</span>':'')+'</span></div>';
+  h+='<div class="irow"><span class="ilb" style="font-weight:700">Total VP available</span>';
+  h+='<span class="iv" style="font-size:18px;color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_tot);
+  if(r.vp_av>0) h+=' <span style="font-size:11px;color:#666">(+'+fV(r.vp_av)+' leftover)</span>';
+  h+='</span></div>';
   h+=bar(pct,vp_ok);
   h+='</div>';
 
-  // ── SEZIONE NEGOZIO ─────────────────────────────────
-  if(sh&&r.rn>0){
-    h+='<div class="slb">Purchase plan — every Ragnarök buy:</div>';
+  // Negozio
+  if(sh && r.rn>0){
+    h+='<div class="slb">What to buy — every Ragnarök at shop G'+(gn-1)+'</div>';
     h+='<div class="ibox">';
-    h+='<div class="irow"><span class="ilb">🐺 Negozio Wolf</span><div><div class="iv">'+sh.w.n+' pack &nbsp;→&nbsp; '+fV(sh.w.n*sh.w.vp)+' VP</div><div class="idet">'+sh.w.n+' pack × '+fM(sh.w.cpk)+'/pack = '+fM(sh.w.n*sh.w.cpk)+' monete lupo</div></div></div>';
-    h+='<div class="irow"><span class="ilb">🐉 Negozio Dragon</span><div><div class="iv">'+sh.d.n+' pack &nbsp;→&nbsp; '+fV(sh.d.n*sh.d.vp)+' VP</div><div class="idet">'+sh.d.n+' pack × '+fM(sh.d.cpk)+'/pack = '+fM(sh.d.n*sh.d.cpk)+' monete drago</div></div></div>';
-    h+='<div class="div"></div>';
-    h+='<div class="irow"><span class="ilb" style="font-weight:700">Total VP per Ragnarök</span><span class="iv infoc">'+fV(sh.vpr)+'</span></div>';
+    h+='<div class="irow"><span class="ilb">🐺 Wolf Shop</span><div><div class="iv">'+sh.w.n+' pack → '+fV(sh.w.n*sh.w.vp)+' VP</div><div class="idet">'+sh.w.n+' × '+fM(sh.w.cpk)+' = '+fM(sh.wc)+' coins</div></div></div>';
+    h+='<div class="irow"><span class="ilb">🐉 Dragonn Shop</span><div><div class="iv">'+sh.d.n+' pack → '+fV(sh.d.n*sh.d.vp)+' VP</div><div class="idet">'+sh.d.n+' × '+fM(sh.d.cpk)+' = '+fM(sh.dc)+' coins</div></div></div>';
     if(sh.f1){
-      h+='<div class="irow" style="margin-top:4px"><span class="ilb" style="color:#22c55e">🌲 Forest Tournament (optional)</span><div><div class="idet" style="color:#22c55e">F1: '+sh.f1.n+' pack × '+fV(sh.f1.vp)+' = '+fV(sh.f1.n*sh.f1.vp)+' VP ('+fM(sh.f1.cpk)+'/pack)</div>'+(sh.f2?'<div class="idet" style="color:#22c55e">F2: '+sh.f2.n+' pack × '+fV(sh.f2.vp)+' = '+fV(sh.f2.n*sh.f2.vp)+' VP ('+fM(sh.f2.cpk)+'/pack)</div>':'')+'<div class="idet" style="color:#22c55e">Buying Forest reduces required Ragnarök</div></div></div>';
+      h+='<div class="irow"><span class="ilb" style="color:#22c55e">🌲 Forest 1 <span style="font-size:10px">(opz.)</span></span><div><div class="iv" style="color:#22c55e">'+sh.f1.n+' pack → '+fV(sh.f1.n*sh.f1.vp)+' VP</div><div class="idet">'+sh.f1.n+' × '+fM(sh.f1.cpk)+' = '+fM(sh.f1c)+' coins</div></div></div>';
     }
+    if(sh.f2){
+      h+='<div class="irow"><span class="ilb" style="color:#22c55e">🌲 Forest 2 <span style="font-size:10px">(opz.)</span></span><div><div class="iv" style="color:#22c55e">'+sh.f2.n+' pack → '+fV(sh.f2.n*sh.f2.vp)+' VP</div><div class="idet">'+sh.f2.n+' × '+fM(sh.f2.cpk)+' = '+fM(sh.f2c)+' coins</div></div></div>';
+    }
+    h+='<div class="div"></div>';
+    h+='<div class="irow"><span class="ilb" style="font-weight:700">Total VP per Ragnarök</span><span class="iv infoc">L+D: '+fV(r.vpr_ld)+(r.vpr_all>r.vpr_ld?' / with Forest: '+fV(r.vpr_all):'')+'</span></div>';
     h+='</div>';
 
-    // ── BUDGET MONETE ──────────────────────────────────
-    h+='<div class="slb">Coin budget for '+r.rn+' Ragnarök</div>';
+    // Monete
+    h+='<div class="slb">Budget coins per '+r.rn+' Ragnarök</div>';
     h+='<div class="ccgrid">';
     var wm=Math.max(r.wc-r.wa,0), dm=Math.max(r.dc-r.da,0);
     h+='<div class="cc" style="border-top:3px solid #3b82f6">';
-    h+='<div class="ccnm">🐺 Wolf Coins</div>';
-    h+='<div class="ccav">'+fM(r.wa)+'</div>';
-    h+='<div class="ccdt">Need: '+fM(r.wc)+' ('+r.rn+'× '+fM(r.sh.wc)+')</div>';
-    h+='<div class="ccst" style="color:'+(r.w_ok?'#2ecc71':'#ff6b6b')+'">'+(r.w_ok?'✅ Remaining '+fM(r.wo):'⚠️ Missing '+fM(wm))+'</div>';
-    h+='</div>';
+    h+='<div class="ccnm">🐺 Wolf Coins</div><div class="ccav">'+fM(r.wa)+'</div>';
+    h+='<div class="ccdt">Need: '+fM(r.wc)+' ('+r.rn+'×'+fM(sh.wc)+')</div>';
+    h+='<div class="ccst" style="color:'+(r.w_ok?'#2ecc71':'#ff6b6b')+'">'+(r.w_ok?'✅ Remaining '+fM(r.wo):'⚠️ Missing '+fM(wm))+'</div></div>';
     h+='<div class="cc" style="border-top:3px solid #ef4444">';
-    h+='<div class="ccnm">🐉 Dragonn Coins</div>';
-    h+='<div class="ccav">'+fM(r.da)+'</div>';
-    h+='<div class="ccdt">Need: '+fM(r.dc)+' ('+r.rn+'× '+fM(r.sh.dc)+')</div>';
-    h+='<div class="ccst" style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+(r.d_ok?'✅ Remaining '+fM(r.doo):'⚠️ Missing '+fM(dm))+'</div>';
-    h+='</div></div>';
+    h+='<div class="ccnm">🐉 Dragonn Coins</div><div class="ccav">'+fM(r.da)+'</div>';
+    h+='<div class="ccdt">Need: '+fM(r.dc)+' ('+r.rn+'×'+fM(sh.dc)+')</div>';
+    h+='<div class="ccst" style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+(r.d_ok?'✅ Remaining '+fM(r.doo):'⚠️ Missing '+fM(dm))+'</div></div>';
+    h+='</div>';
   } else if(!sh){
-    h+='<p class="note" style="padding:8px 0">⚔️ Accumulate VP by fighting — a questo grado no Ragnarök shop at this grade.</p>';
+    h+='<p class="note" style="padding:8px 0">⚔️ Accumulate VP by fighting — no Ragnarök shop at this grade.</p>';
   }
 
-  // ── ALTRI REQUISITI ────────────────────────────────
+  // Requisiti
   if(q.acc>1||q.hero>0||q.proj>0){
-    h+='<div class="slb">Other requirements</div>';
-    h+='<div class="ibox">';
-    if(q.acc>1){var o=r.am===0;h+='<div class="irow"><span class="ilb">🏛️ Academy Level</span><div class="iv '+(o?'okc':'warnc')+'">'+(o?'✅ L'+q.acc+' reached':'→ Upgrade to L'+q.acc+' (you are L'+i.acc+', missing '+r.am+' levels)')+'</div></div>';}
-    if(q.hero>0){var o=r.hm===0;h+='<div class="irow"><span class="ilb">🦸 Hero Level</span><div class="iv '+(o?'okc':'warnc')+'">'+(o?'✅ Lv'+q.hero+' reached':'→ Reach Lv'+q.hero+' (you are Lv'+i.hero+', missing '+r.hm+')')+'</div></div>';}
-    if(q.proj>0){var o=r.pm===0;h+='<div class="irow"><span class="ilb">📜 Progetti</span><div class="iv '+(o?'okc':'warnc')+'">'+(o?'✅ You have enough ('+q.proj.toLocaleString()+')':'→ Buy '+r.pm.toLocaleString()+' progetti (you have '+i.proj.toLocaleString()+', needed '+q.proj.toLocaleString()+')')+'</div></div>';}
-    if(r.gm>0)h+='<div class="irow"><span class="ilb">💰 Oro</span><div class="iv warnc">⚠️ Missing '+r.gm.toLocaleString()+' oro (you have '+i.gold.toLocaleString()+', needed '+r.gn_need.toLocaleString()+')</div></div>';
+    h+='<div class="slb">Other requirements</div><div class="ibox">';
+    if(q.acc>1){var o=r.am===0;h+='<div class="irow"><span class="ilb">🏛️ Academy</span><span class="iv '+(o?'okc':'warnc')+'">'+(o?'✅ L'+q.acc+' reached':'→ L'+q.acc+' (sei L'+inp.acc+', missing '+r.am+')')+'</span></div>';}
+    if(q.hero>0){var o=r.hm===0;h+='<div class="irow"><span class="ilb">🦸 Hero</span><span class="iv '+(o?'okc':'warnc')+'">'+(o?'✅ Lv'+q.hero:' → Lv'+q.hero+' (sei Lv'+inp.hero+', missing '+r.hm+')')+'</span></div>';}
+    if(q.proj>0){var o=r.pm===0;h+='<div class="irow"><span class="ilb">📜 Projects</span><span class="iv '+(o?'okc':'warnc')+'">'+(o?'✅ '+q.proj.toLocaleString():'→ Buy '+r.pm.toLocaleString()+' (hai '+inp.proj.toLocaleString()+'/'+q.proj.toLocaleString()+')')+'</span></div>';}
+    if(r.gm>0)h+='<div class="irow"><span class="ilb">💰 Oro</span><span class="iv warnc">⚠️ Missing '+r.gm.toLocaleString()+'</span></div>';
     h+='</div>';
   }
-
   h+='</div></div>';
   return h;
 }
 
-// ═══════════════════════════════════════════════════════
-// RENDER SUMMARY
-// ═══════════════════════════════════════════════════════
-function renderSummary(i,res){
+// ═══ RENDER SUMMARY ══════════════════════════════════════
+function renderSummary(inp, res){
   var h='<table class="stable">';
-  h+='<tr><th>Grade</th><th>Status</th><th>VP available</th><th>VP required</th><th>Ragnarök</th><th>🐺 Wolf spent</th><th>🐺 Remaining</th><th>🐉 Dragonn spent</th><th>🐉 Remaining</th><th>Acc.</th><th>Eroe</th></tr>';
-  var gds=['G3','G4','G5','G6','G7','G8'];
-  for(var j=0;j<gds.length;j++){
-    var g=gds[j],r=res[g],col=GCOL[g],gn=parseInt(g.replace('G',''));
-    var done=i.guard>=gn, vp_ok=r.vp_tot>=r.q.vp;
+  h+='<tr><th>Grade</th><th>Status</th><th>VP you have</th><th>VP needed</th><th>Ragnarök</th><th>🐺 Spent</th><th>🐺 Remaining</th><th>🐉 Spent</th><th>🐉 Remaining</th><th>Acc.</th></tr>';
+  ['G3','G4','G5','G6','G7','G8'].forEach(function(g){
+    var r=res[g], col=GCOL[g], gn=parseInt(g.replace('G',''));
+    var done=inp.guard>=gn, vp_ok=r.vp_tot>=r.q.vp;
     var allOk=vp_ok&&!r.am&&!r.hm&&!r.pm&&!r.gm;
-    var st=done?'<span class="okc">✅ Done</span>':allOk?'<span class="okc">✅ Ready</span>':vp_ok?'<span class="infoc">⚡ VP ok</span>':'<span class="warnc">⚠️ No</span>';
     h+='<tr>';
     h+='<td style="font-weight:700;color:'+col+'">'+g+'</td>';
-    h+='<td>'+st+'</td>';
+    h+='<td>'+(done?'<span class="okc">✅</span>':allOk?'<span class="okc">✅</span>':vp_ok?'<span class="infoc">⚡</span>':'<span class="warnc">⚠️</span>')+'</td>';
     h+='<td style="color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_tot)+'</td>';
-    h+='<td style="color:#555">'+fV(r.q.vp)+'</td>';
-    h+='<td style="color:#f5a623">'+(r.rn>0?r.rn+'×':'—')+'</td>';
+    h+='<td class="mutec">'+fV(r.q.vp)+'</td>';
+    h+='<td class="infoc">'+(r.rn>0?r.rn+'×':'—')+'</td>';
     h+='<td style="color:'+(r.w_ok?'#e8eaf0':'#ff6b6b')+'">'+(r.wc>0?'−'+fM(r.wc):'—')+'</td>';
     h+='<td style="color:'+(r.w_ok?'#2ecc71':'#ff6b6b')+'">'+fM(r.wo)+'</td>';
     h+='<td style="color:'+(r.d_ok?'#e8eaf0':'#ff6b6b')+'">'+(r.dc>0?'−'+fM(r.dc):'—')+'</td>';
     h+='<td style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+fM(r.doo)+'</td>';
-    h+='<td style="color:'+(r.am===0?'#2ecc71':'#ff6b6b')+'">L'+i.acc+'→L'+r.q.acc+(r.am>0?' (−'+r.am+')':' ✅')+'</td>';
-    h+='<td style="color:'+(r.hm===0||!r.q.hero?'#2ecc71':'#ff6b6b')+'">'+(r.q.hero?i.hero+'→'+r.q.hero+(r.hm>0?' (−'+r.hm+')':' ✅'):'—')+'</td>';
+    h+='<td style="color:'+(r.am===0?'#2ecc71':'#ff6b6b')+'">L'+inp.acc+'→L'+r.q.acc+(r.am>0?' (−'+r.am+')':' ✅')+'</td>';
     h+='</tr>';
-  }
+  });
   h+='</table>';
   document.getElementById('sum-table').innerHTML=h;
 
-  // Budget monete
+  // Monete
+  var gds=['G5','G6','G7','G8'];
   var twc=0,tdc=0,trn=0;
-  var pds=['G5','G6','G7','G8'];
-  for(var j=0;j<pds.length;j++){twc+=res[pds[j]].wc;tdc+=res[pds[j]].dc;trn+=res[pds[j]].rn;}
+  gds.forEach(function(g){twc+=res[g].wc;tdc+=res[g].dc;trn+=res[g].rn;});
   var ch='<div class="row2">';
-  function coinCard(nm,col,avail,rns,gs,results,field,total){
+  function coinCard(nm,col,avail,total,gds2,field){
     var s='<div style="background:#22263a;border-radius:8px;padding:12px;border-top:3px solid '+col+'">';
-    s+='<div style="font-size:11px;font-weight:700;color:#555;text-transform:uppercase;margin-bottom:8px">'+nm+'</div>';
-    s+='<div class="irow"><span class="mutec">Available now</span><span style="font-weight:700">'+fM(avail)+'</span></div>';
-    for(var j=0;j<gs.length;j++){
-      var v=results[gs[j]][field];
-      if(v>0)s+='<div class="irow"><span class="mutec">'+gs[j]+' ('+results[gs[j]].rn+'× Ragnarök)</span><span class="warnc">−'+fM(v)+'</span></div>';
-    }
-    s+='<div class="irow" style="border-top:1px solid #2a2d3a;margin-top:4px;padding-top:6px"><span style="font-weight:700">Remaining</span><span style="font-weight:700;color:'+(avail>=total?'#2ecc71':'#ff6b6b')+'">'+fM(Math.max(avail-total,0))+(avail<total?' <span style="font-size:11px">(⚠️ missing '+fM(total-avail)+')</span>':'')+'</span></div>';
+    s+='<div style="font-size:11px;color:#555;text-transform:uppercase;font-weight:700;margin-bottom:8px">'+nm+'</div>';
+    s+='<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span class="mutec">Available</span><span>'+fM(avail)+'</span></div>';
+    gds2.forEach(function(g){var v=res[g][field];if(v>0){s+='<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span class="mutec">'+g+' ('+res[g].rn+'× Ragnarök)</span><span class="warnc">−'+fM(v)+'</span></div>';}});
+    var rem=Math.max(avail-total,0);
+    s+='<div style="display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-top:1px solid #2a2d3a;margin-top:4px;font-weight:700"><span>Remaining</span><span style="color:'+(avail>=total?'#2ecc71':'#ff6b6b')+'">'+fM(rem)+(avail<total?' (⚠️ −'+fM(total-avail)+'missing)':'')+'</span></div>';
     return s+'</div>';
   }
-  ch+=coinCard('🐺 Wolf Coins','#3b82f6',i.wolf,trn,pds,res,'wc',twc);
-  ch+=coinCard('🐉 Dragonn Coins','#ef4444',i.dragon,trn,pds,res,'dc',tdc);
+  ch+=coinCard('🐺 Wolf Coins','#3b82f6',inp.wolf,twc,gds,'wc');
+  ch+=coinCard('🐉 Dragonn Coins','#ef4444',inp.dragon,tdc,gds,'dc');
   ch+='</div>';
-  ch+='<div style="margin-top:10px;background:#22263a;border-radius:8px;padding:10px 12px">';
-  ch+='<span class="mutec">Total Ragnarök G5→G8: </span><span style="font-weight:700;color:#f5a623">'+trn+'×</span>';
-  ch+='&nbsp;&nbsp;&nbsp;<span class="mutec">Wolf totale: </span><span style="font-weight:700;color:'+(i.wolf>=twc?'#2ecc71':'#ff6b6b')+'">−'+fM(twc)+'</span>';
-  ch+='&nbsp;&nbsp;&nbsp;<span class="mutec">Dragon totale: </span><span style="font-weight:700;color:'+(i.dragon>=tdc?'#2ecc71':'#ff6b6b')+'">−'+fM(tdc)+'</span>';
+  ch+='<div style="margin-top:10px;background:#22263a;border-radius:8px;padding:10px 12px;font-size:12px">';
+  ch+='<span class="mutec">Total Ragnarök: </span><span class="infoc" style="font-weight:700">'+trn+'×</span>';
+  ch+='&nbsp;&nbsp;&nbsp;<span class="mutec">Wolf totale: </span><span style="font-weight:700;color:'+(inp.wolf>=twc?'#2ecc71':'#ff6b6b')+'">−'+fM(twc)+'</span>';
+  ch+='&nbsp;&nbsp;&nbsp;<span class="mutec">Dragon totale: </span><span style="font-weight:700;color:'+(inp.dragon>=tdc?'#2ecc71':'#ff6b6b')+'">−'+fM(tdc)+'</span>';
   ch+='</div>';
   document.getElementById('sum-coins').innerHTML=ch;
 }
 
-// ═══════════════════════════════════════════════════════
-// RENDER NEGOZI
-// ═══════════════════════════════════════════════════════
+// ═══ RENDER NEGOZI ═══════════════════════════════════════
 function renderShops(){
   var defs=[
-    {g:'G5',neg:'G4',vpr:4.66, wc:30, dc:1.3,
-     rows:[{ico:'🐺',nm:'Wolf',  n:60, vp:0.067,tot:4.02, cpk:0.5, ctot:30},
-           {ico:'🐉',nm:'Dragon', n:2,  vp:0.320,tot:0.64, cpk:0.65,ctot:1.3},
-           {ico:'🌲',nm:'Forest 1',n:2,  vp:1.6,  tot:3.2,  cpk:1.0, ctot:2.0, fore:true},
-           {ico:'🌲',nm:'Forest 2',n:60, vp:0.0402,tot:2.41,cpk:0.5, ctot:30,  fore:true}]},
-    {g:'G6',neg:'G5',vpr:50.1, wc:75, dc:1.5,
-     rows:[{ico:'🐺',nm:'Wolf',  n:150,vp:0.310,tot:46.5, cpk:0.5, ctot:75},
-           {ico:'🐉',nm:'Dragon', n:3,  vp:1.2,  tot:3.6,  cpk:0.5, ctot:1.5},
-           {ico:'🌲',nm:'Forest 1',n:2,  vp:1.6,  tot:3.2,  cpk:1.0, ctot:2.0, fore:true},
-           {ico:'🌲',nm:'Forest 2',n:150,vp:0.186,tot:27.9, cpk:0.5, ctot:75,  fore:true}]},
-    {g:'G7',neg:'G6',vpr:571, wc:95, dc:1.5,
-     rows:[{ico:'🐺',nm:'Wolf',  n:190,vp:2.8,  tot:532,  cpk:0.5, ctot:95},
-           {ico:'🐉',nm:'Dragon', n:3,  vp:13,   tot:39,   cpk:0.5, ctot:1.5},
-           {ico:'🌲',nm:'Forest 1',n:190,vp:1.68, tot:319.2,cpk:0.65,ctot:123.5,fore:true},
-           {ico:'🌲',nm:'Forest 2',n:3,  vp:11.7, tot:35.1, cpk:1.0, ctot:3.0, fore:true}]},
-    {g:'G8',neg:'G7',vpr:3474,wc:255,dc:2.6,
+    {g:'G5',neg:'G4',vpr_ld:4.66,vpr_all:4.66,wc:30,dc:1.3,
+     rows:[{ico:'🐺',nm:'Wolf',n:60,vp:0.067,tot:4.02,cpk:0.5,ctot:30},
+           {ico:'🐉',nm:'Dragon',n:2,vp:0.320,tot:0.64,cpk:0.65,ctot:1.3}]},
+    {g:'G6',neg:'G5',vpr_ld:50.1,vpr_all:81.2,wc:75,dc:1.95,
+     rows:[{ico:'🐺',nm:'Wolf',n:150,vp:0.310,tot:46.5,cpk:0.5,ctot:75},
+           {ico:'🐉',nm:'Dragon',n:3,vp:1.2,tot:3.6,cpk:0.65,ctot:1.95},
+           {ico:'🌲',nm:'Forest 1',n:2,vp:1.6,tot:3.2,cpk:1.0,ctot:2.0,fore:true},
+           {ico:'🌲',nm:'Forest 2',n:150,vp:0.186,tot:27.9,cpk:0.5,ctot:75,fore:true}]},
+    {g:'G7',neg:'G6',vpr_ld:571,vpr_all:925.3,wc:95,dc:1.5,
+     rows:[{ico:'🐺',nm:'Wolf',n:190,vp:2.8,tot:532,cpk:0.5,ctot:95},
+           {ico:'🐉',nm:'Dragon',n:3,vp:13,tot:39,cpk:0.5,ctot:1.5},
+           {ico:'🌲',nm:'Forest 1',n:190,vp:1.68,tot:319.2,cpk:0.65,ctot:123.5,fore:true},
+           {ico:'🌲',nm:'Forest 2',n:3,vp:11.7,tot:35.1,cpk:1.0,ctot:3.0,fore:true}]},
+    {g:'G8',neg:'G7',vpr_ld:3474,vpr_all:5688,wc:255,dc:2.6,
      note:'G8 uses the same G7 shop.',
-     rows:[{ico:'🐺',nm:'Wolf',  n:510,vp:6.6,  tot:3366, cpk:0.5, ctot:255},
-           {ico:'🐉',nm:'Dragon', n:4,  vp:27,   tot:108,  cpk:0.65,ctot:2.6}]}
+     rows:[{ico:'🐺',nm:'Wolf',n:510,vp:6.6,tot:3366,cpk:0.5,ctot:255},
+           {ico:'🐉',nm:'Dragon',n:4,vp:27,tot:108,cpk:0.65,ctot:2.6},
+           {ico:'🌲',nm:'Forest 1',n:8,vp:24.3,tot:194.4,cpk:0.65,ctot:5.2,fore:true},
+           {ico:'🌲',nm:'Forest 2',n:510,vp:3.96,tot:2020,cpk:0.65,ctot:331.5,fore:true}]}
   ];
   var h='';
-  for(var i=0;i<defs.length;i++){
-    var s=defs[i],col=GCOL[s.g];
+  defs.forEach(function(s){
+    var col=GCOL[s.g];
     h+='<div style="margin-bottom:22px">';
-    h+='<div style="font-size:14px;font-weight:700;color:'+col+';padding:8px 0 6px;border-bottom:1px solid #2a2d3a;margin-bottom:6px">Unlock '+s.g+' — Negozio G'+s.neg;
-    h+=' <span style="font-size:12px;color:#555;font-weight:400">max '+fV(s.vpr)+' VP per Ragnarök (Wolf+Dragon)</span></div>';
-    if(s.note)h+='<p class="note" style="margin-bottom:8px">ℹ️ '+s.note+'</p>';
-    h+='<table class="reftbl"><tr><th>Negozio</th><th>Pack max</th><th>VP/pack</th><th>VP totali</th><th>Costo/pack</th><th>Costo totale</th></tr>';
-    for(var j=0;j<s.rows.length;j++){
-      var rw=s.rows[j];
+    h+='<div style="font-size:14px;font-weight:700;color:'+col+';padding:8px 0 6px;border-bottom:1px solid #2a2d3a;margin-bottom:6px">';
+    h+='Unlock '+s.g+' — Negozio G'+s.neg;
+    h+=' <span style="font-size:12px;color:#555;font-weight:400">L+D: '+fV(s.vpr_ld)+' / with Forest: '+fV(s.vpr_all)+' per Ragnarök</span></div>';
+    if(s.note) h+='<p class="note" style="margin-bottom:6px">'+s.note+'</p>';
+    h+='<table class="reftbl"><tr><th>Negozio</th><th>Pack</th><th>VP/pack</th><th>VP totali</th><th>Costo/pack</th><th>Costo tot.</th></tr>';
+    s.rows.forEach(function(rw){
       h+='<tr'+(rw.fore?' style="color:#22c55e"':'')+'>';
-      h+='<td>'+rw.ico+' '+rw.nm+(rw.fore?' <span style="font-size:10px;color:#555">(Forest Tournament)</span>':'')+'</td>';
+      h+='<td>'+rw.ico+' '+rw.nm+(rw.fore?' <span style="font-size:10px;color:#555">(Tournament)</span>':'')+'</td>';
       h+='<td><strong>'+rw.n+'</strong></td><td>'+fV(rw.vp)+'</td>';
       h+='<td><strong>'+fV(rw.tot)+'</strong></td>';
       h+='<td>'+fM(rw.cpk)+'</td><td><strong>'+fM(rw.ctot)+'</strong></td></tr>';
-    }
-    h+='<tr style="background:rgba(255,200,0,.06)"><td colspan="3" style="color:#f5a623;font-size:11px">Total per Ragnarök (Wolf+Dragonn)</td>';
-    h+='<td><strong style="color:#f5a623">'+fV(s.vpr)+'</strong></td><td></td><td><strong>'+fM(s.wc+s.dc)+'</strong></td></tr>';
+    });
+    h+='<tr style="background:rgba(255,200,0,.06)">';
+    h+='<td colspan="3" style="color:#f5a623;font-size:11px">Total W+D per Ragnarök</td>';
+    h+='<td><strong style="color:#f5a623">'+fV(s.vpr_ld)+'</strong></td><td></td>';
+    h+='<td><strong>'+fM(s.wc+s.dc)+'</strong></td></tr>';
     h+='</table></div>';
-  }
+  });
   document.getElementById('shops-content').innerHTML=h;
 }
 
-// ═══════════════════════════════════════════════════════
-// RENDER SIMULATORE
-// ═══════════════════════════════════════════════════════
+// ═══ RENDER SIMULATORE ═══════════════════════════════════
 function renderSim(){
-  var i=gi();
-  var wolf=i.wolf, dragon=i.dragon, forest=i.forest;
-  var gds=['G5','G6','G7','G8'];
+  var inp=getI();
+  var wolf=inp.wolf, dragon=inp.dragon, forest=inp.forest;
   var h='';
-  for(var idx=0;idx<gds.length;idx++){
-    var g=gds[idx], sh=SHOPS[g], col=GCOL[g], sp=simPacks[g];
-    var vp_w=(sp.w||0)*sh.w.vp, vp_d=(sp.d||0)*sh.d.vp;
-    var vp_f1=sh.f1?(sp.f1||0)*sh.f1.vp:0, vp_f2=sh.f2?(sp.f2||0)*sh.f2.vp:0;
+  ['G5','G6','G7','G8'].forEach(function(g){
+    var sh=SH[g], col=GCOL[g], sp=simPacks[g];
+    var gn=parseInt(g.replace('G',''));
+    var vp_w=(sp.w||0)*sh.w.vp;
+    var vp_d=(sp.d||0)*sh.d.vp;
+    var vp_f1=sh.f1?(sp.f1||0)*sh.f1.vp:0;
+    var vp_f2=sh.f2?(sp.f2||0)*sh.f2.vp:0;
     var vp_tot=vp_w+vp_d+vp_f1+vp_f2;
-    var cw=(sp.w||0)*sh.w.cpk, cd=(sp.d||0)*sh.d.cpk;
-    var cf1=sh.f1?(sp.f1||0)*sh.f1.cpk:0, cf2=sh.f2?(sp.f2||0)*sh.f2.cpk:0;
-    var wa=wolf, da=dragon, fa=forest;
+    var cw=(sp.w||0)*sh.w.cpk;
+    var cd=(sp.d||0)*sh.d.cpk;
+    var cf1=sh.f1?(sp.f1||0)*sh.f1.cpk:0;
+    var cf2=sh.f2?(sp.f2||0)*sh.f2.cpk:0;
     var wo=Math.max(wolf-cw,0), doo=Math.max(dragon-cd,0), fo=Math.max(forest-cf1-cf2,0);
 
     h+='<div class="gb" style="margin-bottom:12px">';
     h+='<div class="gh" style="background:'+col+'20;border-left:4px solid '+col+';padding:10px 14px">';
-    h+='<div><div class="gt" style="color:'+col+';font-size:14px">'+g+' — Negozio G'+(parseInt(g.replace('G',''))-1)+'</div>';
-    h+='<div class="gsub">max '+fV(sh.vpr)+' VP per Ragnarök</div></div>';
-    h+='<div style="background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center">';
+    h+='<div><div class="gt" style="color:'+col+';font-size:14px">'+g+' — Negozio G'+(gn-1)+'</div>';
+    h+='<div class="gsub">L+D: '+fV(sh.vpr_ld)+' / with Forest: '+fV(sh.vpr_all)+' per Ragnarök</div></div>';
+    h+='<div style="text-align:center;background:#0f1117;border-radius:8px;padding:8px 14px">';
     h+='<div style="font-size:20px;font-weight:700;color:'+col+'">'+fV(vp_tot)+'</div>';
-    h+='<div style="font-size:10px;color:#555">VP purchased</div></div></div>';
+    h+='<div style="font-size:10px;color:#555">VP selected</div></div></div>';
     h+='<div class="gbody"><div class="row2">';
 
     // Pack inputs
     h+='<div style="background:#22263a;border-radius:8px;padding:12px">';
     h+='<div style="font-size:12px;font-weight:700;color:'+col+';margin-bottom:10px">Packs to buy</div>';
-    var pdefs=[{key:'w',ico:'🐺',nm:'Wolf',   max:sh.w.n, vp:sh.w.vp, c:sh.w.cpk},
-               {key:'d',ico:'🐉',nm:'Dragon',  max:sh.d.n, vp:sh.d.vp, c:sh.d.cpk}];
-    if(sh.f1)pdefs.push({key:'f1',ico:'🌲',nm:'Forest 1',max:sh.f1.n,vp:sh.f1.vp,c:sh.f1.cpk,fore:true});
-    if(sh.f2)pdefs.push({key:'f2',ico:'🌲',nm:'Forest 2',max:sh.f2.n,vp:sh.f2.vp,c:sh.f2.cpk,fore:true});
-    for(var pi=0;pi<pdefs.length;pi++){
-      var pd=pdefs[pi], nv=sp[pd.key]||0;
-      h+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">';
+    var pdefs=[
+      {key:'w',ico:'🐺',nm:'Wolf',   max:sh.w.n, vp:sh.w.vp, c:sh.w.cpk},
+      {key:'d',ico:'🐉',nm:'Dragon',  max:sh.d.n, vp:sh.d.vp, c:sh.d.cpk}
+    ];
+    if(sh.f1) pdefs.push({key:'f1',ico:'🌲',nm:'Forest 1',max:sh.f1.n,vp:sh.f1.vp,c:sh.f1.cpk,fore:true});
+    if(sh.f2) pdefs.push({key:'f2',ico:'🌲',nm:'Forest 2',max:sh.f2.n,vp:sh.f2.vp,c:sh.f2.cpk,fore:true});
+    pdefs.forEach(function(pd){
+      var nv=sp[pd.key]||0;
+      h+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">';
       h+='<span style="flex:1;font-size:12px;color:'+(pd.fore?'#22c55e':'#8b8fa8')+'">'+pd.ico+' '+pd.nm+'</span>';
       h+='<input class="sim-inp" type="number" min="0" max="'+pd.max+'" value="'+nv+'" oninput="setPack(\''+g+'\',\''+pd.key+'\',this.value)">';
       h+='<span style="font-size:10px;color:#444">max '+pd.max+'</span></div>';
-      h+='<div style="font-size:10px;color:#555;margin:-2px 0 8px 0">→ '+fV(nv*pd.vp)+' VP &nbsp;·&nbsp; costo '+fM(nv*pd.c)+(pd.fore?' (Forest)':'')+'</div>';
-    }
+      h+='<div style="font-size:10px;color:#555;margin:-2px 0 6px 0">→ '+fV(nv*pd.vp)+' VP · '+fM(nv*pd.c)+'</div>';
+    });
     h+='</div>';
 
     // Saldo
     h+='<div style="background:#22263a;border-radius:8px;padding:12px">';
-    h+='<div style="font-size:12px;font-weight:700;color:'+col+';margin-bottom:10px">Coin balance</div>';
-    function simCoinRow(ico,nm,av,cost,after,col2){
-      var s='<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid #1e2030">';
-      s+='<span style="color:'+col2+'">'+ico+' '+nm+'</span><span>'+fM(av)+'</span></div>';
-      s+='<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid #1e2030">';
-      s+='<span class="mutec">spent</span><span class="warnc">−'+fM(cost)+'</span></div>';
-      s+='<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid #2a2d3a;font-weight:700;margin-bottom:6px">';
-      s+='<span>remaining</span><span style="color:'+(av>=cost?'#2ecc71':'#ff6b6b')+'">'+fM(Math.max(after,0))+'</span></div>';
-      return s;
+    h+='<div style="font-size:12px;font-weight:700;color:'+col+';margin-bottom:10px">Saldo coins</div>';
+    function scRow(ico,col2,av,cost,after){
+      return '<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid #1e2030"><span style="color:'+col2+'">'+ico+'</span><span>'+fM(av)+'</span></div>'+
+             '<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid #1e2030"><span class="mutec">spent</span><span class="warnc">−'+fM(cost)+'</span></div>'+
+             '<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;font-weight:700;margin-bottom:6px"><span>remaining</span><span style="color:'+(av>=cost?'#2ecc71':'#ff6b6b')+'">'+fM(Math.max(after,0))+'</span></div>';
     }
-    h+=simCoinRow('🐺','Wolf',wa,cw,wo,'#3b82f6');
-    h+=simCoinRow('🐉','Dragon',da,cd,doo,'#ef4444');
-    if(cf1>0||cf2>0)h+=simCoinRow('🌲','Forest',fa,cf1+cf2,fo,'#22c55e');
+    h+=scRow('🐺 Wolf','#3b82f6',wolf,cw,wo);
+    h+=scRow('🐉 Dragon','#ef4444',dragon,cd,doo);
+    if(cf1+cf2>0) h+=scRow('🌲 Forest','#22c55e',forest,cf1+cf2,fo);
     h+='</div></div></div></div>';
 
     wolf=wo; dragon=doo; forest=fo;
-  }
+  });
   document.getElementById('sim-content').innerHTML=h;
 }
 
 function setPack(g,k,v){
-  var sh=SHOPS[g], map={w:sh.w,d:sh.d,f1:sh.f1,f2:sh.f2};
+  var sh=SH[g];
+  var map={w:sh.w,d:sh.d,f1:sh.f1,f2:sh.f2};
   var mx=map[k]?map[k].n:0;
   simPacks[g][k]=Math.min(Math.max(parseInt(v)||0,0),mx);
   renderSim();
 }
 
-// ═══════════════════════════════════════════════════════
-// COMPUTE
-// ═══════════════════════════════════════════════════════
+// ═══ COMPUTE PRINCIPALE ══════════════════════════════════
 function compute(){
-  var d=calcAll(), i=d.i, res=d.res;
+  var inp=getI();
+  var res=calcAll(inp);
 
   // Pagine grado
-  var gds=['G5','G6','G7','G8'];
-  for(var j=0;j<gds.length;j++){
-    var el=document.getElementById('c-'+gds[j].toLowerCase());
-    if(el)el.innerHTML=renderGrade(gds[j],res[gds[j]],i);
-  }
+  ['G5','G6','G7','G8'].forEach(function(g){
+    var el=document.getElementById('c-'+g.toLowerCase());
+    if(el) el.innerHTML=renderGrade(g, res[g], inp);
+  });
 
-  renderSummary(i,res);
+  // Riepilogo
+  renderSummary(inp, res);
+
+  // Negozi (dati statici ma li rigenera)
   renderShops();
+
+  // Simulatore
   renderSim();
 
-  // Quick status nella pagina dati
-  var grades=['G3','G4','G5','G6','G7','G8'];
+  // Status rapido nella pagina dati
   var qs='';
-  for(var j=0;j<grades.length;j++){
-    var g=grades[j], r=res[g], col=GCOL[g], gn=parseInt(g.replace('G',''));
-    var done=i.guard>=gn, vp_ok=r.vp_tot>=r.q.vp;
+  ['G3','G4','G5','G6','G7','G8'].forEach(function(g){
+    var r=res[g], col=GCOL[g], gn=parseInt(g.replace('G',''));
+    var done=inp.guard>=gn, vp_ok=r.vp_tot>=r.q.vp;
     var allOk=vp_ok&&!r.am&&!r.hm&&!r.pm&&!r.gm;
-    qs+='<div class="irow"><span class="ilb" style="color:'+col+';font-weight:700">'+g+'</span>';
-    qs+='<div style="text-align:right"><div class="iv '+(done||allOk?'okc':'vp_ok?\'infoc\':\'warnc\'')+'">';
-    qs+=done?'✅ Completato':allOk?'✅ Ready':vp_ok?'⚡ VP ok, altri req.':'⚠️ Incompleto';
-    qs+='</div><div class="idet">';
-    qs+=done?'Grade reached':!vp_ok?'VP: '+fV(r.vp_tot)+' / '+fV(r.q.vp)+(r.rn>0?' → '+r.rn+' Ragnarök':' → fight'):r.am>0?'Acc: L'+i.acc+'→L'+r.q.acc:r.hm>0?'Eroe: Lv'+i.hero+'→Lv'+r.q.hero:r.pm>0?'Progetti: '+r.pm.toLocaleString()+' missing':'All requirements met';
-    qs+='</div></div></div>';
-  }
+    qs+='<div class="irow"><span class="ilb" style="color:'+col+';font-weight:700">'+g+'</span><div style="text-align:right">';
+    qs+='<div class="iv '+(done||allOk?'okc':vp_ok?'infoc':'warnc')+'">'+(done?'✅ Completato':allOk?'✅ Ready':vp_ok?'⚡ VP ok':'⚠️ Incompleto')+'</div>';
+    qs+='<div class="idet">'+(done?'Grade reached':!vp_ok?fV(r.vp_tot)+' / '+fV(r.q.vp)+(r.rn>0?' → '+r.rn+' Ragnarök':''):r.am?'Acc L'+inp.acc+'→L'+r.q.acc:r.hm?'Hero Lv'+inp.hero+'→Lv'+r.q.hero:r.pm?r.pm.toLocaleString()+' progetti':'All ok')+'</div>';
+    qs+='</div></div>';
+  });
   document.getElementById('quick-status').innerHTML=qs;
 }
 
