@@ -124,8 +124,8 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
     <p class="note" style="margin-bottom:12px">Per ogni grado inserisci a che punto sei con le ricerche. L'app calcola esattamente i VP che ti mancano.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
 
-      <div style="border:1px solid #e5393533;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#e53935;margin-bottom:10px">📋 Per sbloccare G6</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost IV + March speed IV (sei a G5)</div>
+      <div id="res-block-g5" data-col="#e53935" style="border:1px solid #e5393533;border-radius:8px;padding:12px">
+        <div style="font-size:12px;font-weight:700;color:#e53935;margin-bottom:10px">📋 Per sbloccare G6</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost IV + March speed IV (sei a G5)</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g5_t" onchange="compute()">
@@ -142,8 +142,8 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
         </div>
       </div>
 
-      <div style="border:1px solid #c6282833;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:10px">📋 Per sbloccare G7</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost V + March speed V (sei a G6)</div>
+      <div id="res-block-g6" data-col="#c62828" style="border:1px solid #c6282833;border-radius:8px;padding:12px">
+        <div style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:10px">📋 Per sbloccare G7</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost V + March speed V (sei a G6)</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g6_t" onchange="compute()">
@@ -160,8 +160,8 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
         </div>
       </div>
 
-      <div style="border:1px solid #7b1fa233;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#7b1fa2;margin-bottom:10px">📋 Per sbloccare G8</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost VI + March speed VI (sei a G7)</div>
+      <div id="res-block-g7" data-col="#7b1fa2" style="border:1px solid #7b1fa233;border-radius:8px;padding:12px">
+        <div style="font-size:12px;font-weight:700;color:#7b1fa2;margin-bottom:10px">📋 Per sbloccare G8</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost VI + March speed VI (sei a G7)</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g7_t" onchange="compute()">
@@ -178,8 +178,8 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
         </div>
       </div>
 
-      <div style="border:1px solid #1565c033;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#1565c0;margin-bottom:10px">📋 Obiettivo G8</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost VI + March speed VI + 1 guardia G8</div>
+      <div id="res-block-g8" data-col="#1565c0" style="border:1px solid #1565c033;border-radius:8px;padding:12px">
+        <div style="font-size:12px;font-weight:700;color:#1565c0;margin-bottom:10px">📋 Obiettivo G8</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost VI + March speed VI + 1 guardia G8</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g8_t" onchange="compute()">
@@ -289,14 +289,19 @@ function inp(id){var el=document.getElementById(id);return el?parseFloat(el.valu
 function inpi(id){var el=document.getElementById(id);return el?parseInt(el.value)||0:0;}
 
 function getI(){
+  var guard=inpi('i_guard');
+  // Se il giocatore ha già sbloccato un grado, le ricerche di quel grado sono complete
+  function autoT(g,id){return guard>=parseInt(g.replace('G',''))?10:sel(id);}
+  function autoM(g,id){return guard>=parseInt(g.replace('G',''))?10:sel(id);}
+  function autoG(g,id){var gn=parseInt(g.replace('G',''));return guard>=gn?(g==='G8'?1:4):sel(id);}
   return{
-    vp:inp('i_vp'),guard:inpi('i_guard'),acc:inpi('i_acc'),hero:inpi('i_hero'),
+    vp:inp('i_vp'),guard:guard,acc:inpi('i_acc'),hero:inpi('i_hero'),
     proj:inpi('i_proj'),gold:inpi('i_gold'),
     wolf:inp('i_wolf'),dragon:inp('i_dragon'),forest:inp('i_forest'),
-    g5_t:sel('g5_t'),g5_m:sel('g5_m'),g5_g:sel('g5_g'),
-    g6_t:sel('g6_t'),g6_m:sel('g6_m'),g6_g:sel('g6_g'),
-    g7_t:sel('g7_t'),g7_m:sel('g7_m'),g7_g:sel('g7_g'),
-    g8_t:sel('g8_t'),g8_m:sel('g8_m'),g8_g:sel('g8_g')
+    g5_t:autoT('G5','g5_t'),g5_m:autoM('G5','g5_m'),g5_g:autoG('G5','g5_g'),
+    g6_t:autoT('G6','g6_t'),g6_m:autoM('G6','g6_m'),g6_g:autoG('G6','g6_g'),
+    g7_t:autoT('G7','g7_t'),g7_m:autoM('G7','g7_m'),g7_g:autoG('G7','g7_g'),
+    g8_t:autoT('G8','g8_t'),g8_m:autoM('G8','g8_m'),g8_g:autoG('G8','g8_g')
   };
 }
 
@@ -581,9 +586,47 @@ function sp(g,k,v){
   renderSim();
 }
 
+// ═══════ VISIBILITÀ RICERCHE ═══════════════════════════
+function updateResearchVisibility(guard){
+  var blocks = {
+    'res-block-g5': {gn:5, label:'G6'},  // ricerche per sbloccare G6
+    'res-block-g6': {gn:6, label:'G7'},
+    'res-block-g7': {gn:7, label:'G8'},
+    'res-block-g8': {gn:8, label:'G8'}
+  };
+  Object.keys(blocks).forEach(function(id){
+    var el=document.getElementById(id);
+    if(!el) return;
+    var info=blocks[id];
+    var prev_gn=info.gn-1; // grado precedente (le ricerche appartengono a questo grado)
+    if(guard>prev_gn){
+      // Già completato: mostra come completato
+      el.style.opacity='0.4';
+      el.style.pointerEvents='none';
+      var lbl=el.querySelector('.res-status');
+      if(lbl) lbl.textContent='✅ Già completato';
+    } else if(guard===prev_gn){
+      // Grado attuale: mostra e abilita
+      el.style.opacity='1';
+      el.style.pointerEvents='auto';
+      el.style.borderColor=el.dataset.col+'88';
+      var lbl=el.querySelector('.res-status');
+      if(lbl) lbl.textContent='← Compila questo';
+    } else {
+      // Futuro: mostra ma in grigio
+      el.style.opacity='0.5';
+      el.style.pointerEvents='none';
+      var lbl=el.querySelector('.res-status');
+      if(lbl) lbl.textContent='(futuro)';
+    }
+  });
+}
+
 // ═══════ COMPUTE ════════════════════════════════════════
 function compute(){
   var i=getI(),res=calcAll(i);
+  // Aggiorna visibilità riquadri ricerche in base al grado attuale
+  updateResearchVisibility(i.guard);
   ['G5','G6','G7','G8'].forEach(function(g){
     var el=document.getElementById('c-'+g.toLowerCase());
     if(el) el.innerHTML=renderGrade(g,res[g],i);
