@@ -159,25 +159,32 @@ var GR = {
 // wc  = costo lupo per Ragnarök (M)
 // dc  = costo drago per Ragnarök (M)
 var SHOPS = {
-  G5:{neg:'G4', vpr:4.66,  wc:30,  dc:1.3,
-      w:{n:60,  vp:0.067, cpk:0.5},
-      d:{n:2,   vp:0.320, cpk:0.65},
-      f1:{n:2,  vp:1.6,   cpk:1.0},
-      f2:{n:60, vp:0.0402,cpk:0.5}},
-  G6:{neg:'G5', vpr:50.1, wc:75,  dc:1.5,
-      w:{n:150, vp:0.310, cpk:0.5},
-      d:{n:3,   vp:1.2,   cpk:0.5},   // 500K/pack ✅
-      f1:{n:2,  vp:1.6,   cpk:1.0},
-      f2:{n:150,vp:0.186, cpk:0.5}},
-  G7:{neg:'G6', vpr:571,  wc:95,  dc:1.5,
-      w:{n:190, vp:2.8,   cpk:0.5},
-      d:{n:3,   vp:13,    cpk:0.5},
-      f1:{n:190,vp:1.68,  cpk:0.65},
-      f2:{n:3,  vp:11.7,  cpk:1.0}},
-  G8:{neg:'G7', vpr:3474, wc:255, dc:2.6,
-      w:{n:510, vp:6.6,   cpk:0.5},
-      d:{n:4,   vp:27,    cpk:0.65}}
-  // G8: nessuna foresta, stesso negozio G7
+  G5:{neg:'G4',
+      vpr_ld:4.66,   vpr_all:4.66,  // G4 no foresta separata
+      wc:30,  dc:1.3,
+      w: {n:60,  vp:0.067, cpk:0.5},
+      d: {n:2,   vp:0.320, cpk:0.65}},
+  G6:{neg:'G5',
+      vpr_ld:50.1,   vpr_all:81.2,  // 50.1 L+D / 81.2 L+D+F
+      wc:75,  dc:1.95, f1c:2.0, f2c:75,
+      w: {n:150, vp:0.310, cpk:0.5},
+      d: {n:3,   vp:1.2,   cpk:0.65},  // R15: 650K/pack
+      f1:{n:2,   vp:1.6,   cpk:1.0},
+      f2:{n:150, vp:0.186, cpk:0.5}},
+  G7:{neg:'G6',
+      vpr_ld:571,    vpr_all:925.3, // 571 L+D / 925.3 L+D+F
+      wc:95,  dc:1.5, f1c:123.5, f2c:3.0,
+      w: {n:190, vp:2.8,   cpk:0.5},
+      d: {n:3,   vp:13,    cpk:0.5},   // R20: 500K/pack
+      f1:{n:190, vp:1.68,  cpk:0.65},
+      f2:{n:3,   vp:11.7,  cpk:1.0}},
+  G8:{neg:'G7',
+      vpr_ld:3474,   vpr_all:5688,  // 3474 L+D / 5688 L+D+F
+      wc:255, dc:2.6, f1c:5.2, f2c:331.5,
+      w: {n:510, vp:6.6,   cpk:0.5},
+      d: {n:4,   vp:27,    cpk:0.65}, // R25: 650K/pack
+      f1:{n:8,   vp:24.3,  cpk:0.65},
+      f2:{n:510, vp:3.96,  cpk:0.65}}
 };
 
 var GCOL={G3:'#f97316',G4:'#eab308',G5:'#e53935',G6:'#c62828',G7:'#7b1fa2',G8:'#1565c0'};
@@ -247,7 +254,9 @@ function calcAll(){
     var gm=Math.max(gn-gold,0);
     res[g]={
       q:q, sh:sh, vp_c:vp_c, vp_miss_shop:vp_miss_shop,
-      rn:rn, vpr:sh?sh.vpr:0, vp_tot:vp_tot, vp_av:vp_av,
+      rn:rn, rn_nofor:rn_nofor, vpr:vpr, vpr_ld:vpr_ld, vpr_all:vpr_all,
+      use_forest:has_forest&&vpr_all>vpr_ld,
+      vp_tot:vp_tot, vp_av:vp_av,
       wc:wc, dc:dc,
       wa:wolf, da:dragon,
       wo:Math.max(wolf-wc,0), doo:Math.max(dragon-dc,0),
@@ -291,8 +300,15 @@ function renderGrade(g,r,i){
   if(sh){
     if(r.vp_miss_shop>0){
       h+='<div class="irow"><span class="ilb">❌ VP ancora mancanti</span><span class="iv warnc">'+fV(r.vp_miss_shop)+'</span></div>';
-      h+='<div class="irow"><span class="ilb">🏪 Ragnarök necessari al negozio G'+(gn-1)+'</span><span class="iv" style="color:#f5a623;font-size:20px">'+r.rn+'×</span></div>';
-      h+='<div class="irow"><span class="ilb">📦 VP guadagnati con '+r.rn+' Ragnarök</span><span class="iv" style="color:#93c5fd">+'+fV(r.rn*r.vpr)+'</span></div>';
+      // Mostra entrambi gli scenari se c'è differenza
+      if(r.vpr_all>r.vpr_ld){
+        h+='<div class="irow"><span class="ilb">🏪 Ragnarök senza Foresta</span><span class="iv" style="color:#aaa">'+r.rn_nofor+'× <span style="font-size:11px">('+fV(r.vpr_ld)+'/ragn)</span></span></div>';
+        h+='<div class="irow"><span class="ilb">🌲 Ragnarök con Foresta</span><span class="iv" style="color:#22c55e;font-size:18px">'+r.rn+'× <span style="font-size:11px">('+fV(r.vpr_all)+'/ragn)</span></span></div>';
+        if(r.rn<r.rn_nofor) h+='<div style="font-size:11px;color:#22c55e;padding:4px 0">✅ La Foresta riduce di '+(r.rn_nofor-r.rn)+' Ragnarök!</div>';
+      } else {
+        h+='<div class="irow"><span class="ilb">🏪 Ragnarök necessari al negozio G'+(gn-1)+'</span><span class="iv" style="color:#f5a623;font-size:20px">'+r.rn+'×</span></div>';
+      }
+      h+='<div class="irow"><span class="ilb">📦 VP totali con '+r.rn+' Ragnarök</span><span class="iv" style="color:#93c5fd">+'+fV(r.rn*r.vpr)+'</span></div>';
     } else {
       h+='<div class="irow"><span class="ilb">✅ VP sufficienti senza negozio</span><span class="iv okc">Nessun Ragnarök necessario</span></div>';
     }
