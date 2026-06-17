@@ -497,7 +497,7 @@ function renderSummary(inp,res){
     h+='</tr>';
   });
   h+='</table>';
-  document.getElementById('sum-table').innerHTML=h;
+  var _el=document.getElementById('sum-table');if(_el)_el.innerHTML=h
 
   // Monete
   var gds=['G5','G6','G7','G8'];
@@ -521,7 +521,7 @@ function renderSummary(inp,res){
   ch+=' &nbsp;·&nbsp; Lupo: <strong style="color:'+(inp.wolf>=twc?'#2ecc71':'#ff6b6b')+'">−'+fM(twc)+'</strong>';
   ch+=' &nbsp;·&nbsp; Drago: <strong style="color:'+(inp.dragon>=tdc?'#2ecc71':'#ff6b6b')+'">−'+fM(tdc)+'</strong>';
   ch+='</div>';
-  document.getElementById('sum-coins').innerHTML=ch;
+  var _el=document.getElementById('sum-coins');if(_el)_el.innerHTML=ch
 }
 
 // ═══ RENDER NEGOZI ═════════════════════════════════════
@@ -565,7 +565,7 @@ function renderShops(){
     h+='<td style="padding:6px 8px;text-align:center"><strong style="color:#f5a623">'+fV(s.vpr_ld)+'</strong></td><td></td><td style="padding:6px 8px;text-align:center"><strong>'+fM(s.wc+s.dc)+'</strong></td></tr>';
     h+='</table></div>';
   });
-  document.getElementById('shops-content').innerHTML=h;
+  var _el=document.getElementById('shops-content');if(_el)_el.innerHTML=h
 }
 
 // ═══ RENDER SIMULATORE ═════════════════════════════════
@@ -618,7 +618,7 @@ function renderSim(){
     h+='</div></div></div></div>';
     wolf=wo;dragon=doo;forest=fo;
   });
-  document.getElementById('sim-content').innerHTML=h;
+  var _el=document.getElementById('sim-content');if(_el)_el.innerHTML=h
 }
 
 function setPack(g,k,v){
@@ -652,7 +652,7 @@ function compute(){
     qs+=(r.rn>0&&!done?' ('+r.rn+'× Ragnarök)':'');
     qs+='</div></div>';
   });
-  document.getElementById('quick-status').innerHTML=qs;
+  var _el=document.getElementById('quick-status');if(_el)_el.innerHTML=qs
 }
 
 function goPage(id,el){
