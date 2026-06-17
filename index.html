@@ -125,7 +125,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
 
       <div style="border:1px solid #e5393533;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#e53935;margin-bottom:10px">G5 → sblocco G6</div>
+        <div style="font-size:12px;font-weight:700;color:#e53935;margin-bottom:10px">📋 Per sbloccare G6</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost IV + March speed IV (sei a G5)</div>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g5_t" onchange="compute()">
@@ -143,7 +143,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
       </div>
 
       <div style="border:1px solid #c6282833;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:10px">G6 → sblocco G7</div>
+        <div style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:10px">📋 Per sbloccare G7</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost V + March speed V (sei a G6)</div>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g6_t" onchange="compute()">
@@ -161,7 +161,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
       </div>
 
       <div style="border:1px solid #7b1fa233;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#7b1fa2;margin-bottom:10px">G7 → sblocco G8</div>
+        <div style="font-size:12px;font-weight:700;color:#7b1fa2;margin-bottom:10px">📋 Per sbloccare G8</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost VI + March speed VI (sei a G7)</div>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g7_t" onchange="compute()">
@@ -179,7 +179,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
       </div>
 
       <div style="border:1px solid #1565c033;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#1565c0;margin-bottom:10px">G8 — 1 guardia (obiettivo minimo)</div>
+        <div style="font-size:12px;font-weight:700;color:#1565c0;margin-bottom:10px">📋 Obiettivo G8</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost VI + March speed VI + 1 guardia G8</div>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g8_t" onchange="compute()">
@@ -361,12 +361,12 @@ function renderGrade(g,r,i){
 
   var h='<div class="gb"><div class="gh" style="background:'+col+'20;border-left:4px solid '+col+'">';
   h+='<div><div class="gt" style="color:'+col+'">Grado '+g+'</div>';
-  h+='<div class="gsub">Sei a G'+(gn-1)+' — completa ricerche e sblocca guardie per passare a '+g+'</div></div>';
+  h+='<div class="gsub">Per sbloccare '+g+': completa le ricerche di G'+(gn-1)+' e sblocca le guardie G'+(gn-1)+'</div></div>';
   h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completato':allOk?'✅ Pronto':'⚠️ Incompleto')+'</span>';
   h+='</div><div class="gbody">';
 
   // Avanzamento ricerche (solo visualizzazione — si modifica in "Dati")
-  h+='<div class="slb">Avanzamento ricerche <span style="color:#555;font-weight:400;text-transform:none">(modifica in ⚙️ Dati)</span></div>';
+  h+='<div class="slb">Ricerche G'+(gn-1)+' necessarie per sbloccare '+g+' <span style="color:#555;font-weight:400;text-transform:none;font-size:10px">(modifica in ⚙️ Dati)</span></div>';
   h+='<div class="ibox">';
   h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv '+(r.lv_t===10?'okc':'infoc')+'">'+r.lv_t+'/10'+(r.lv_t===10?' ✅':'')+'</span></div>';
   h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv '+(r.lv_m===10?'okc':'infoc')+'">'+r.lv_m+'/10'+(r.lv_m===10?' ✅':'')+'</span></div>';
@@ -377,7 +377,7 @@ function renderGrade(g,r,i){
 
   // Tabella ricerche
   if(rv.length>0){
-    h+='<table class="rtbl"><tr><th>Lv</th><th>Training cost</th><th>March speed</th></tr>';
+    h+='<table class="rtbl"><tr><th>Liv.</th><th>Training cost G'+(gn-1)+' ('+fV(rv[rv.length-1])+' max)</th><th>March speed G'+(gn-1)+'</th></tr>';
     for(var j=0;j<rv.length;j++){
       var lv=j+1,t_ok=r.lv_t>=lv,m_ok=r.lv_m>=lv;
       h+='<tr><td>'+lv+'</td>';
