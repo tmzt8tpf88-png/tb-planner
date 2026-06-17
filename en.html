@@ -133,7 +133,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
       <div class="fg"><label>⚙️ Iron (M)</label><input type="number" id="i_iron" value="0" min="0" step="any" oninput="compute()"></div>
       <div class="fg"><label>🪨 Stone (M)</label><input type="number" id="i_stone" value="0" min="0" step="any" oninput="compute()"></div>
     </div>
-    <p class="note" style="margin-top:10px">Resources are needed to upgrade buildings to the level required dall'Accademia di ogni grado.</p>
+    <p class="note" style="margin-top:10px">Resources are needed to upgrade buildings to the required level dall'Accademia di ogni grado.</p>
   </div>
 </div>
 
@@ -147,7 +147,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 <div id="page-shops" class="pg">
   <div class="card">
     <div class="ct">Shop reference by grade</div>
-    <p class="note" style="margin-bottom:14px">Use your current grade shop to unlock the next. Ogni Ragnarök compra tutti i pack disponibili del shop.</p>
+    <p class="note" style="margin-bottom:14px">Use your current grade shop to unlock the next. Each Ragnarök buys all available packs from the shop.</p>
     <div id="shops-content"></div>
   </div>
 </div>
@@ -174,37 +174,40 @@ var GR = {
   G8:{vp:12000,acc:40,hero:200,proj:196000,gold:1960000,pv:1443.6911}
 };
 
-// Negozi: to unlock Gn usi il shop G(n-1)
+// Negozi: to unlock Gn usi il negozio G(n-1)
 // VPR = VP lupo+drago per Ragnarök (senza foresta)
 // I pack foresta sono separati (Forest Tournament, non Ragnarök)
 var SHOPS = {
   G5:{
-    w:{n:150,vp:0.310,c:0.5},   // lupo: 150pk × 310M VP, 500K/pk
-    d:{n:3,  vp:1.2,  c:0.65},  // drago: 3pk × 1.2B VP, 650K/pk
-    f1:{n:2,   vp:1.6,  c:1.0}, // foresta1: 2pk × 1.6B, 1M/pk
-    f2:{n:150, vp:0.186,c:0.5}, // foresta2: 150pk × 186M, 500K/pk
-    prev:'G4', wc:75, dc:1.95, vpr:50.1
+    // Negozio G4 — to unlock G5
+    w:{n:60,  vp:0.067,c:0.5},  // lupo:   60pk × 67M VP, 500K/pk
+    d:{n:2,   vp:0.320,c:0.65}, // drago:   2pk × 320M VP, 650K/pk
+    f1:{n:2,  vp:1.6,  c:1.0},  // foresta1: 2pk × 1.6B, 1M/pk
+    f2:{n:150,vp:0.186,c:0.5},  // foresta2: 150pk × 186M, 500K/pk
+    prev:'G4', wc:30, dc:1.3, vpr:4.66
   },
   G6:{
-    w:{n:190,vp:2.8,  c:0.5},
-    d:{n:3,  vp:13,   c:0.5},   // drago G6: 500K/pk
-    f1:{n:190,vp:1.68,c:0.65},
-    f2:{n:3,  vp:11.7,c:1.0},
-    prev:'G5', wc:95, dc:1.5, vpr:571
+    // Negozio G5 — to unlock G6
+    w:{n:150, vp:0.310,c:0.5},  // lupo:  150pk × 310M VP, 500K/pk
+    d:{n:3,   vp:1.2,  c:0.5},  // drago:   3pk × 1.2B VP, 500K/pk ✅
+    f1:{n:190,vp:1.68, c:0.65}, // foresta1
+    f2:{n:3,  vp:11.7, c:1.0},  // foresta2
+    prev:'G5', wc:75, dc:1.5, vpr:50.1  // dc: 3×0.5=1.5M ✅
   },
   G7:{
-    w:{n:510,vp:6.6,  c:0.5},
-    d:{n:4,  vp:27,   c:0.65},
-    f1:{n:8,  vp:24.3,c:0.65},
-    f2:{n:510,vp:3.96,c:0.65},
-    prev:'G6', wc:255, dc:2.6, vpr:3474
+    // Negozio G6 — to unlock G7
+    w:{n:190, vp:2.8,  c:0.5},  // lupo:  190pk × 2.8B VP, 500K/pk
+    d:{n:3,   vp:13,   c:0.5},  // drago:   3pk × 13B VP, 500K/pk
+    f1:{n:190,vp:1.68, c:0.65}, // foresta1
+    f2:{n:3,  vp:11.7, c:1.0},  // foresta2
+    prev:'G6', wc:95, dc:1.5, vpr:571
   },
   G8:{
-    // Per sbloccare G8 si usa il shop G7 (stesso di G7)
-    w:{n:510,vp:6.6,  c:0.5},
-    d:{n:4,  vp:27,   c:0.65},
+    // Negozio G7 — to unlock G8 (stesso negozio G7)
+    w:{n:510, vp:6.6,  c:0.5},  // lupo:  510pk × 6.6B VP, 500K/pk
+    d:{n:4,   vp:27,   c:0.65}, // drago:   4pk × 27B VP, 650K/pk ✅
     // Nessuna foresta disponibile
-    prev:'G7', wc:255, dc:2.6, vpr:3474
+    prev:'G7', wc:255, dc:2.6, vpr:3474  // dc: 4×0.65=2.6M ✅
   }
 };
 
@@ -350,7 +353,7 @@ function renderGrade(g,r,i){
   var h='<div class="gb">';
   h+='<div class="gh" style="background:'+col+'20;border-left:4px solid '+col+'">';
   h+='<div><div class="gt" style="color:'+col+'">Grade '+g+'</div>';
-  h+='<div class="gsub">'+(sh?'You are at '+sh.prev+' — usa il shop '+sh.prev+' to unlock '+g:'Fight only')+'</div></div>';
+  h+='<div class="gsub">'+(sh?'You are at '+sh.prev+' — use shop '+sh.prev+' to unlock '+g:'Fight only')+'</div></div>';
   h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completato':allOk?'✅ Ready':'⚠️ Incompleto')+'</span>';
   h+='</div><div class="gbody">';
 
@@ -376,14 +379,14 @@ function renderGrade(g,r,i){
   h+='</div>';
 
   if(!sh){
-    h+='<p class="note">⚔️ Fight only — nessun acquisto al shop a questo grado.</p>';
+    h+='<p class="note">⚔️ Fight only — no shop purchases at this grade.</p>';
   } else {
-    h+='<div class="slb">Ragnarök plan — shop '+sh.prev+'</div>';
+    h+='<div class="slb">Ragnarök plan — negozio '+sh.prev+'</div>';
     h+='<div class="shopbox">';
     h+='<div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:12px">';
     h+='<div><div class="rn-big">'+r.rn+'</div><div class="rn-lbl">Ragnarök needed</div></div>';
     h+='<div style="font-size:12px;color:#8b8fa8;flex:1;line-height:1.7">';
-    h+='Each Ragnarök (max <strong style="color:#e8eaf0">'+fV(r.vpr)+' VP</strong>):<br>';
+    h+='Ogni Ragnarök (max <strong style="color:#e8eaf0">'+fV(r.vpr)+' VP</strong>):<br>';
     h+='🐺 '+sh.w.n+' pack × '+fV(sh.w.vp)+' = <strong>'+fV(sh.w.n*sh.w.vp)+'</strong> VP — costo '+fM(sh.w.c*sh.w.n)+'<br>';
     h+='🐉 '+sh.d.n+' pack × '+fV(sh.d.vp)+' = <strong>'+fV(sh.d.n*sh.d.vp)+'</strong> VP — costo '+fM(sh.d.c*sh.d.n)+'<br>';
     if(r.rn>0){
@@ -404,8 +407,8 @@ function renderGrade(g,r,i){
     h+='<div class="slb">Coin budget for '+r.rn+' Ragnarök</div>';
     h+='<div class="ccgrid">';
     var coins=[
-      {nm:'🐺 Wolf Coins',av:r.wa,cost:r.wc,ok:r.w_ok,after:r.wo,col:'#3b82f6'},
-      {nm:'🐉 Dragonn Coins',av:r.da,cost:r.dc,ok:r.d_ok,after:r.doo,col:'#ef4444'}
+      {nm:'🐺 Monete Wolf',av:r.wa,cost:r.wc,ok:r.w_ok,after:r.wo,col:'#3b82f6'},
+      {nm:'🐉 Dragon Coinsn',av:r.da,cost:r.dc,ok:r.d_ok,after:r.doo,col:'#ef4444'}
     ];
     for(var ci=0;ci<coins.length;ci++){
       var c=coins[ci];
@@ -460,7 +463,7 @@ function renderGrade(g,r,i){
 function renderSummary(i,res){
   // Tabella progressione
   var h='<table class="stable">';
-  h+='<tr><th>Grade</th><th>Status</th><th>VP you have</th><th>VP needed</th><th>Ragnarök</th><th>🐺 Wolf</th><th>🐺 Rimane</th><th>🐉 Dragon</th><th>🐉 Rimane</th><th>Acc.</th><th>Eroe</th></tr>';
+  h+='<tr><th>Grade</th><th>Status</th><th>VP hai</th><th>VP needed</th><th>Ragnarök</th><th>🐺 Wolf</th><th>🐺 Rimane</th><th>🐉 Dragon</th><th>🐉 Rimane</th><th>Acc.</th><th>Eroe</th></tr>';
   var grades=['G3','G4','G5','G6','G7','G8'];
   for(var idx=0;idx<grades.length;idx++){
     var g=grades[idx],r=res[g],col=GCOL[g];
@@ -492,7 +495,7 @@ function renderSummary(i,res){
   var ch='<div class="row2">';
   // Wolf
   ch+='<div style="background:#22263a;border-radius:8px;padding:12px;border-top:3px solid #3b82f6">';
-  ch+='<div style="font-size:11px;font-weight:700;color:#555;text-transform:uppercase;margin-bottom:8px">🐺 Wolf Coins</div>';
+  ch+='<div style="font-size:11px;font-weight:700;color:#555;text-transform:uppercase;margin-bottom:8px">🐺 Monete Wolf</div>';
   ch+='<div class="scrow"><span class="mutec">Available</span><span>'+fM(i.wolf)+'</span></div>';
   for(var j=0;j<gds.length;j++){
     if(res[gds[j]].wc>0) ch+='<div class="scrow"><span class="mutec">'+gds[j]+' ('+res[gds[j]].rn+'× Ragnarök)</span><span class="warnc">−'+fM(res[gds[j]].wc)+'</span></div>';
@@ -501,7 +504,7 @@ function renderSummary(i,res){
   ch+='</div>';
   // Dragon
   ch+='<div style="background:#22263a;border-radius:8px;padding:12px;border-top:3px solid #ef4444">';
-  ch+='<div style="font-size:11px;font-weight:700;color:#555;text-transform:uppercase;margin-bottom:8px">🐉 Dragonn Coins</div>';
+  ch+='<div style="font-size:11px;font-weight:700;color:#555;text-transform:uppercase;margin-bottom:8px">🐉 Dragon Coinsn</div>';
   ch+='<div class="scrow"><span class="mutec">Available</span><span>'+fM(i.dragon)+'</span></div>';
   for(var j=0;j<gds.length;j++){
     if(res[gds[j]].dc>0) ch+='<div class="scrow"><span class="mutec">'+gds[j]+' ('+res[gds[j]].rn+'× Ragnarök)</span><span class="warnc">−'+fM(res[gds[j]].dc)+'</span></div>';
@@ -556,7 +559,7 @@ function renderShops(){
        {ico:'🌲',nm:'Forest 2',n:510,vp:3.96,tot:2020, c:0.65,ctot:331.5,opt:true}
      ]},
     {g:'G8',prev:'G7',vpr:3474, wc:255, dc:2.6,
-     note:'Per sbloccare G8 si usa lo stesso shop G7. Nessuna Forest disponibile.',
+     note:'Per sbloccare G8 si usa lo stesso negozio G7. Nessuna Forest disponibile.',
      rows:[
        {ico:'🐺',nm:'Wolf',  n:510,vp:6.6,  tot:3366,  c:0.5, ctot:255},
        {ico:'🐉',nm:'Dragon', n:4,  vp:27,   tot:108,   c:0.65,ctot:2.6}
