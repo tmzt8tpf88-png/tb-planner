@@ -472,7 +472,7 @@ function renderSummary(i,res){
     h+='<td style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+fM(r.doo)+'</td></tr>';
   });
   h+='</table>';
-  document.getElementById('sum-table').innerHTML=h;
+  var _st=document.getElementById('sum-table');if(_st)_st.innerHTML=h;
 
   // Monete
   var twc=0,tdc=0,trn=0;
@@ -495,7 +495,7 @@ function renderSummary(i,res){
   ch+=' · Lupo totale: <strong style="color:'+(i.wolf>=twc?'#2ecc71':'#ff6b6b')+'">−'+fM(twc)+'</strong>';
   ch+=' · Drago totale: <strong style="color:'+(i.dragon>=tdc?'#2ecc71':'#ff6b6b')+'">−'+fM(tdc)+'</strong>';
   ch+='</div>';
-  document.getElementById('sum-coins').innerHTML=ch;
+  var _sc=document.getElementById('sum-coins');if(_sc)_sc.innerHTML=ch;
 }
 
 // ═══════ RENDER NEGOZI ══════════════════════════════════
@@ -522,7 +522,7 @@ function renderShops(){
       '<td><strong style="color:#f5a623">'+fV(s.vpr_ld)+'</strong></td><td></td><td><strong>'+fM(s.rows.filter(function(r){return!r.fore}).reduce(function(a,r){return a+r.ctot},0))+'</strong></td></tr>';
     h+='</table></div>';
   });
-  document.getElementById('shops-content').innerHTML=h;
+  var _sh=document.getElementById('shops-content');if(_sh)_sh.innerHTML=h;
 }
 
 // ═══════ RENDER SIMULATORE ══════════════════════════════
@@ -571,7 +571,7 @@ function renderSim(){
     h+='</div></div></div></div>';
     wolf=wo;dragon=doo;forest=fo;
   });
-  document.getElementById('sim-content').innerHTML=h;
+  var _si=document.getElementById('sim-content');if(_si)_si.innerHTML=h;
 }
 
 function sp(g,k,v){
