@@ -366,34 +366,48 @@ function renderGrade(g,r,i){
 
   var h='<div class="gb"><div class="gh" style="background:'+col+'20;border-left:4px solid '+col+'">';
   h+='<div><div class="gt" style="color:'+col+'">Grado '+g+'</div>';
-  h+='<div class="gsub">Per sbloccare '+g+': completa le ricerche di G'+(gn-1)+' e sblocca le guardie G'+(gn-1)+'</div></div>';
+  var gsub_txt = done 
+    ? '✅ Hai già sbloccato '+g+' — tutte le ricerche completate'
+    : 'Per sbloccare '+g+': completa le ricerche di G'+(gn-1)+' e sblocca le guardie G'+(gn-1);
+  h+='<div class="gsub">'+gsub_txt+'</div></div>';
   h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completato':allOk?'✅ Pronto':'⚠️ Incompleto')+'</span>';
   h+='</div><div class="gbody">';
 
   // Avanzamento ricerche (solo visualizzazione — si modifica in "Dati")
-  h+='<div class="slb">Ricerche G'+(gn-1)+' necessarie per sbloccare '+g+' <span style="color:#555;font-weight:400;text-transform:none;font-size:10px">(modifica in ⚙️ Dati)</span></div>';
-  h+='<div class="ibox">';
-  h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv '+(r.lv_t===10?'okc':'infoc')+'">'+r.lv_t+'/10'+(r.lv_t===10?' ✅':'')+'</span></div>';
-  h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv '+(r.lv_m===10?'okc':'infoc')+'">'+r.lv_m+'/10'+(r.lv_m===10?' ✅':'')+'</span></div>';
-  h+='<div class="irow"><span class="ilb">🛡️ Guardie sbloccate</span><span class="iv '+(r.gd>=GN[g]?'okc':'infoc')+'">'+r.gd+'/'+GN[g]+(r.gd>=GN[g]?' ✅':'')+'</span></div>';
-  h+='<div class="div"></div>';
-  h+='<div class="irow"><span class="ilb" style="font-weight:700">⚔️ VP ancora necessari</span><span class="iv" style="color:'+(r.vp_needed<0.001?'#2ecc71':'#ff6b6b');h+='font-size:16px">'+fV(r.vp_needed)+'</span></div>';
-  h+='</div>';
-
-  // Tabella ricerche
-  if(rv.length>0){
-    h+='<table class="rtbl"><tr><th>Liv.</th><th>Training cost G'+(gn-1)+' ('+fV(rv[rv.length-1])+' max)</th><th>March speed G'+(gn-1)+'</th></tr>';
-    for(var j=0;j<rv.length;j++){
-      var lv=j+1,t_ok=r.lv_t>=lv,m_ok=r.lv_m>=lv;
-      h+='<tr><td>'+lv+'</td>';
-      h+='<td class="'+(t_ok?'r-done':'r-miss')+'">'+(t_ok?'✅ ':'')+'<span style="color:'+(t_ok?'#2ecc71':'#e8eaf0')+'">'+fV(rv[j])+'</span></td>';
-      h+='<td class="'+(m_ok?'r-done':'r-miss')+'">'+(m_ok?'✅ ':'')+'<span style="color:'+(m_ok?'#2ecc71':'#e8eaf0')+'">'+fV(rv[j])+'</span></td>';
-      h+='</tr>';
+  if(done){
+    // Grado già completato: mostra riepilogo pulito
+    h+='<div class="ibox">';
+    h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv okc">10/10 ✅</span></div>';
+    h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv okc">10/10 ✅</span></div>';
+    h+='<div class="irow"><span class="ilb">🛡️ Guardie sbloccate</span><span class="iv okc">'+GN[g]+'/'+GN[g]+' ✅</span></div>';
+    h+='<div class="irow"><span class="ilb" style="font-weight:700">⚔️ VP spesi</span><span class="iv okc">'+fV(vpRem(g,0,0,0).total)+' ✅</span></div>';
+    h+='</div>';
+  } else {
+    // Grado da completare: mostra dettaglio ricerche
+    h+='<div class="slb">Ricerche G'+(gn-1)+' necessarie per sbloccare '+g+' <span style="color:#555;font-weight:400;text-transform:none;font-size:10px">(modifica in ⚙️ Dati)</span></div>';
+    h+='<div class="ibox">';
+    h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv '+(r.lv_t===10?'okc':'infoc')+'">'+r.lv_t+'/10'+(r.lv_t===10?' ✅':'')+'</span></div>';
+    h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv '+(r.lv_m===10?'okc':'infoc')+'">'+r.lv_m+'/10'+(r.lv_m===10?' ✅':'')+'</span></div>';
+    h+='<div class="irow"><span class="ilb">🛡️ Guardie sbloccate</span><span class="iv '+(r.gd>=GN[g]?'okc':'infoc')+'">'+r.gd+'/'+GN[g]+(r.gd>=GN[g]?' ✅':'')+'</span></div>';
+    h+='<div class="div"></div>';
+    h+='<div class="irow"><span class="ilb" style="font-weight:700">⚔️ VP ancora necessari</span><span class="iv" style="color:'+(r.vp_needed<0.001?'#2ecc71':'#ff6b6b')+';font-size:16px">'+fV(r.vp_needed)+'</span></div>';
+    h+='</div>';
+    // Tabella ricerche
+    if(rv.length>0){
+      h+='<table class="rtbl"><tr><th>Liv.</th><th>Training cost ('+fV(rv[rv.length-1])+' max)</th><th>March speed</th></tr>';
+      for(var j=0;j<rv.length;j++){
+        var lv=j+1,t_ok=r.lv_t>=lv,m_ok=r.lv_m>=lv;
+        h+='<tr><td>'+lv+'</td>';
+        h+='<td class="'+(t_ok?'r-done':'r-miss')+'">'+(t_ok?'✅ ':'')+'<span style="color:'+(t_ok?'#2ecc71':'#e8eaf0')+'">'+fV(rv[j])+'</span></td>';
+        h+='<td class="'+(m_ok?'r-done':'r-miss')+'">'+(m_ok?'✅ ':'')+'<span style="color:'+(m_ok?'#2ecc71':'#e8eaf0')+'">'+fV(rv[j])+'</span></td>';
+        h+='</tr>';
+      }
+      h+='</table>';
     }
-    h+='</table>';
   }
 
-  // VP e Ragnarök
+  // VP e Ragnarök — solo se non completato
+  if(!done){
   h+='<div class="slb" style="margin-top:12px">Piano VP e Ragnarök</div>';
   h+='<div class="ibox">';
   h+='<div class="irow"><span class="ilb">⚔️ VP disponibili da combattimento</span><span class="iv" style="color:'+col+'">'+fV(r.vp_avail)+'</span></div>';
@@ -427,7 +441,8 @@ function renderGrade(g,r,i){
     h+='<div class="ccst" style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+(r.d_ok?'✅ Rimangono '+fM(r.doo):'⚠️ Mancano '+fM(dm))+'</div></div></div>';
   }
 
-  // Requisiti
+  } // end if(!done)
+  // Requisiti — sempre visibili
   h+='<div class="slb">Requisiti</div><div class="ibox">';
   var q=REQ[g]||{};
   h+='<div class="irow"><span class="ilb">🏛️ Accademia</span><span class="iv '+(r.am===0?'okc':'warnc')+'">'+(r.am===0?'✅ L'+r.acc_req:'→ L'+r.acc_req+' (sei L'+i.acc+', mancano '+r.am+')')+'</span></div>';
