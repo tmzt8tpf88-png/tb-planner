@@ -78,54 +78,54 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 <body>
 <nav>
   <div class="logo">⚔️ TB</div>
-  <div class="tab on" onclick="goPage('data',this)">⚙️ My Data</div>
-  <div class="tab"    onclick="goPage('summary',this)">📋 Summary</div>
+  <div class="tab on" onclick="goPage('data',this)">⚙️ Dati</div>
+  <div class="tab"    onclick="goPage('summary',this)">📋 Riepilogo</div>
   <div class="tab"    onclick="goPage('g5',this)">G5</div>
   <div class="tab"    onclick="goPage('g6',this)">G6</div>
   <div class="tab"    onclick="goPage('g7',this)">G7</div>
   <div class="tab"    onclick="goPage('g8',this)">G8</div>
-  <div class="tab"    onclick="goPage('shops',this)">🏪 Shops</div>
-  <div class="tab"    onclick="goPage('sim',this)">🎮 Simulator</div>
+  <div class="tab"    onclick="goPage('shops',this)">🏪 Negozi</div>
+  <div class="tab"    onclick="goPage('sim',this)">🎮 Simulatore</div>
 </nav>
 
 <!-- ═══ DATI ═══ -->
 <div id="page-data" class="pg on">
   <div class="card">
-    <div class="ct">Your status</div>
+    <div class="ct">Il tuo stato</div>
     <div class="r2">
-      <div class="fg"><label>⚔️ Current VP (B)</label><input type="number" id="i_vp" value="0" min="0" step="any" oninput="compute()"><div class="hint">Your total VP in billions</div></div>
-      <div class="fg"><label>🏰 Current Guard Grade</label><input type="number" id="i_guard" value="2" min="2" max="8" oninput="compute()"></div>
-      <div class="fg"><label>🏛️ Academy Level</label><input type="number" id="i_acc" value="1" min="1" max="45" oninput="compute()"></div>
-      <div class="fg"><label>🦸 Hero Level</label><input type="number" id="i_hero" value="1" min="1" oninput="compute()"></div>
+      <div class="fg"><label>⚔️ VP attuali (B)</label><input type="number" id="i_vp" value="0" min="0" step="any" oninput="compute()"><div class="hint">I tuoi VP totali in miliardi</div></div>
+      <div class="fg"><label>🏰 Grade Guards attuale</label><input type="number" id="i_guard" value="2" min="2" max="8" oninput="compute()"></div>
+      <div class="fg"><label>🏛️ Livello Academy</label><input type="number" id="i_acc" value="1" min="1" max="45" oninput="compute()"></div>
+      <div class="fg"><label>🦸 Livello Hero</label><input type="number" id="i_hero" value="1" min="1" oninput="compute()"></div>
       <div class="fg"><label>📜 Projects</label><input type="number" id="i_proj" value="0" min="0" oninput="compute()"></div>
-      <div class="fg"><label>💰 Gold</label><input type="number" id="i_gold" value="0" min="0" oninput="compute()"></div>
+      <div class="fg"><label>💰 Oro</label><input type="number" id="i_gold" value="0" min="0" oninput="compute()"></div>
     </div>
   </div>
   <div class="card">
-    <div class="ct">Your coins</div>
+    <div class="ct">Le tue monete</div>
     <div class="r3">
       <div class="fg"><label>🐺 Wolf (M)</label><input type="number" id="i_wolf" value="0" min="0" step="any" oninput="compute()"></div>
-      <div class="fg"><label>🐉 Dragonn (M)</label><input type="number" id="i_dragon" value="0" min="0" step="any" oninput="compute()"></div>
+      <div class="fg"><label>🐉 Dragon (M)</label><input type="number" id="i_dragon" value="0" min="0" step="any" oninput="compute()"></div>
       <div class="fg"><label>🌲 Forest (M)</label><input type="number" id="i_forest" value="0" min="0" step="any" oninput="compute()"></div>
     </div>
   </div>
   <div class="card">
-    <div class="ct">Building resources</div>
+    <div class="ct">Risorse edifici</div>
     <div class="r3">
-      <div class="fg"><label>🪵 Wood (M)</label><input type="number" id="i_wood" value="0" min="0" step="any" oninput="compute()"></div>
-      <div class="fg"><label>⚙️ Iron (M)</label><input type="number" id="i_iron" value="0" min="0" step="any" oninput="compute()"></div>
-      <div class="fg"><label>🪨 Stone (M)</label><input type="number" id="i_stone" value="0" min="0" step="any" oninput="compute()"></div>
+      <div class="fg"><label>🪵 Legno (M)</label><input type="number" id="i_wood" value="0" min="0" step="any" oninput="compute()"></div>
+      <div class="fg"><label>⚙️ Ferro (M)</label><input type="number" id="i_iron" value="0" min="0" step="any" oninput="compute()"></div>
+      <div class="fg"><label>🪨 Pietra (M)</label><input type="number" id="i_stone" value="0" min="0" step="any" oninput="compute()"></div>
     </div>
   </div>
 
   <!-- RICERCHE — nella pagina dati, sempre nel DOM -->
   <div class="card" style="border-color:#333">
-    <div class="ct">📚 Research progress — select your current level</div>
-    <p class="note" style="margin-bottom:12px">Enter your research progress for each grade. The app calculates the exact VP you still need.</p>
+    <div class="ct">📚 Avanzamento ricerche — seleziona il livello reached</div>
+    <p class="note" style="margin-bottom:12px">Per ogni grado inserisci a che punto sei con le ricerche. L'app calcola esattamente i VP che ti missing.</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
 
       <div id="res-block-g5" data-col="#e53935" style="border:1px solid #e5393533;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#e53935;margin-bottom:10px">📋 To unlock G6</div><div style="font-size:11px;color:#555;margin-bottom:8px">Training cost IV + March speed IV (you are at G5)</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
+        <div style="font-size:12px;font-weight:700;color:#e53935;margin-bottom:10px">📋 To unlock G6</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost IV + March speed IV (sei a G5)</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g5_t" onchange="compute()">
@@ -143,7 +143,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
       </div>
 
       <div id="res-block-g6" data-col="#c62828" style="border:1px solid #c6282833;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:10px">📋 To unlock G7</div><div style="font-size:11px;color:#555;margin-bottom:8px">Training cost V + March speed V (you are at G6)</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
+        <div style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:10px">📋 To unlock G7</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost V + March speed V (sei a G6)</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g6_t" onchange="compute()">
@@ -161,7 +161,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
       </div>
 
       <div id="res-block-g7" data-col="#7b1fa2" style="border:1px solid #7b1fa233;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#7b1fa2;margin-bottom:10px">📋 To unlock G8</div><div style="font-size:11px;color:#555;margin-bottom:8px">Training cost VI + March speed VI (you are at G7)</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
+        <div style="font-size:12px;font-weight:700;color:#7b1fa2;margin-bottom:10px">📋 To unlock G8</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost VI + March speed VI (sei a G7)</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g7_t" onchange="compute()">
@@ -179,7 +179,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
       </div>
 
       <div id="res-block-g8" data-col="#1565c0" style="border:1px solid #1565c033;border-radius:8px;padding:12px">
-        <div style="font-size:12px;font-weight:700;color:#1565c0;margin-bottom:10px">📋 G8 Goal</div><div style="font-size:11px;color:#555;margin-bottom:8px">Training cost VI + March speed VI + 1 G8 guard</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
+        <div style="font-size:12px;font-weight:700;color:#1565c0;margin-bottom:10px">📋 Obiettivo G8</div><div style="font-size:11px;color:#555;margin-bottom:8px">Ricerche Training cost VI + March speed VI + 1 guardia G8</div><span class="res-status" style="font-size:11px;color:#f5a623"></span>
         <div class="r3">
           <div class="fg"><label>📚 Training cost</label>
             <select id="g8_t" onchange="compute()">
@@ -189,7 +189,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
             <select id="g8_m" onchange="compute()">
               <option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option>
             </select></div>
-          <div class="fg"><label>🛡️ G8 Guard</label>
+          <div class="fg"><label>🛡️ Guardia G8</label>
             <select id="g8_g" onchange="compute()">
               <option value="0">0/1</option><option value="1">1/1 ✅</option>
             </select></div>
@@ -200,15 +200,15 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
   </div>
 
   <div class="card" style="border-color:#f5a623">
-    <div class="ct" style="color:#f5a623">⚡ Quick Status</div>
+    <div class="ct" style="color:#f5a623">⚡ Stato rapido</div>
     <div id="quick-status"></div>
   </div>
 </div>
 
 <!-- ═══ RIEPILOGO ═══ -->
 <div id="page-summary" class="pg">
-  <div class="card"><div class="ct">Progression G2 → G8</div><div id="sum-table"></div></div>
-  <div class="card"><div class="ct">Coin budget G5 → G8</div><div id="sum-coins"></div></div>
+  <div class="card"><div class="ct">Progressione G2 → G8</div><div id="sum-table"></div></div>
+  <div class="card"><div class="ct">Budget monete G5 → G8</div><div id="sum-coins"></div></div>
 </div>
 
 <!-- ═══ PAGINE GRADO ═══ -->
@@ -220,8 +220,8 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 <!-- ═══ NEGOZI ═══ -->
 <div id="page-shops" class="pg">
   <div class="card">
-    <div class="ct">Ragnarök shop reference</div>
-    <p class="note" style="margin-bottom:12px">To unlock un grado usi il negozio del grado precedente. Forest is a separate tournament.</p>
+    <div class="ct">Tabella negozi Ragnarök</div>
+    <p class="note" style="margin-bottom:12px">To unlock un grado usi il negozio del grado precedente. La Forest è un torneo separato.</p>
     <div id="shops-content"></div>
   </div>
 </div>
@@ -229,7 +229,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 <!-- ═══ SIMULATORE ═══ -->
 <div id="page-sim" class="pg">
   <div class="card">
-    <div class="ct">Simulator — coins cascade automatically</div>
+    <div class="ct">Simulatore acquisti — le monete scalano in cascata</div>
     <div id="sim-content"></div>
   </div>
 </div>
@@ -238,7 +238,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 // ═══════ COSTANTI ═══════════════════════════════════════
 // VP per livello di ricerca (B) — da screenshots
 // Ogni grado ha Training cost + March speed (stessi VP)
-// VP spent = somma levels rimanenti × 2 (entrambe le ricerche)
+// VP spent = somma livelli rimanenti × 2 (entrambe le ricerche)
 var RES = {
   G5:[0.0096,0.019,0.029,0.048,0.087,0.17,0.29,0.43,0.67,0.96], // Training cost III
   G6:[0.12,0.23,0.35,0.58,1,2.1,3.5,5.2,8.1,12],                 // Training cost IV
@@ -246,7 +246,7 @@ var RES = {
   G8:[16.9,28,47,78,130,220,370,620,1000,1700]                     // Training cost VI
 };
 var GV={G5:0.9,G6:9,G7:90,G8:900};  // B per guardia
-var GN={G5:4,G6:4,G7:4,G8:1};       // N guards obiettivo
+var GN={G5:4,G6:4,G7:4,G8:1};       // N guardie obiettivo
 
 // Requirements per grado
 var REQ={
@@ -366,34 +366,48 @@ function renderGrade(g,r,i){
 
   var h='<div class="gb"><div class="gh" style="background:'+col+'20;border-left:4px solid '+col+'">';
   h+='<div><div class="gt" style="color:'+col+'">Grade '+g+'</div>';
-  h+='<div class="gsub">To unlock '+g+': complete G'+(gn-1)+'  research and unlock G'+(gn-1)+'</div></div>';
-  h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completato':allOk?'✅ Ready':'⚠️ Incomplete')+'</span>';
+  var gsub_txt = done 
+    ? '✅ You have already unlocked '+g+' — all research completed'
+    : 'To unlock '+g+': complete G'+(gn-1)+'  research and unlock G guards'+(gn-1);
+  h+='<div class="gsub">'+gsub_txt+'</div></div>';
+  h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completed':allOk?'✅ Ready':'⚠️ Incomplete')+'</span>';
   h+='</div><div class="gbody">';
 
   // Avanzamento ricerche (solo visualizzazione — si modifica in "Dati")
-  h+='<div class="slb">G'+(gn-1)+' research to unlock '+g+' <span style="color:#555;font-weight:400;text-transform:none;font-size:10px">(modifica in ⚙️ My Data)</span></div>';
-  h+='<div class="ibox">';
-  h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv '+(r.lv_t===10?'okc':'infoc')+'">'+r.lv_t+'/10'+(r.lv_t===10?' ✅':'')+'</span></div>';
-  h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv '+(r.lv_m===10?'okc':'infoc')+'">'+r.lv_m+'/10'+(r.lv_m===10?' ✅':'')+'</span></div>';
-  h+='<div class="irow"><span class="ilb">🛡️ Guards sbloccate</span><span class="iv '+(r.gd>=GN[g]?'okc':'infoc')+'">'+r.gd+'/'+GN[g]+(r.gd>=GN[g]?' ✅':'')+'</span></div>';
-  h+='<div class="div"></div>';
-  h+='<div class="irow"><span class="ilb" style="font-weight:700">⚔️ VP still needed</span><span class="iv" style="color:'+(r.vp_needed<0.001?'#2ecc71':'#ff6b6b');h+='font-size:16px">'+fV(r.vp_needed)+'</span></div>';
-  h+='</div>';
-
-  // Tabella ricerche
-  if(rv.length>0){
-    h+='<table class="rtbl"><tr><th>Liv.</th><th>Training cost G'+(gn-1)+' ('+fV(rv[rv.length-1])+' max)</th><th>March speed G'+(gn-1)+'</th></tr>';
-    for(var j=0;j<rv.length;j++){
-      var lv=j+1,t_ok=r.lv_t>=lv,m_ok=r.lv_m>=lv;
-      h+='<tr><td>'+lv+'</td>';
-      h+='<td class="'+(t_ok?'r-done':'r-miss')+'">'+(t_ok?'✅ ':'')+'<span style="color:'+(t_ok?'#2ecc71':'#e8eaf0')+'">'+fV(rv[j])+'</span></td>';
-      h+='<td class="'+(m_ok?'r-done':'r-miss')+'">'+(m_ok?'✅ ':'')+'<span style="color:'+(m_ok?'#2ecc71':'#e8eaf0')+'">'+fV(rv[j])+'</span></td>';
-      h+='</tr>';
+  if(done){
+    // Grade già completato: mostra riepilogo pulito
+    h+='<div class="ibox">';
+    h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv okc">10/10 ✅</span></div>';
+    h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv okc">10/10 ✅</span></div>';
+    h+='<div class="irow"><span class="ilb">🛡️ Guards unlocked</span><span class="iv okc">'+GN[g]+'/'+GN[g]+' ✅</span></div>';
+    h+='<div class="irow"><span class="ilb" style="font-weight:700">⚔️ VP spent</span><span class="iv okc">'+fV(vpRem(g,0,0,0).total)+' ✅</span></div>';
+    h+='</div>';
+  } else {
+    // Grade da completare: mostra dettaglio ricerche
+    h+='<div class="slb">G'+(gn-1)+' research to unlock '+g+' <span style="color:#555;font-weight:400;text-transform:none;font-size:10px">(edit in ⚙️ My Data)</span></div>';
+    h+='<div class="ibox">';
+    h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv '+(r.lv_t===10?'okc':'infoc')+'">'+r.lv_t+'/10'+(r.lv_t===10?' ✅':'')+'</span></div>';
+    h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv '+(r.lv_m===10?'okc':'infoc')+'">'+r.lv_m+'/10'+(r.lv_m===10?' ✅':'')+'</span></div>';
+    h+='<div class="irow"><span class="ilb">🛡️ Guards unlocked</span><span class="iv '+(r.gd>=GN[g]?'okc':'infoc')+'">'+r.gd+'/'+GN[g]+(r.gd>=GN[g]?' ✅':'')+'</span></div>';
+    h+='<div class="div"></div>';
+    h+='<div class="irow"><span class="ilb" style="font-weight:700">⚔️ VP still needed</span><span class="iv" style="color:'+(r.vp_needed<0.001?'#2ecc71':'#ff6b6b')+';font-size:16px">'+fV(r.vp_needed)+'</span></div>';
+    h+='</div>';
+    // Tabella ricerche
+    if(rv.length>0){
+      h+='<table class="rtbl"><tr><th>Liv.</th><th>Training cost ('+fV(rv[rv.length-1])+' max)</th><th>March speed</th></tr>';
+      for(var j=0;j<rv.length;j++){
+        var lv=j+1,t_ok=r.lv_t>=lv,m_ok=r.lv_m>=lv;
+        h+='<tr><td>'+lv+'</td>';
+        h+='<td class="'+(t_ok?'r-done':'r-miss')+'">'+(t_ok?'✅ ':'')+'<span style="color:'+(t_ok?'#2ecc71':'#e8eaf0')+'">'+fV(rv[j])+'</span></td>';
+        h+='<td class="'+(m_ok?'r-done':'r-miss')+'">'+(m_ok?'✅ ':'')+'<span style="color:'+(m_ok?'#2ecc71':'#e8eaf0')+'">'+fV(rv[j])+'</span></td>';
+        h+='</tr>';
+      }
+      h+='</table>';
     }
-    h+='</table>';
   }
 
-  // VP e Ragnarök
+  // VP e Ragnarök — solo se non completato
+  if(!done){
   h+='<div class="slb" style="margin-top:12px">VP and Ragnarök plan</div>';
   h+='<div class="ibox">';
   h+='<div class="irow"><span class="ilb">⚔️ VP from combat</span><span class="iv" style="color:'+col+'">'+fV(r.vp_avail)+'</span></div>';
@@ -427,13 +441,14 @@ function renderGrade(g,r,i){
     h+='<div class="ccst" style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+(r.d_ok?'✅ Remaining '+fM(r.doo):'⚠️ Missing '+fM(dm))+'</div></div></div>';
   }
 
-  // Requirements
+  } // end if(!done)
+  // Requirements — sempre visibili
   h+='<div class="slb">Requirements</div><div class="ibox">';
   var q=REQ[g]||{};
   h+='<div class="irow"><span class="ilb">🏛️ Academy</span><span class="iv '+(r.am===0?'okc':'warnc')+'">'+(r.am===0?'✅ L'+r.acc_req:'→ L'+r.acc_req+' (sei L'+i.acc+', missing '+r.am+')')+'</span></div>';
   if(q.hero>0) h+='<div class="irow"><span class="ilb">🦸 Hero</span><span class="iv '+(r.hm===0?'okc':'warnc')+'">'+(r.hm===0?'✅ Lv'+r.hero_req:'→ Lv'+r.hero_req+' (sei Lv'+i.hero+')')+'</span></div>';
-  if(q.proj>0) h+='<div class="irow"><span class="ilb">📜 Projects</span><span class="iv '+(r.pm===0?'okc':'warnc')+'">'+(r.pm===0?'✅ '+r.proj_req.toLocaleString():'→ Buy '+r.pm.toLocaleString()+' (you have '+i.proj.toLocaleString()+')')+'</span></div>';
-  if(r.gm>0) h+='<div class="irow"><span class="ilb">💰 Gold</span><span class="iv warnc">⚠️ Missing '+r.gm.toLocaleString()+'</span></div>';
+  if(q.proj>0) h+='<div class="irow"><span class="ilb">📜 Projects</span><span class="iv '+(r.pm===0?'okc':'warnc')+'">'+(r.pm===0?'✅ '+r.proj_req.toLocaleString():'→ Buy '+r.pm.toLocaleString()+' (hai '+i.proj.toLocaleString()+')')+'</span></div>';
+  if(r.gm>0) h+='<div class="irow"><span class="ilb">💰 Oro</span><span class="iv warnc">⚠️ Missing '+r.gm.toLocaleString()+'</span></div>';
   h+='</div></div></div>';
   return h;
 }
@@ -442,7 +457,7 @@ function renderGrade(g,r,i){
 function renderSummary(i,res){
   // Tabella G2→G8
   var h='<table class="stbl">';
-  h+='<tr><th>Grade</th><th>Stato</th><th>VP Target</th><th>VP you have</th><th>Research</th><th>Guards</th><th>Ragnarök</th><th>🐺 Rimane</th><th>🐉 Rimane</th></tr>';
+  h+='<tr><th>Grade</th><th>Stato</th><th>VP Target</th><th>VP hai</th><th>Ricerche</th><th>Guards</th><th>Ragnarök</th><th>🐺 Rimane</th><th>🐉 Rimane</th></tr>';
   
   // G2, G3, G4 (semplificati, no ricerche dinamiche)
   var simple=[
@@ -515,15 +530,15 @@ function renderShops(){
   defs.forEach(function(s){
     var col=GCOL[s.g];
     h+='<div style="margin-bottom:20px"><div style="font-size:13px;font-weight:700;color:'+col+';padding:7px 0 5px;border-bottom:1px solid #2a2d3a;margin-bottom:5px">';
-    h+='Unlock '+s.g+' — Shop G'+s.neg+' <span style="font-size:11px;color:#555;font-weight:400">L+D: '+fV(s.vpr_ld)+' / con Forest: '+fV(s.vpr_all)+' per Ragnarök</span></div>';
+    h+='Sbloccare '+s.g+' — Shop G'+s.neg+' <span style="font-size:11px;color:#555;font-weight:400">L+D: '+fV(s.vpr_ld)+' / con Forest: '+fV(s.vpr_all)+' per Ragnarök</span></div>';
     h+='<table class="shop-tbl"><tr><th>Shop</th><th>Pack</th><th>VP/pack</th><th>VP tot</th><th>Costo/pk</th><th>Costo tot</th></tr>';
     s.rows.forEach(function(rw){
       h+='<tr'+(rw.fore?' style="color:#22c55e"':'')+'>'+
-        '<td>'+rw.ico+' '+rw.nm+(rw.fore?' <span style="font-size:10px;color:#555">(Tournament)</span>':'')+'</td>'+
+        '<td>'+rw.ico+' '+rw.nm+(rw.fore?' <span style="font-size:10px;color:#555">(Torneo)</span>':'')+'</td>'+
         '<td><strong>'+rw.n+'</strong></td><td>'+fV(rw.vp)+'</td>'+
         '<td><strong>'+fV(rw.tot)+'</strong></td><td>'+fM(rw.cpk)+'</td><td><strong>'+fM(rw.ctot)+'</strong></td></tr>';
     });
-    h+='<tr style="background:rgba(245,166,35,.06)"><td colspan="3" style="color:#f5a623;font-size:11px">Total W+D per Ragnarök</td>'+
+    h+='<tr style="background:rgba(245,166,35,.06)"><td colspan="3" style="color:#f5a623;font-size:11px">Totale L+D per Ragnarök</td>'+
       '<td><strong style="color:#f5a623">'+fV(s.vpr_ld)+'</strong></td><td></td><td><strong>'+fM(s.rows.filter(function(r){return!r.fore}).reduce(function(a,r){return a+r.ctot},0))+'</strong></td></tr>';
     h+='</table></div>';
   });
@@ -545,11 +560,11 @@ function renderSim(){
     h+='<div class="gsub">'+fV(sh.vpr_ld)+' / con Forest: '+fV(sh.vpr_all)+' per Ragnarök</div></div>';
     h+='<div style="text-align:center;background:#0f1117;border-radius:7px;padding:7px 12px">';
     h+='<div style="font-size:18px;font-weight:700;color:'+col+'">'+fV(vp_w+vp_d+vp_f1+vp_f2)+'</div>';
-    h+='<div style="font-size:10px;color:#555">VP selected</div></div></div>';
+    h+='<div style="font-size:10px;color:#555">VP scelti</div></div></div>';
     h+='<div class="gbody"><div class="r2">';
     // Pack inputs
     h+='<div style="background:#22263a;border-radius:7px;padding:11px">';
-    h+='<div style="font-size:11px;font-weight:700;color:'+col+';margin-bottom:8px">Packs to buy</div>';
+    h+='<div style="font-size:11px;font-weight:700;color:'+col+';margin-bottom:8px">Pack da comprare</div>';
     var pdefs=[{key:'w',ico:'🐺',nm:'Wolf',max:sh.w.n,vp:sh.w.vp,c:sh.w.cpk},{key:'d',ico:'🐉',nm:'Dragon',max:sh.d.n,vp:sh.d.vp,c:sh.d.cpk}];
     if(sh.f1)pdefs.push({key:'f1',ico:'🌲',nm:'F1',max:sh.f1.n,vp:sh.f1.vp,c:sh.f1.cpk,fore:true});
     if(sh.f2)pdefs.push({key:'f2',ico:'🌲',nm:'F2',max:sh.f2.n,vp:sh.f2.vp,c:sh.f2.cpk,fore:true});
@@ -564,11 +579,11 @@ function renderSim(){
     h+='</div>';
     // Saldo
     h+='<div style="background:#22263a;border-radius:7px;padding:11px">';
-    h+='<div style="font-size:11px;font-weight:700;color:'+col+';margin-bottom:8px">Coin balance</div>';
+    h+='<div style="font-size:11px;font-weight:700;color:'+col+';margin-bottom:8px">Saldo monete</div>';
     function scr(ico,c2,av,cost,after){
       return '<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid #1e2030"><span style="color:'+c2+'">'+ico+'</span><span>'+fM(av)+'</span></div>'+
-             '<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid #1e2030"><span class="mutec">spent</span><span class="warnc">−'+fM(cost)+'</span></div>'+
-             '<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;font-weight:700;margin-bottom:5px"><span>remaining</span><span style="color:'+(av>=cost?'#2ecc71':'#ff6b6b')+'">'+fM(Math.max(after,0))+'</span></div>';
+             '<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid #1e2030"><span class="mutec">spesi</span><span class="warnc">−'+fM(cost)+'</span></div>'+
+             '<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;font-weight:700;margin-bottom:5px"><span>rimangono</span><span style="color:'+(av>=cost?'#2ecc71':'#ff6b6b')+'">'+fM(Math.max(after,0))+'</span></div>';
     }
     h+=scr('🐺 Wolf','#3b82f6',wolf,cw,wo);
     h+=scr('🐉 Dragon','#ef4444',dragon,cd,doo);
@@ -586,7 +601,7 @@ function sp(g,k,v){
   renderSim();
 }
 
-// ═══════ RESEARCH VISIBILITY ═══════════════════════════
+// ═══════ VISIBILITÀ RICERCHE ═══════════════════════════
 function updateResearchVisibility(guard){
   var blocks = {
     'res-block-g5': {gn:5, label:'G6'},  // ricerche per sbloccare G6
@@ -600,11 +615,11 @@ function updateResearchVisibility(guard){
     var info=blocks[id];
     var prev_gn=info.gn-1; // grado precedente (le ricerche appartengono a questo grado)
     if(guard>prev_gn){
-      // Already completed: mostra come completato
+      // Already done: mostra come completato
       el.style.opacity='0.4';
       el.style.pointerEvents='none';
       var lbl=el.querySelector('.res-status');
-      if(lbl) lbl.textContent='✅ Already completed';
+      if(lbl) lbl.textContent='✅ Already done';
     } else if(guard===prev_gn){
       // Grade attuale: mostra e abilita
       el.style.opacity='1';
