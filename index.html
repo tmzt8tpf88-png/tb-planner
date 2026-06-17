@@ -109,6 +109,68 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
       <div class="fg"><label>🪨 Pietra (M)</label><input type="number" id="i_stone" value="0" min="0" step="any" oninput="compute()"></div>
     </div>
   </div>
+  <div class="card">
+    <div class="ct">Avanzamento ricerche e guardie</div>
+    <p class="note" style="margin-bottom:12px">Inserisci a che punto sei con le ricerche per ogni grado — l'app calcola esattamente i VP mancanti.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#e53935;margin-bottom:8px">🔴 G5 → sblocco G6</div>
+        <div class="row3">
+          <div class="fg"><label>📚 Training cost</label>
+            <select id="g5_t" onchange="compute()"><option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option></select>
+          </div>
+          <div class="fg"><label>⚡ March speed</label>
+            <select id="g5_m" onchange="compute()"><option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option></select>
+          </div>
+          <div class="fg"><label>🛡️ Guardie (0-4)</label>
+            <select id="g5_g" onchange="compute()"><option value="0">0/4</option><option value="1">1/4</option><option value="2">2/4</option><option value="3">3/4</option><option value="4">4/4 ✅</option></select>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:8px">🔴 G6 → sblocco G7</div>
+        <div class="row3">
+          <div class="fg"><label>📚 Training cost</label>
+            <select id="g6_t" onchange="compute()"><option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option></select>
+          </div>
+          <div class="fg"><label>⚡ March speed</label>
+            <select id="g6_m" onchange="compute()"><option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option></select>
+          </div>
+          <div class="fg"><label>🛡️ Guardie (0-4)</label>
+            <select id="g6_g" onchange="compute()"><option value="0">0/4</option><option value="1">1/4</option><option value="2">2/4</option><option value="3">3/4</option><option value="4">4/4 ✅</option></select>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#7b1fa2;margin-bottom:8px">🟣 G7 → sblocco G8</div>
+        <div class="row3">
+          <div class="fg"><label>📚 Training cost</label>
+            <select id="g7_t" onchange="compute()"><option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option></select>
+          </div>
+          <div class="fg"><label>⚡ March speed</label>
+            <select id="g7_m" onchange="compute()"><option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option></select>
+          </div>
+          <div class="fg"><label>🛡️ Guardie (0-4)</label>
+            <select id="g7_g" onchange="compute()"><option value="0">0/4</option><option value="1">1/4</option><option value="2">2/4</option><option value="3">3/4</option><option value="4">4/4 ✅</option></select>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#1565c0;margin-bottom:8px">🔵 G8 (1 guardia)</div>
+        <div class="row3">
+          <div class="fg"><label>📚 Training cost</label>
+            <select id="g8_t" onchange="compute()"><option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option></select>
+          </div>
+          <div class="fg"><label>⚡ March speed</label>
+            <select id="g8_m" onchange="compute()"><option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option></select>
+          </div>
+          <div class="fg"><label>🛡️ Guardie (0-1)</label>
+            <select id="g8_g" onchange="compute()"><option value="0">0/1</option><option value="1">1/1 ✅</option></select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="card" style="border-color:#f5a623">
     <div class="ct" style="color:#f5a623">⚡ Stato rapido</div>
     <div id="quick-status"><p class="note">Inserisci i tuoi dati sopra...</p></div>
@@ -174,7 +236,8 @@ function vpRimanenti(g, lv_t, lv_m, guards_done){
   var rv = RES_VP[g]||[];
   var vp_t = 0; for(var i=lv_t;i<rv.length;i++) vp_t+=rv[i];
   var vp_m = 0; for(var i=lv_m;i<rv.length;i++) vp_m+=rv[i];
-  var vp_g = Math.max(0, GUARD_N - guards_done) * GUARD_VP[g];
+  var guard_max = (g==='G8')?1:GUARD_N;
+  var vp_g = Math.max(0, guard_max - guards_done) * GUARD_VP[g];
   return {research_t:vp_t, research_m:vp_m, guards:vp_g, total:vp_t+vp_m+vp_g};
 }
 
@@ -324,19 +387,12 @@ function renderGrade(g,r,inp){
   // ── AVANZAMENTO RICERCHE ────────────────────────────
   h+='<div class="slb">Avanzamento ricerche — inserisci il livello raggiunto</div>';
   h+='<div class="ibox">';
-  h+='<div class="row3" style="margin-bottom:12px">';
-  h+='<div class="fg"><label>📚 Training cost (lv raggiunto)</label>';
-  h+='<select id="'+lk+'_t" onchange="compute()">';
-  for(var i=0;i<=10;i++) h+='<option value="'+i+'"'+(r.lv_t===i?' selected':'')+'>'+i+'/10'+(i===10?' ✅':i===0?' (nessuno)':'')+'</option>';
-  h+='</select></div>';
-  h+='<div class="fg"><label>⚡ March speed (lv raggiunto)</label>';
-  h+='<select id="'+lk+'_m" onchange="compute()">';
-  for(var i=0;i<=10;i++) h+='<option value="'+i+'"'+(r.lv_m===i?' selected':'')+'>'+i+'/10'+(i===10?' ✅':i===0?' (nessuno)':'')+'</option>';
-  h+='</select></div>';
-  h+='<div class="fg"><label>🛡️ Guardie sbloccate</label>';
-  h+='<select id="'+lk+'_g" onchange="compute()">';
-  for(var i=0;i<=4;i++) h+='<option value="'+i+'"'+(r.guards_done===i?' selected':'')+'>'+i+'/4'+(i===4?' ✅':i===0?' (nessuna)':'')+'</option>';
-  h+='</select></div>';
+  // Avanzamento mostrato come info (i select sono nella pagina Dati)
+  h+='<div style="display:flex;gap:16px;margin-bottom:12px;flex-wrap:wrap">';
+  h+='<span style="font-size:12px;color:#8b8fa8">📚 Training: <strong>'+r.lv_t+'/10</strong></span>';
+  h+='<span style="font-size:12px;color:#8b8fa8">⚡ March: <strong>'+r.lv_m+'/10</strong></span>';
+  h+='<span style="font-size:12px;color:#8b8fa8">🛡️ Guardie: <strong>'+r.guards_done+'/4</strong></span>';
+  h+='<span style="font-size:12px;color:#555">← modifica in "I Miei Dati"</span>';
   h+='</div>';
 
   // Tabella ricerche
