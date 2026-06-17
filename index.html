@@ -305,21 +305,11 @@ function calcAll(i){
   var wolf=i.wolf, dragon=i.dragon, res={};
   var grades=['G5','G6','G7','G8'];
 
-  // VP già spesi nei gradi precedenti completati
-  // Se guard>=5: G5 è completo → ho già speso vpTot(G5) di VP
-  // Quei VP NON sono più disponibili per i gradi futuri
-  var vp_spent_before = {G5:0, G6:0, G7:0, G8:0};
-  var spent=0;
-  // G5: se guard>=5 → già spesi
-  if(i.guard>=5){spent+=vpTot('G5');}
-  else{spent+=vpTot('G5')-vpRem('G5',i.g5_t,i.g5_m,i.g5_g).total;}
-  vp_spent_before.G6=spent;
-  if(i.guard>=6){spent+=vpTot('G6');}
-  else{spent+=vpTot('G6')-vpRem('G6',i.g6_t,i.g6_m,i.g6_g).total;}
-  vp_spent_before.G7=spent;
-  if(i.guard>=7){spent+=vpTot('G7');}
-  else{spent+=vpTot('G7')-vpRem('G7',i.g7_t,i.g7_m,i.g7_g).total;}
-  vp_spent_before.G8=spent;
+  // I VP attuali sono il saldo CORRENTE del giocatore.
+  // I VP già spesi nei gradi precedenti NON vanno sottratti —
+  // il giocatore ha già fatto quei conti e ci dice quanto ha ora.
+  // L'unica eccezione: per i gradi FUTURI, i VP vengono "consumati"
+  // dalle ricerche del grado corrente che non ha ancora fatto.
 
   grades.forEach(function(g){
     var sh=SH[g], lk=g.toLowerCase();
@@ -327,8 +317,9 @@ function calcAll(i){
     var rem=vpRem(g,lv_t,lv_m,gd);
     var vp_needed=rem.total;
 
-    // VP disponibili = VP totali - VP già spesi in gradi precedenti
-    var vp_avail=Math.max(i.vp - vp_spent_before[g], 0);
+    // VP disponibili = VP attuali del giocatore (saldo corrente)
+    // Non sottraiamo niente per i gradi già completati
+    var vp_avail=Math.max(i.vp, 0);
     var vp_miss=Math.max(vp_needed-vp_avail,0);
 
     var use_f=i.forest>0&&sh.vpr_all>sh.vpr_ld;
