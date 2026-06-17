@@ -27,92 +27,61 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 .stable td{padding:8px 9px;border-bottom:1px solid #1e2030;vertical-align:middle}
 .stable tr:last-child td{border-bottom:none}
 .gb{border-radius:10px;overflow:hidden;margin-bottom:14px;border:1px solid #2a2d3a}
-.gh{display:flex;justify-content:space-between;align-items:center;padding:12px 16px}
+.gh{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;flex-wrap:wrap;gap:8px}
 .gt{font-size:16px;font-weight:700}
 .gsub{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
 .gst{font-size:12px;font-weight:700;padding:4px 11px;border-radius:20px}
 .ok-b{background:rgba(46,204,113,.15);color:#2ecc71}
 .warn-b{background:rgba(255,107,107,.15);color:#ff6b6b}
 .gbody{background:#1a1d27;padding:14px 16px}
-.vprow{display:flex;align-items:center;gap:12px;background:#22263a;border-radius:8px;padding:12px 14px;margin-bottom:12px}
-.vpl{flex:1}
-.vplb{font-size:11px;color:#666;margin-bottom:2px}
-.vpn{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
-.vph{font-size:22px;font-weight:700}
-.vpnd{font-size:13px;color:#666}
-.pbar{height:5px;background:#22263a;border-radius:3px;margin-top:7px;overflow:hidden}
-.pfill{height:100%;border-radius:3px;transition:width .3s}
-.vpm{text-align:right;min-width:80px}
-.vpmv{font-size:19px;font-weight:700}
-.slb{font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.8px;margin:12px 0 7px}
-.shopbox{background:#22263a;border-radius:8px;padding:12px 14px;margin-bottom:10px}
-.rn-big{font-size:32px;font-weight:700;color:#f5a623;line-height:1}
-.rn-lbl{font-size:11px;color:#666;margin-top:2px}
-.irow{display:flex;align-items:flex-start;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1e2030;gap:8px}
+.ibox{background:#22263a;border-radius:8px;padding:12px 14px;margin-bottom:12px}
+.irow{display:flex;align-items:center;justify-content:space-between;padding:7px 0;border-bottom:1px solid #1e2030;gap:8px}
 .irow:last-child{border-bottom:none}
-.ilb{color:#8b8fa8;font-size:13px;min-width:110px}
-.iv{font-size:13px;font-weight:600;text-align:right}
+.ilb{color:#8b8fa8;font-size:13px;min-width:160px}
+.iv{font-size:13px;font-weight:700;text-align:right}
 .idet{font-size:12px;color:#666;text-align:right;margin-top:2px}
-.ccgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.pbar{height:6px;background:#1a1d27;border-radius:3px;margin-top:8px;overflow:hidden}
+.pfill{height:100%;border-radius:3px;transition:width .3s}
+.slb{font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.8px;margin:14px 0 8px}
+.ccgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
 .cc{background:#22263a;border-radius:8px;padding:10px 12px}
-.ccnm{font-size:11px;color:#666;margin-bottom:4px}
-.ccav{font-size:15px;font-weight:700}
-.ccdt{font-size:11px;color:#666;margin-top:2px}
-.ccst{font-size:12px;font-weight:700;margin-top:4px}
-.sreftbl{width:100%;border-collapse:collapse;font-size:12px}
-.sreftbl th{background:#22263a;color:#555;font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:7px 9px;text-align:left;border-bottom:1px solid #2a2d3a}
-.sreftbl td{padding:7px 9px;border-bottom:1px solid #1e2030}
-.sreftbl tr:last-child td{border-bottom:none}
-.sim-card{background:#22263a;border-radius:8px;padding:12px;margin-bottom:10px}
-.sim-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.sim-lbl{font-size:12px;color:#8b8fa8;flex:1}
-.sim-inp{width:72px;background:#0f1117;border:1px solid #333;border-radius:5px;color:#e8eaf0;font-size:13px;font-weight:700;padding:5px 7px;text-align:center;outline:none}
+.ccnm{font-size:11px;color:#666;margin-bottom:5px}
+.ccav{font-size:16px;font-weight:700}
+.ccdt{font-size:11px;color:#666;margin-top:3px}
+.ccst{font-size:12px;font-weight:700;margin-top:5px}
+.reftbl{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:20px}
+.reftbl th{background:#22263a;color:#555;font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:7px 9px;text-align:left;border-bottom:1px solid #2a2d3a}
+.reftbl td{padding:7px 9px;border-bottom:1px solid #1e2030}
+.reftbl tr:last-child td{border-bottom:none}
+.sim-inp{width:72px;background:#0f1117;border:1px solid #333;border-radius:5px;color:#e8eaf0;font-size:14px;font-weight:700;padding:5px 7px;text-align:center;outline:none}
 .sim-inp:focus{border-color:#f5a623}
-.sim-max{font-size:10px;color:#444}
-.sim-vp{background:#0f1117;border-radius:7px;padding:10px;text-align:center;margin-top:10px}
-.sim-coins{margin-top:8px}
-.scrow{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid #1e2030}
-.scrow:last-child{border-bottom:none}
-.rss-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}
-.rss-card{background:#22263a;border-radius:8px;padding:10px 12px}
-.rss-nm{font-size:11px;color:#666;margin-bottom:4px}
-.rss-need{font-size:14px;font-weight:700}
-.rss-have{font-size:11px;color:#666;margin-top:2px}
-.rss-st{font-size:12px;font-weight:700;margin-top:4px}
+.note{font-size:12px;color:#555;font-style:italic;line-height:1.6}
 .okc{color:#2ecc71}.warnc{color:#ff6b6b}.infoc{color:#f5a623}.mutec{color:#666}
-.div{height:1px;background:#2a2d3a;margin:11px 0}
-.note{font-size:12px;color:#555;font-style:italic;line-height:1.6;padding:8px 0}
-@media(max-width:580px){.row2,.row3,.ccgrid,.rss-grid{grid-template-columns:1fr}}
+.div{height:1px;background:#2a2d3a;margin:12px 0}
+@media(max-width:580px){.row2,.row3,.ccgrid{grid-template-columns:1fr}.gh{flex-direction:column;align-items:flex-start}}
 </style>
 </head>
 <body>
 <nav>
   <div class="logo">⚔️ TB</div>
-  <div class="tab on"  onclick="goPage('data',this)">⚙️ I Miei Dati</div>
-  <div class="tab"     onclick="goPage('summary',this)">📋 Riepilogo</div>
-  <div class="tab"     onclick="goPage('g5',this)">G5</div>
-  <div class="tab"     onclick="goPage('g6',this)">G6</div>
-  <div class="tab"     onclick="goPage('g7',this)">G7</div>
-  <div class="tab"     onclick="goPage('g8',this)">G8</div>
-  <div class="tab"     onclick="goPage('shops',this)">🏪 Negozi</div>
-  <div class="tab"     onclick="goPage('sim',this)">🎮 Simulatore</div>
+  <div class="tab on" onclick="goPage('data',this)">⚙️ I Miei Dati</div>
+  <div class="tab"    onclick="goPage('summary',this)">📋 Riepilogo</div>
+  <div class="tab"    onclick="goPage('g5',this)">G5</div>
+  <div class="tab"    onclick="goPage('g6',this)">G6</div>
+  <div class="tab"    onclick="goPage('g7',this)">G7</div>
+  <div class="tab"    onclick="goPage('g8',this)">G8</div>
+  <div class="tab"    onclick="goPage('shops',this)">🏪 Negozi</div>
+  <div class="tab"    onclick="goPage('sim',this)">🎮 Simulatore</div>
 </nav>
 
-<!-- RIEPILOGO -->
-<div id="page-summary" class="pg">
-  <div class="card"><div class="ct">Progressione G3 → G8</div><div id="sum-table"></div></div>
-  <div class="card"><div class="ct">Budget monete — G5 → G8</div><div id="sum-coins"></div></div>
-  <div class="card"><div class="ct">Risorse necessarie per Accademia</div><div id="sum-rss"></div></div>
-</div>
-
-<!-- DATI -->
+<!-- DATI (prima pagina) -->
 <div id="page-data" class="pg on">
   <div class="card">
     <div class="ct">Il tuo stato attuale</div>
     <div class="row2">
-      <div class="fg"><label>⚔️ VP attuali (B)</label><input type="number" id="i_vp" value="13" min="0" step="any" oninput="compute()"><div class="hint">Totale VP in miliardi</div></div>
-      <div class="fg"><label>🏰 Grado Guardie</label><input type="number" id="i_guard" value="2" min="2" max="8" step="1" oninput="compute()"><div class="hint">Il tuo grado attuale (2-8)</div></div>
-      <div class="fg"><label>🏛️ Livello Accademia</label><input type="number" id="i_acc" value="10" min="1" max="45" step="1" oninput="compute()"></div>
+      <div class="fg"><label>⚔️ VP attuali (B)</label><input type="number" id="i_vp" value="0" min="0" step="any" oninput="compute()"><div class="hint">Totale VP in miliardi (es. 13.5)</div></div>
+      <div class="fg"><label>🏰 Grado Guardie attuale</label><input type="number" id="i_guard" value="2" min="2" max="8" step="1" oninput="compute()"><div class="hint">Il tuo grado attuale (2-8)</div></div>
+      <div class="fg"><label>🏛️ Livello Accademia</label><input type="number" id="i_acc" value="1" min="1" max="45" step="1" oninput="compute()"></div>
       <div class="fg"><label>🦸 Livello Eroe</label><input type="number" id="i_hero" value="1" min="1" step="1" oninput="compute()"></div>
       <div class="fg"><label>📜 Progetti disponibili</label><input type="number" id="i_proj" value="0" min="0" step="1" oninput="compute()"></div>
       <div class="fg"><label>💰 Oro disponibile</label><input type="number" id="i_gold" value="0" min="0" step="1" oninput="compute()"></div>
@@ -121,23 +90,33 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
   <div class="card">
     <div class="ct">Le tue monete</div>
     <div class="row3">
-      <div class="fg"><label>🐺 Monete Lupo (M)</label><input type="number" id="i_wolf" value="1260" min="0" step="any" oninput="compute()"></div>
-      <div class="fg"><label>🐉 Monete Drago (M)</label><input type="number" id="i_dragon" value="30" min="0" step="any" oninput="compute()"></div>
-      <div class="fg"><label>🌲 Monete Foresta (M)</label><input type="number" id="i_forest" value="100" min="0" step="any" oninput="compute()"></div>
+      <div class="fg"><label>🐺 Monete Lupo (M)</label><input type="number" id="i_wolf" value="0" min="0" step="any" oninput="compute()"></div>
+      <div class="fg"><label>🐉 Monete Drago (M)</label><input type="number" id="i_dragon" value="0" min="0" step="any" oninput="compute()"></div>
+      <div class="fg"><label>🌲 Monete Foresta (M)</label><input type="number" id="i_forest" value="0" min="0" step="any" oninput="compute()"></div>
     </div>
   </div>
   <div class="card">
-    <div class="ct">Risorse edifici (per Accademia)</div>
+    <div class="ct">Risorse edifici (per Accademia) — opzionale</div>
     <div class="row3">
       <div class="fg"><label>🪵 Legno (M)</label><input type="number" id="i_wood" value="0" min="0" step="any" oninput="compute()"></div>
       <div class="fg"><label>⚙️ Ferro (M)</label><input type="number" id="i_iron" value="0" min="0" step="any" oninput="compute()"></div>
       <div class="fg"><label>🪨 Pietra (M)</label><input type="number" id="i_stone" value="0" min="0" step="any" oninput="compute()"></div>
     </div>
-    <p class="note" style="margin-top:10px">Le risorse servono per portare gli edifici al livello richiesto dall'Accademia di ogni grado.</p>
+    <p class="note" style="margin-top:10px">Le risorse servono per far salire gli edifici al livello richiesto dall'Accademia di ogni grado.</p>
+  </div>
+  <div class="card" style="border-color:#f5a623">
+    <div class="ct" style="color:#f5a623">⚡ Stato rapido</div>
+    <div id="quick-status"></div>
   </div>
 </div>
 
-<!-- PAGINE GRADO -->
+<!-- RIEPILOGO -->
+<div id="page-summary" class="pg">
+  <div class="card"><div class="ct">Progressione G3 → G8</div><div id="sum-table"></div></div>
+  <div class="card"><div class="ct">Budget monete totale G5 → G8</div><div id="sum-coins"></div></div>
+</div>
+
+<!-- GRADI -->
 <div id="page-g5" class="pg"><div id="c-g5"></div></div>
 <div id="page-g6" class="pg"><div id="c-g6"></div></div>
 <div id="page-g7" class="pg"><div id="c-g7"></div></div>
@@ -146,8 +125,8 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 <!-- NEGOZI -->
 <div id="page-shops" class="pg">
   <div class="card">
-    <div class="ct">Tabella negozi per grado</div>
-    <p class="note" style="margin-bottom:14px">Usa il negozio del tuo grado attuale per sbloccare il successivo. Ogni Ragnarök compra tutti i pack disponibili del negozio.</p>
+    <div class="ct">Tabella negozi Ragnarök per grado</div>
+    <p class="note" style="margin-bottom:16px">Per sbloccare un grado usi il negozio del grado precedente. Ogni Ragnarök puoi comprare il massimo dei pack disponibili (Lupo + Drago). La Foresta è un torneo separato e riduce il numero di Ragnarök necessari.</p>
     <div id="shops-content"></div>
   </div>
 </div>
@@ -155,88 +134,58 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 <!-- SIMULATORE -->
 <div id="page-sim" class="pg">
   <div class="card">
-    <div class="ct">Simulatore acquisti Ragnarök</div>
-    <p class="note" style="margin-bottom:14px">Inserisci i pack che vuoi comprare — le monete scalano in cascata da G5 a G8.</p>
+    <div class="ct">Simulatore acquisti — inserisci i pack e vedi VP e monete aggiornarsi</div>
+    <p class="note" style="margin-bottom:14px">Le monete rimaste dopo ogni grado passano automaticamente al grado successivo.</p>
     <div id="sim-content"></div>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════
-// COSTANTI — tutti i dati dai fogli Excel
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// COSTANTI — verificate dal foglio Excel
+// ═══════════════════════════════════════════════════════
 var GR = {
-  G3:{vp:.0511,acc:15,hero:0,  proj:0,     gold:0,      pv:0},
-  G4:{vp:.64,  acc:20,hero:0,  proj:0,     gold:0,      pv:.0511},
-  G5:{vp:9,    acc:25,hero:40, proj:25000, gold:256000, pv:.6911},
-  G6:{vp:102,  acc:30,hero:100,proj:51000, gold:510000, pv:9.6911},
-  G7:{vp:1332, acc:35,hero:140,proj:112000,gold:1120000,pv:111.6911},
-  G8:{vp:12000,acc:40,hero:200,proj:196000,gold:1960000,pv:1443.6911}
+  G3:{vp:0.0511, acc:15, hero:0,   proj:0,     gold:0,       pv:0},
+  G4:{vp:0.64,   acc:20, hero:0,   proj:0,     gold:0,       pv:0.0511},
+  G5:{vp:9,      acc:25, hero:40,  proj:25000, gold:256000,  pv:0.6911},
+  G6:{vp:102,    acc:30, hero:100, proj:51000, gold:510000,  pv:9.6911},
+  G7:{vp:1332,   acc:35, hero:140, proj:112000,gold:1120000, pv:111.6911},
+  G8:{vp:9300,   acc:40, hero:200, proj:196000,gold:1960000, pv:1443.6911}
+  // G8: 8.400T ricerche + 900B (1 guardia) = 9.300T
 };
 
-// Negozi: per sbloccare Gn usi il negozio G(n-1)
-// VPR = VP lupo+drago per Ragnarök (senza foresta)
-// I pack foresta sono separati (Torneo Foresta, non Ragnarök)
+// Per sbloccare Gn usi il negozio G(n-1)
+// vpr = VP massimi per Ragnarök (lupo + drago)
+// wc  = costo lupo per Ragnarök (M)
+// dc  = costo drago per Ragnarök (M)
 var SHOPS = {
-  G5:{
-    // Negozio G4 — per sbloccare G5
-    w:{n:60,  vp:0.067,c:0.5},  // lupo:   60pk × 67M VP, 500K/pk
-    d:{n:2,   vp:0.320,c:0.65}, // drago:   2pk × 320M VP, 650K/pk
-    f1:{n:2,  vp:1.6,  c:1.0},  // foresta1: 2pk × 1.6B, 1M/pk
-    f2:{n:150,vp:0.186,c:0.5},  // foresta2: 150pk × 186M, 500K/pk
-    prev:'G4', wc:30, dc:1.3, vpr:4.66
-  },
-  G6:{
-    // Negozio G5 — per sbloccare G6
-    w:{n:150, vp:0.310,c:0.5},  // lupo:  150pk × 310M VP, 500K/pk
-    d:{n:3,   vp:1.2,  c:0.5},  // drago:   3pk × 1.2B VP, 500K/pk ✅
-    f1:{n:190,vp:1.68, c:0.65}, // foresta1
-    f2:{n:3,  vp:11.7, c:1.0},  // foresta2
-    prev:'G5', wc:75, dc:1.5, vpr:50.1  // dc: 3×0.5=1.5M ✅
-  },
-  G7:{
-    // Negozio G6 — per sbloccare G7
-    w:{n:190, vp:2.8,  c:0.5},  // lupo:  190pk × 2.8B VP, 500K/pk
-    d:{n:3,   vp:13,   c:0.5},  // drago:   3pk × 13B VP, 500K/pk
-    f1:{n:190,vp:1.68, c:0.65}, // foresta1
-    f2:{n:3,  vp:11.7, c:1.0},  // foresta2
-    prev:'G6', wc:95, dc:1.5, vpr:571
-  },
-  G8:{
-    // Negozio G7 — per sbloccare G8 (stesso negozio G7)
-    w:{n:510, vp:6.6,  c:0.5},  // lupo:  510pk × 6.6B VP, 500K/pk
-    d:{n:4,   vp:27,   c:0.65}, // drago:   4pk × 27B VP, 650K/pk ✅
-    // Nessuna foresta disponibile
-    prev:'G7', wc:255, dc:2.6, vpr:3474  // dc: 4×0.65=2.6M ✅
-  }
+  G5:{neg:'G4', vpr:4.66,  wc:30,  dc:1.3,
+      w:{n:60,  vp:0.067, cpk:0.5},
+      d:{n:2,   vp:0.320, cpk:0.65},
+      f1:{n:2,  vp:1.6,   cpk:1.0},
+      f2:{n:60, vp:0.0402,cpk:0.5}},
+  G6:{neg:'G5', vpr:50.1, wc:75,  dc:1.5,
+      w:{n:150, vp:0.310, cpk:0.5},
+      d:{n:3,   vp:1.2,   cpk:0.5},   // 500K/pack ✅
+      f1:{n:2,  vp:1.6,   cpk:1.0},
+      f2:{n:150,vp:0.186, cpk:0.5}},
+  G7:{neg:'G6', vpr:571,  wc:95,  dc:1.5,
+      w:{n:190, vp:2.8,   cpk:0.5},
+      d:{n:3,   vp:13,    cpk:0.5},
+      f1:{n:190,vp:1.68,  cpk:0.65},
+      f2:{n:3,  vp:11.7,  cpk:1.0}},
+  G8:{neg:'G7', vpr:3474, wc:255, dc:2.6,
+      w:{n:510, vp:6.6,   cpk:0.5},
+      d:{n:4,   vp:27,    cpk:0.65}}
+  // G8: nessuna foresta, stesso negozio G7
 };
 
-var GCOL = {
-  G3:'#f97316',G4:'#eab308',
-  G5:'#e53935',G6:'#c62828',
-  G7:'#7b1fa2',G8:'#1565c0'
-};
+var GCOL={G3:'#f97316',G4:'#eab308',G5:'#e53935',G6:'#c62828',G7:'#7b1fa2',G8:'#1565c0'};
+var simPacks={G5:{w:0,d:0,f1:0,f2:0},G6:{w:0,d:0,f1:0,f2:0},G7:{w:0,d:0,f1:0,f2:0},G8:{w:0,d:0}};
 
-// RSS necessarie per accademia (valori approssimativi in M — da compilare con dati reali)
-// Struttura: {legno, ferro, pietra} in M per portare accademia al livello richiesto
-var RSS_ACC = {
-  G5:{legno:500,  ferro:300,  pietra:400},   // da L acc a L25
-  G6:{legno:1500, ferro:900,  pietra:1200},  // da L25 a L30
-  G7:{legno:5000, ferro:3000, pietra:4000},  // da L30 a L35
-  G8:{legno:15000,ferro:9000, pietra:12000}  // da L35 a L40
-};
-
-// Pack simulatore
-var simPacks = {
-  G5:{w:0,d:0,f1:0,f2:0},
-  G6:{w:0,d:0,f1:0,f2:0},
-  G7:{w:0,d:0,f1:0,f2:0},
-  G8:{w:0,d:0}
-};
-
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // HELPERS
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 function fV(v){
   if(v===undefined||v===null||isNaN(v))return'—';
   if(v>=1000)return parseFloat((v/1000).toFixed(3).replace(/\.?0+$/,''))+'T';
@@ -247,7 +196,7 @@ function fM(v){
   if(v===undefined||v===null||isNaN(v))return'—';
   var a=Math.abs(v),s=v<0?'-':'';
   if(a>=1000)return s+parseFloat((a/1000).toFixed(2).replace(/\.?0+$/,''))+'B';
-  if(a>=1)return s+parseFloat(a.toFixed(3).replace(/\.?0+$/,''))+'M';
+  if(a>=1)return s+parseFloat(a.toFixed(2).replace(/\.?0+$/,''))+'M';
   return s+Math.round(a*1000)+'K';
 }
 function bar(p,ok){
@@ -270,63 +219,42 @@ function gi(){
   };
 }
 
-// ═══════════════════════════════════════════
-// CALCOLA
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// CALCOLA TUTTI I GRADI
+// ═══════════════════════════════════════════════════════
 function calcAll(){
   var i=gi();
-  var wolf=i.wolf,dragon=i.dragon,forest=i.forest;
-  var proj=i.proj,gold=i.gold;
+  var wolf=i.wolf, dragon=i.dragon, proj=i.proj, gold=i.gold;
   var res={};
-
   var grades=['G3','G4','G5','G6','G7','G8'];
   for(var idx=0;idx<grades.length;idx++){
-    var g=grades[idx];
-    var q=GR[g];
-    var sh=SHOPS[g];
-    var vpr=sh?sh.vpr:0;
-    var wcu=sh?sh.wc:0;
-    var dcu=sh?sh.dc:0;
-
+    var g=grades[idx], q=GR[g], sh=SHOPS[g];
+    // VP da combattimento: quello che rimane dopo i gradi precedenti
     var vp_c=Math.max(i.vp-q.pv,0);
-    var rn=0,wc=0,dc=0;
-    if(vpr>0){
+    var rn=0, wc=0, dc=0, vp_buy=0;
+    if(sh){
       var miss=Math.max(q.vp-vp_c,0);
-      if(miss>0) rn=Math.ceil(miss/vpr);
-      wc=rn*wcu;
-      dc=rn*dcu;
+      if(miss>0) rn=Math.ceil(miss/sh.vpr);
+      wc=rn*sh.wc; dc=rn*sh.dc; vp_buy=rn*sh.vpr;
     }
-    var vp_tot=vp_c+rn*vpr;
+    var vp_tot=vp_c+vp_buy;
     var vp_av=Math.max(vp_tot-q.vp,0);
-
-    var pu=idx>=2?q.proj:0;
+    var vp_miss_shop=Math.max(q.vp-vp_c,0); // VP mancanti prima del negozio
+    // Progetti e oro
+    var pu=(idx>=2)?q.proj:0;
     var pm=Math.max(pu-proj,0);
     var gn=q.gold+pm*10;
     var gm=Math.max(gn-gold,0);
-
-    // RSS accademia
-    var rss=RSS_ACC[g]||{legno:0,ferro:0,pietra:0};
-    var acc_from=idx>0?GR[grades[idx-1]].acc:0;
-    // Semplificato: se acc già al livello richiesto, no RSS
-    var acc_ok=i.acc>=q.acc;
-    var wood_need=acc_ok?0:rss.legno;
-    var iron_need=acc_ok?0:rss.ferro;
-    var stone_need=acc_ok?0:rss.pietra;
-    var wood_miss=Math.max(wood_need-i.wood,0);
-    var iron_miss=Math.max(iron_need-i.iron,0);
-    var stone_miss=Math.max(stone_need-i.stone,0);
-
     res[g]={
-      q:q,sh:sh,vp_c:vp_c,rn:rn,vpr:vpr,vp_tot:vp_tot,vp_av:vp_av,
-      wc:wc,dc:dc,
-      wa:wolf,da:dragon,fa:forest,
-      wo:Math.max(wolf-wc,0),doo:Math.max(dragon-dc,0),fo:forest,
-      w_ok:wolf>=wc,d_ok:dragon>=dc,
-      pm:pm,gm:gm,gn_need:gn,
+      q:q, sh:sh, vp_c:vp_c, vp_miss_shop:vp_miss_shop,
+      rn:rn, vpr:sh?sh.vpr:0, vp_tot:vp_tot, vp_av:vp_av,
+      wc:wc, dc:dc,
+      wa:wolf, da:dragon,
+      wo:Math.max(wolf-wc,0), doo:Math.max(dragon-dc,0),
+      w_ok:wolf>=wc, d_ok:dragon>=dc,
+      pm:pm, gm:gm, gn_need:gn,
       hm:Math.max((q.hero||0)-i.hero,0),
-      am:Math.max(q.acc-i.acc,0),
-      wood_need:wood_need,iron_need:iron_need,stone_need:stone_need,
-      wood_miss:wood_miss,iron_miss:iron_miss,stone_miss:stone_miss
+      am:Math.max(q.acc-i.acc,0)
     };
     wolf=Math.max(wolf-wc,0);
     dragon=Math.max(dragon-dc,0);
@@ -336,120 +264,85 @@ function calcAll(){
   return{i:i,res:res};
 }
 
-// ═══════════════════════════════════════════
-// RENDER GRADO
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// RENDER PAGINA GRADO
+// ═══════════════════════════════════════════════════════
 function renderGrade(g,r,i){
-  var q=r.q,sh=r.sh;
+  var q=r.q, sh=r.sh, col=GCOL[g];
   var vp_ok=r.vp_tot>=q.vp;
-  var vp_miss=Math.max(q.vp-r.vp_tot,0);
-  var vp_miss_before_shop=Math.max(q.vp-r.vp_c,0);
   var pct=Math.min(100,r.vp_tot/q.vp*100);
-  var col=GCOL[g];
   var gn=parseInt(g.replace('G',''));
-  var allOk=vp_ok&&!r.am&&!r.hm&&!r.pm&&!r.gm&&!r.wood_miss&&!r.iron_miss&&!r.stone_miss;
   var done=i.guard>=gn;
+  var allOk=vp_ok&&!r.am&&!r.hm&&!r.pm&&!r.gm;
 
   var h='<div class="gb">';
-  h+='<div class="gh" style="background:'+col+'20;border-left:4px solid '+col+'">';
+  // Header
+  h+='<div class="gh" style="background:'+col+'22;border-left:4px solid '+col+'">';
   h+='<div><div class="gt" style="color:'+col+'">Grado '+g+'</div>';
-  h+='<div class="gsub">'+(sh?'Sei a '+sh.prev+' — usa il negozio '+sh.prev+' per sbloccare '+g:'Solo combattimento')+'</div></div>';
+  h+='<div class="gsub">'+(sh?'Sei a G'+(gn-1)+' — usa il Negozio G'+(gn-1)+' (Ragnarök) per sbloccare '+g:'Solo combattimento — accumula VP combattendo')+'</div></div>';
   h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completato':allOk?'✅ Pronto':'⚠️ Incompleto')+'</span>';
   h+='</div><div class="gbody">';
 
-  // VP
+  // ── SEZIONE VP ──────────────────────────────────────
   h+='<div class="slb">Victory Points</div>';
-  // Box VP: mostra richiesti / hai / mancano in modo chiaro
-  h+='<div class="shopbox" style="margin-bottom:12px">';
-  // Riga 1: VP richiesti vs disponibili
-  h+='<div class="irow"><span class="ilb" style="font-size:12px">🎯 VP richiesti</span>';
-  h+='<span class="iv" style="font-size:16px;color:#f5a623">'+fV(q.vp)+'</span></div>';
-  h+='<div class="irow"><span class="ilb" style="font-size:12px">⚔️ Hai da combattimento</span>';
-  h+='<span class="iv" style="color:'+col+'">'+fV(r.vp_c)+'</span></div>';
-  if(sh&&r.rn>0){
-    h+='<div class="irow"><span class="ilb" style="font-size:12px">❌ Mancano ancora</span>';
-    h+='<span class="iv" style="color:#ff6b6b">'+fV(vp_miss_before_shop)+'</span></div>';
-    h+='<div class="irow"><span class="ilb" style="font-size:12px">🏪 Fai '+r.rn+' Ragnarök (negozio '+sh.prev+')</span>';
-    h+='<span class="iv" style="color:#93c5fd">+'+fV(r.rn*r.vpr)+'</span></div>';
+  h+='<div class="ibox">';
+  h+='<div class="irow"><span class="ilb">🎯 VP richiesti per '+g+'</span><span class="iv infoc">'+fV(q.vp)+'</span></div>';
+  h+='<div class="irow"><span class="ilb">⚔️ VP da combattimento (hai ora)</span><span class="iv" style="color:'+col+'">'+fV(r.vp_c)+'</span></div>';
+  if(sh){
+    if(r.vp_miss_shop>0){
+      h+='<div class="irow"><span class="ilb">❌ VP ancora mancanti</span><span class="iv warnc">'+fV(r.vp_miss_shop)+'</span></div>';
+      h+='<div class="irow"><span class="ilb">🏪 Ragnarök necessari al negozio G'+(gn-1)+'</span><span class="iv" style="color:#f5a623;font-size:20px">'+r.rn+'×</span></div>';
+      h+='<div class="irow"><span class="ilb">📦 VP guadagnati con '+r.rn+' Ragnarök</span><span class="iv" style="color:#93c5fd">+'+fV(r.rn*r.vpr)+'</span></div>';
+    } else {
+      h+='<div class="irow"><span class="ilb">✅ VP sufficienti senza negozio</span><span class="iv okc">Nessun Ragnarök necessario</span></div>';
+    }
   }
-  h+='<div class="irow" style="border-top:1px solid #444;margin-top:2px;padding-top:8px">';
-  h+='<span class="ilb" style="font-size:12px;font-weight:700">✅ Totale VP</span>';
-  h+='<span class="iv" style="font-size:16px;color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_tot)+(r.vp_av>0?' (+'+fV(r.vp_av)+' avanzo)':'')+'</span></div>';
+  h+='<div class="div"></div>';
+  h+='<div class="irow"><span class="ilb" style="font-weight:700">✅ VP totali disponibili</span><span class="iv" style="font-size:18px;color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_tot)+(r.vp_av>0?' <span style="font-size:12px;color:#666">(+'+fV(r.vp_av)+' avanzo)</span>':'')+'</span></div>';
   h+=bar(pct,vp_ok);
   h+='</div>';
 
-  if(!sh){
-    h+='<p class="note">⚔️ Solo combattimento — nessun acquisto al negozio a questo grado.</p>';
-  } else {
-    h+='<div class="slb">Piano Ragnarök — negozio '+sh.prev+'</div>';
-    h+='<div class="shopbox">';
-    h+='<div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:12px">';
-    h+='<div><div class="rn-big">'+r.rn+'</div><div class="rn-lbl">Ragnarök necessari</div></div>';
-    h+='<div style="font-size:12px;color:#8b8fa8;flex:1;line-height:1.7">';
-    h+='Ogni Ragnarök (max <strong style="color:#e8eaf0">'+fV(r.vpr)+' VP</strong>):<br>';
-    h+='🐺 '+sh.w.n+' pack × '+fV(sh.w.vp)+' = <strong>'+fV(sh.w.n*sh.w.vp)+'</strong> VP — costo '+fM(sh.w.c*sh.w.n)+'<br>';
-    h+='🐉 '+sh.d.n+' pack × '+fV(sh.d.vp)+' = <strong>'+fV(sh.d.n*sh.d.vp)+'</strong> VP — costo '+fM(sh.d.c*sh.d.n)+'<br>';
-    if(r.rn>0){
-      h+='<br>Dopo <strong>'+r.rn+' Ragnarök</strong>: <span style="color:'+(vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_tot)+' VP</span> '+(vp_ok?'✅ (+'+fV(r.vp_av)+' di avanzo)':'⚠️ ancora -'+fV(vp_miss));
-    }
-    h+='</div></div>';
-
-    // Foresta (separata, non Ragnarök)
-    if(sh.f1&&g!='G8'){
-      h+='<div class="div"></div>';
-      h+='<div style="font-size:12px;color:#22c55e;font-weight:600;margin-bottom:6px">🌲 Torneo Foresta — opzionale (riduce i Ragnarök)</div>';
-      h+='<div style="font-size:12px;color:#8b8fa8">F1: '+sh.f1.n+' pack × '+fV(sh.f1.vp)+' = <strong>'+fV(sh.f1.n*sh.f1.vp)+'</strong> VP — '+fM(sh.f1.c*sh.f1.n)+'/torneo</div>';
-      if(sh.f2) h+='<div style="font-size:12px;color:#8b8fa8;margin-top:3px">F2: '+sh.f2.n+' pack × '+fV(sh.f2.vp)+' = <strong>'+fV(sh.f2.n*sh.f2.vp)+'</strong> VP — '+fM(sh.f2.c*sh.f2.n)+'/torneo</div>';
+  // ── SEZIONE NEGOZIO ─────────────────────────────────
+  if(sh&&r.rn>0){
+    h+='<div class="slb">Piano acquisti — ogni Ragnarök compra:</div>';
+    h+='<div class="ibox">';
+    h+='<div class="irow"><span class="ilb">🐺 Negozio Lupo</span><div><div class="iv">'+sh.w.n+' pack &nbsp;→&nbsp; '+fV(sh.w.n*sh.w.vp)+' VP</div><div class="idet">'+sh.w.n+' pack × '+fM(sh.w.cpk)+'/pack = '+fM(sh.w.n*sh.w.cpk)+' monete lupo</div></div></div>';
+    h+='<div class="irow"><span class="ilb">🐉 Negozio Drago</span><div><div class="iv">'+sh.d.n+' pack &nbsp;→&nbsp; '+fV(sh.d.n*sh.d.vp)+' VP</div><div class="idet">'+sh.d.n+' pack × '+fM(sh.d.cpk)+'/pack = '+fM(sh.d.n*sh.d.cpk)+' monete drago</div></div></div>';
+    h+='<div class="div"></div>';
+    h+='<div class="irow"><span class="ilb" style="font-weight:700">Totale VP per Ragnarök</span><span class="iv infoc">'+fV(sh.vpr)+'</span></div>';
+    if(sh.f1){
+      h+='<div class="irow" style="margin-top:4px"><span class="ilb" style="color:#22c55e">🌲 Torneo Foresta (opzionale)</span><div><div class="idet" style="color:#22c55e">F1: '+sh.f1.n+' pack × '+fV(sh.f1.vp)+' = '+fV(sh.f1.n*sh.f1.vp)+' VP ('+fM(sh.f1.cpk)+'/pack)</div>'+(sh.f2?'<div class="idet" style="color:#22c55e">F2: '+sh.f2.n+' pack × '+fV(sh.f2.vp)+' = '+fV(sh.f2.n*sh.f2.vp)+' VP ('+fM(sh.f2.cpk)+'/pack)</div>':'')+'<div class="idet" style="color:#22c55e">Acquistare la Foresta riduce i Ragnarök necessari</div></div></div>';
     }
     h+='</div>';
 
-    // Monete
+    // ── BUDGET MONETE ──────────────────────────────────
     h+='<div class="slb">Budget monete per '+r.rn+' Ragnarök</div>';
     h+='<div class="ccgrid">';
-    var coins=[
-      {nm:'🐺 Monete Lupo',av:r.wa,cost:r.wc,ok:r.w_ok,after:r.wo,col:'#3b82f6'},
-      {nm:'🐉 Monete Drago',av:r.da,cost:r.dc,ok:r.d_ok,after:r.doo,col:'#ef4444'}
-    ];
-    for(var ci=0;ci<coins.length;ci++){
-      var c=coins[ci];
-      var miss2=Math.max(c.cost-c.av,0);
-      h+='<div class="cc" style="border-top:3px solid '+c.col+'">';
-      h+='<div class="ccnm">'+c.nm+'</div>';
-      h+='<div class="ccav">'+fM(c.av)+'</div>';
-      h+='<div class="ccdt">necessari: '+fM(c.cost)+'</div>';
-      h+='<div class="ccst" style="color:'+(c.ok?'#2ecc71':'#ff6b6b')+'">'+(c.ok?'✅ rimangono '+fM(c.after):'⚠️ mancano '+fM(miss2))+'</div>';
-      h+='</div>';
-    }
+    var wm=Math.max(r.wc-r.wa,0), dm=Math.max(r.dc-r.da,0);
+    h+='<div class="cc" style="border-top:3px solid #3b82f6">';
+    h+='<div class="ccnm">🐺 Monete Lupo</div>';
+    h+='<div class="ccav">'+fM(r.wa)+'</div>';
+    h+='<div class="ccdt">Servono: '+fM(r.wc)+' ('+r.rn+'× '+fM(r.sh.wc)+')</div>';
+    h+='<div class="ccst" style="color:'+(r.w_ok?'#2ecc71':'#ff6b6b')+'">'+(r.w_ok?'✅ Rimangono '+fM(r.wo):'⚠️ Mancano '+fM(wm))+'</div>';
     h+='</div>';
+    h+='<div class="cc" style="border-top:3px solid #ef4444">';
+    h+='<div class="ccnm">🐉 Monete Drago</div>';
+    h+='<div class="ccav">'+fM(r.da)+'</div>';
+    h+='<div class="ccdt">Servono: '+fM(r.dc)+' ('+r.rn+'× '+fM(r.sh.dc)+')</div>';
+    h+='<div class="ccst" style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+(r.d_ok?'✅ Rimangono '+fM(r.doo):'⚠️ Mancano '+fM(dm))+'</div>';
+    h+='</div></div>';
+  } else if(!sh){
+    h+='<p class="note" style="padding:8px 0">⚔️ Accumula VP combattendo — a questo grado non si usa il negozio Ragnarök.</p>';
   }
 
-  // Requisiti
+  // ── ALTRI REQUISITI ────────────────────────────────
   if(q.acc>1||q.hero>0||q.proj>0){
-    h+='<div class="div"></div><div class="slb">Requisiti accademia / eroe / progetti</div>';
-    if(q.acc>1){var ok2=r.am===0;h+='<div class="irow"><span class="ilb">🏛️ Accademia</span><div class="iv '+(ok2?'okc':'warnc')+'">'+(ok2?'✅ L'+q.acc+' raggiunto':'→ Porta a L'+q.acc+' (sei L'+i.acc+', mancano '+r.am+' livelli)')+'</div></div>';}
-    if(q.hero>0){var ok3=r.hm===0;h+='<div class="irow"><span class="ilb">🦸 Eroe</span><div class="iv '+(ok3?'okc':'warnc')+'">'+(ok3?'✅ Lv'+q.hero+' raggiunto':'→ Raggiungi Lv'+q.hero+' (sei Lv'+i.hero+', mancano '+r.hm+')')+'</div></div>';}
-    if(q.proj>0){var ok4=r.pm===0;h+='<div class="irow"><span class="ilb">📜 Progetti</span><div class="iv '+(ok4?'okc':'warnc')+'">'+(ok4?'✅ '+q.proj.toLocaleString()+' — hai abbastanza':'→ Compra '+r.pm.toLocaleString()+' in più (hai '+i.proj.toLocaleString()+', servono '+q.proj.toLocaleString()+')')+'</div></div>';}
-    if(r.gm>0) h+='<div class="irow"><span class="ilb">💰 Oro</span><div class="iv warnc">⚠️ Mancano '+r.gm.toLocaleString()+' oro (hai '+i.gold.toLocaleString()+', servono '+r.gn_need.toLocaleString()+')</div></div>';
-  }
-
-  // RSS
-  if(r.wood_need>0||r.iron_need>0||r.stone_need>0){
-    h+='<div class="div"></div><div class="slb">Risorse edifici per Accademia L'+q.acc+'</div>';
-    h+='<div class="rss-grid">';
-    var rss_list=[
-      {nm:'🪵 Legno',need:r.wood_need,miss:r.wood_miss,have:i.wood,col:'#92400e'},
-      {nm:'⚙️ Ferro', need:r.iron_need, miss:r.iron_miss, have:i.iron, col:'#374151'},
-      {nm:'🪨 Pietra',need:r.stone_need,miss:r.stone_miss,have:i.stone,col:'#6b7280'}
-    ];
-    for(var ri=0;ri<rss_list.length;ri++){
-      var rs=rss_list[ri];
-      h+='<div class="rss-card" style="border-top:3px solid '+rs.col+'">';
-      h+='<div class="rss-nm">'+rs.nm+'</div>';
-      h+='<div class="rss-need">'+fM(rs.need)+' necessari</div>';
-      h+='<div class="rss-have">hai: '+fM(rs.have)+'</div>';
-      h+='<div class="rss-st" style="color:'+(rs.miss===0?'#2ecc71':'#ff6b6b')+'">'+(rs.miss===0?'✅ ok':'⚠️ mancano '+fM(rs.miss))+'</div>';
-      h+='</div>';
-    }
+    h+='<div class="slb">Altri requisiti</div>';
+    h+='<div class="ibox">';
+    if(q.acc>1){var o=r.am===0;h+='<div class="irow"><span class="ilb">🏛️ Livello Accademia</span><div class="iv '+(o?'okc':'warnc')+'">'+(o?'✅ L'+q.acc+' raggiunto':'→ Porta a L'+q.acc+' (sei L'+i.acc+', mancano '+r.am+' livelli)')+'</div></div>';}
+    if(q.hero>0){var o=r.hm===0;h+='<div class="irow"><span class="ilb">🦸 Livello Eroe</span><div class="iv '+(o?'okc':'warnc')+'">'+(o?'✅ Lv'+q.hero+' raggiunto':'→ Raggiungi Lv'+q.hero+' (sei Lv'+i.hero+', mancano '+r.hm+')')+'</div></div>';}
+    if(q.proj>0){var o=r.pm===0;h+='<div class="irow"><span class="ilb">📜 Progetti</span><div class="iv '+(o?'okc':'warnc')+'">'+(o?'✅ Hai abbastanza ('+q.proj.toLocaleString()+')':'→ Compra '+r.pm.toLocaleString()+' progetti (hai '+i.proj.toLocaleString()+', servono '+q.proj.toLocaleString()+')')+'</div></div>';}
+    if(r.gm>0)h+='<div class="irow"><span class="ilb">💰 Oro</span><div class="iv warnc">⚠️ Mancano '+r.gm.toLocaleString()+' oro (hai '+i.gold.toLocaleString()+', servono '+r.gn_need.toLocaleString()+')</div></div>';
     h+='</div>';
   }
 
@@ -457,20 +350,18 @@ function renderGrade(g,r,i){
   return h;
 }
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // RENDER SUMMARY
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 function renderSummary(i,res){
-  // Tabella progressione
   var h='<table class="stable">';
-  h+='<tr><th>Grado</th><th>Status</th><th>VP hai</th><th>VP servono</th><th>Ragnarök</th><th>🐺 Lupo</th><th>🐺 Rimane</th><th>🐉 Drago</th><th>🐉 Rimane</th><th>Acc.</th><th>Eroe</th></tr>';
-  var grades=['G3','G4','G5','G6','G7','G8'];
-  for(var idx=0;idx<grades.length;idx++){
-    var g=grades[idx],r=res[g],col=GCOL[g];
-    var gn=parseInt(g.replace('G','')),done=i.guard>=gn;
-    var vp_ok=r.vp_tot>=r.q.vp;
+  h+='<tr><th>Grado</th><th>Stato</th><th>VP disponibili</th><th>VP richiesti</th><th>Ragnarök</th><th>🐺 Lupo speso</th><th>🐺 Rimane</th><th>🐉 Drago speso</th><th>🐉 Rimane</th><th>Acc.</th><th>Eroe</th></tr>';
+  var gds=['G3','G4','G5','G6','G7','G8'];
+  for(var j=0;j<gds.length;j++){
+    var g=gds[j],r=res[g],col=GCOL[g],gn=parseInt(g.replace('G',''));
+    var done=i.guard>=gn, vp_ok=r.vp_tot>=r.q.vp;
     var allOk=vp_ok&&!r.am&&!r.hm&&!r.pm&&!r.gm;
-    var st=done?'<span class="okc">✅ Fatto</span>':allOk?'<span class="okc">✅ Pronto</span>':vp_ok?'<span class="infoc">⚡ Quasi</span>':'<span class="warnc">⚠️ No</span>';
+    var st=done?'<span class="okc">✅ Fatto</span>':allOk?'<span class="okc">✅ Pronto</span>':vp_ok?'<span class="infoc">⚡ VP ok</span>':'<span class="warnc">⚠️ No</span>';
     h+='<tr>';
     h+='<td style="font-weight:700;color:'+col+'">'+g+'</td>';
     h+='<td>'+st+'</td>';
@@ -488,226 +379,191 @@ function renderSummary(i,res){
   h+='</table>';
   document.getElementById('sum-table').innerHTML=h;
 
-  // Monete
-  var gds=['G5','G6','G7','G8'];
-  var twc=0,tdc=0;
-  for(var j=0;j<gds.length;j++){twc+=res[gds[j]].wc;tdc+=res[gds[j]].dc;}
+  // Budget monete
+  var twc=0,tdc=0,trn=0;
+  var pds=['G5','G6','G7','G8'];
+  for(var j=0;j<pds.length;j++){twc+=res[pds[j]].wc;tdc+=res[pds[j]].dc;trn+=res[pds[j]].rn;}
   var ch='<div class="row2">';
-  // Lupo
-  ch+='<div style="background:#22263a;border-radius:8px;padding:12px;border-top:3px solid #3b82f6">';
-  ch+='<div style="font-size:11px;font-weight:700;color:#555;text-transform:uppercase;margin-bottom:8px">🐺 Monete Lupo</div>';
-  ch+='<div class="scrow"><span class="mutec">Disponibili</span><span>'+fM(i.wolf)+'</span></div>';
-  for(var j=0;j<gds.length;j++){
-    if(res[gds[j]].wc>0) ch+='<div class="scrow"><span class="mutec">'+gds[j]+' ('+res[gds[j]].rn+'× Ragnarök)</span><span class="warnc">−'+fM(res[gds[j]].wc)+'</span></div>';
+  function coinCard(nm,col,avail,rns,gs,results,field,total){
+    var s='<div style="background:#22263a;border-radius:8px;padding:12px;border-top:3px solid '+col+'">';
+    s+='<div style="font-size:11px;font-weight:700;color:#555;text-transform:uppercase;margin-bottom:8px">'+nm+'</div>';
+    s+='<div class="irow"><span class="mutec">Disponibili ora</span><span style="font-weight:700">'+fM(avail)+'</span></div>';
+    for(var j=0;j<gs.length;j++){
+      var v=results[gs[j]][field];
+      if(v>0)s+='<div class="irow"><span class="mutec">'+gs[j]+' ('+results[gs[j]].rn+'× Ragnarök)</span><span class="warnc">−'+fM(v)+'</span></div>';
+    }
+    s+='<div class="irow" style="border-top:1px solid #2a2d3a;margin-top:4px;padding-top:6px"><span style="font-weight:700">Rimangono</span><span style="font-weight:700;color:'+(avail>=total?'#2ecc71':'#ff6b6b')+'">'+fM(Math.max(avail-total,0))+(avail<total?' <span style="font-size:11px">(⚠️ mancano '+fM(total-avail)+')</span>':'')+'</span></div>';
+    return s+'</div>';
   }
-  ch+='<div class="scrow" style="font-weight:700;border-top:1px solid #2a2d3a;margin-top:4px;padding-top:6px"><span>Rimangono</span><span class="'+(i.wolf>=twc?'okc':'warnc')+'">'+fM(Math.max(i.wolf-twc,0))+'</span></div>';
+  ch+=coinCard('🐺 Monete Lupo','#3b82f6',i.wolf,trn,pds,res,'wc',twc);
+  ch+=coinCard('🐉 Monete Drago','#ef4444',i.dragon,trn,pds,res,'dc',tdc);
   ch+='</div>';
-  // Drago
-  ch+='<div style="background:#22263a;border-radius:8px;padding:12px;border-top:3px solid #ef4444">';
-  ch+='<div style="font-size:11px;font-weight:700;color:#555;text-transform:uppercase;margin-bottom:8px">🐉 Monete Drago</div>';
-  ch+='<div class="scrow"><span class="mutec">Disponibili</span><span>'+fM(i.dragon)+'</span></div>';
-  for(var j=0;j<gds.length;j++){
-    if(res[gds[j]].dc>0) ch+='<div class="scrow"><span class="mutec">'+gds[j]+' ('+res[gds[j]].rn+'× Ragnarök)</span><span class="warnc">−'+fM(res[gds[j]].dc)+'</span></div>';
-  }
-  ch+='<div class="scrow" style="font-weight:700;border-top:1px solid #2a2d3a;margin-top:4px;padding-top:6px"><span>Rimangono</span><span class="'+(i.dragon>=tdc?'okc':'warnc')+'">'+fM(Math.max(i.dragon-tdc,0))+'</span></div>';
-  ch+='</div></div>';
+  ch+='<div style="margin-top:10px;background:#22263a;border-radius:8px;padding:10px 12px">';
+  ch+='<span class="mutec">Ragnarök totali G5→G8: </span><span style="font-weight:700;color:#f5a623">'+trn+'×</span>';
+  ch+='&nbsp;&nbsp;&nbsp;<span class="mutec">Lupo totale: </span><span style="font-weight:700;color:'+(i.wolf>=twc?'#2ecc71':'#ff6b6b')+'">−'+fM(twc)+'</span>';
+  ch+='&nbsp;&nbsp;&nbsp;<span class="mutec">Drago totale: </span><span style="font-weight:700;color:'+(i.dragon>=tdc?'#2ecc71':'#ff6b6b')+'">−'+fM(tdc)+'</span>';
+  ch+='</div>';
   document.getElementById('sum-coins').innerHTML=ch;
-
-  // RSS
-  var rh='<table class="stable">';
-  rh+='<tr><th>Grado</th><th>Acc. richiesta</th><th>🪵 Legno</th><th>⚙️ Ferro</th><th>🪨 Pietra</th></tr>';
-  for(var j=0;j<gds.length;j++){
-    var g=gds[j],r2=res[g],col=GCOL[g];
-    var ok_r=!r2.wood_miss&&!r2.iron_miss&&!r2.stone_miss;
-    rh+='<tr>';
-    rh+='<td style="font-weight:700;color:'+col+'">'+g+'</td>';
-    rh+='<td>L'+r2.q.acc+'</td>';
-    rh+='<td style="color:'+(r2.wood_miss?'#ff6b6b':'#2ecc71')+'">'+(r2.wood_miss?'⚠️ −'+fM(r2.wood_miss):'✅ '+fM(r2.wood_need))+'</td>';
-    rh+='<td style="color:'+(r2.iron_miss?'#ff6b6b':'#2ecc71')+'">'+(r2.iron_miss?'⚠️ −'+fM(r2.iron_miss):'✅ '+fM(r2.iron_need))+'</td>';
-    rh+='<td style="color:'+(r2.stone_miss?'#ff6b6b':'#2ecc71')+'">'+(r2.stone_miss?'⚠️ −'+fM(r2.stone_miss):'✅ '+fM(r2.stone_need))+'</td>';
-    rh+='</tr>';
-  }
-  rh+='</table>';
-  rh+='<p class="note" style="margin-top:10px">⚠️ I valori RSS sono stime — compila il foglio Dati RSS nel file Excel per valori precisi edificio per edificio.</p>';
-  document.getElementById('sum-rss').innerHTML=rh;
 }
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // RENDER NEGOZI
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 function renderShops(){
   var defs=[
-    {g:'G5',prev:'G4',vpr:50.1, wc:75,  dc:1.95,
-     rows:[
-       {ico:'🐺',nm:'Lupo',  n:150,vp:0.310,tot:46.5,  c:0.5,ctot:75},
-       {ico:'🐉',nm:'Drago', n:3,  vp:1.2,  tot:3.6,   c:0.65,ctot:1.95},
-       {ico:'🌲',nm:'Foresta 1',n:2,  vp:1.6,tot:3.2, c:1.0, ctot:2.0, opt:true},
-       {ico:'🌲',nm:'Foresta 2',n:150,vp:0.186,tot:27.9,c:0.5,ctot:75, opt:true}
-     ]},
-    {g:'G6',prev:'G5',vpr:571, wc:95, dc:1.5,
-     rows:[
-       {ico:'🐺',nm:'Lupo',  n:190,vp:2.8,  tot:532,   c:0.5, ctot:95},
-       {ico:'🐉',nm:'Drago', n:3,  vp:13,   tot:39,    c:0.5, ctot:1.5},
-       {ico:'🌲',nm:'Foresta 1',n:190,vp:1.68,tot:319.2,c:0.65,ctot:123.5,opt:true},
-       {ico:'🌲',nm:'Foresta 2',n:3,  vp:11.7,tot:35.1, c:1.0, ctot:3.0, opt:true}
-     ]},
-    {g:'G7',prev:'G6',vpr:3474, wc:255, dc:2.6,
-     rows:[
-       {ico:'🐺',nm:'Lupo',  n:510,vp:6.6,  tot:3366,  c:0.5, ctot:255},
-       {ico:'🐉',nm:'Drago', n:4,  vp:27,   tot:108,   c:0.65,ctot:2.6},
-       {ico:'🌲',nm:'Foresta 1',n:8,  vp:24.3,tot:194.4,c:0.65,ctot:5.2,opt:true},
-       {ico:'🌲',nm:'Foresta 2',n:510,vp:3.96,tot:2020, c:0.65,ctot:331.5,opt:true}
-     ]},
-    {g:'G8',prev:'G7',vpr:3474, wc:255, dc:2.6,
-     note:'Per sbloccare G8 si usa lo stesso negozio G7. Nessuna Foresta disponibile.',
-     rows:[
-       {ico:'🐺',nm:'Lupo',  n:510,vp:6.6,  tot:3366,  c:0.5, ctot:255},
-       {ico:'🐉',nm:'Drago', n:4,  vp:27,   tot:108,   c:0.65,ctot:2.6}
-     ]}
+    {g:'G5',neg:'G4',vpr:4.66, wc:30, dc:1.3,
+     rows:[{ico:'🐺',nm:'Lupo',  n:60, vp:0.067,tot:4.02, cpk:0.5, ctot:30},
+           {ico:'🐉',nm:'Drago', n:2,  vp:0.320,tot:0.64, cpk:0.65,ctot:1.3},
+           {ico:'🌲',nm:'Foresta 1',n:2,  vp:1.6,  tot:3.2,  cpk:1.0, ctot:2.0, fore:true},
+           {ico:'🌲',nm:'Foresta 2',n:60, vp:0.0402,tot:2.41,cpk:0.5, ctot:30,  fore:true}]},
+    {g:'G6',neg:'G5',vpr:50.1, wc:75, dc:1.5,
+     rows:[{ico:'🐺',nm:'Lupo',  n:150,vp:0.310,tot:46.5, cpk:0.5, ctot:75},
+           {ico:'🐉',nm:'Drago', n:3,  vp:1.2,  tot:3.6,  cpk:0.5, ctot:1.5},
+           {ico:'🌲',nm:'Foresta 1',n:2,  vp:1.6,  tot:3.2,  cpk:1.0, ctot:2.0, fore:true},
+           {ico:'🌲',nm:'Foresta 2',n:150,vp:0.186,tot:27.9, cpk:0.5, ctot:75,  fore:true}]},
+    {g:'G7',neg:'G6',vpr:571, wc:95, dc:1.5,
+     rows:[{ico:'🐺',nm:'Lupo',  n:190,vp:2.8,  tot:532,  cpk:0.5, ctot:95},
+           {ico:'🐉',nm:'Drago', n:3,  vp:13,   tot:39,   cpk:0.5, ctot:1.5},
+           {ico:'🌲',nm:'Foresta 1',n:190,vp:1.68, tot:319.2,cpk:0.65,ctot:123.5,fore:true},
+           {ico:'🌲',nm:'Foresta 2',n:3,  vp:11.7, tot:35.1, cpk:1.0, ctot:3.0, fore:true}]},
+    {g:'G8',neg:'G7',vpr:3474,wc:255,dc:2.6,
+     note:'Per sbloccare G8 si usa lo stesso negozio G7. La Foresta non è disponibile a G8.',
+     rows:[{ico:'🐺',nm:'Lupo',  n:510,vp:6.6,  tot:3366, cpk:0.5, ctot:255},
+           {ico:'🐉',nm:'Drago', n:4,  vp:27,   tot:108,  cpk:0.65,ctot:2.6}]}
   ];
   var h='';
   for(var i=0;i<defs.length;i++){
     var s=defs[i],col=GCOL[s.g];
     h+='<div style="margin-bottom:22px">';
-    h+='<div style="font-size:14px;font-weight:700;color:'+col+';padding:8px 0 6px;border-bottom:1px solid #2a2d3a;margin-bottom:4px">';
-    h+='Sbloccare '+s.g+' — Negozio '+s.prev;
-    h+=' <span style="font-size:12px;color:#555;font-weight:400">— max '+fV(s.vpr)+' VP per Ragnarök (Lupo+Drago)</span></div>';
-    if(s.note) h+='<p class="note" style="margin-bottom:6px">ℹ️ '+s.note+'</p>';
-    h+='<table class="sreftbl"><tr><th>Negozio</th><th>Pack</th><th>VP/pack</th><th>VP totali</th><th>Costo/pack</th><th>Costo totale</th><th></th></tr>';
+    h+='<div style="font-size:14px;font-weight:700;color:'+col+';padding:8px 0 6px;border-bottom:1px solid #2a2d3a;margin-bottom:6px">Sbloccare '+s.g+' — Negozio G'+s.neg;
+    h+=' <span style="font-size:12px;color:#555;font-weight:400">max '+fV(s.vpr)+' VP per Ragnarök (Lupo+Drago)</span></div>';
+    if(s.note)h+='<p class="note" style="margin-bottom:8px">ℹ️ '+s.note+'</p>';
+    h+='<table class="reftbl"><tr><th>Negozio</th><th>Pack max</th><th>VP/pack</th><th>VP totali</th><th>Costo/pack</th><th>Costo totale</th></tr>';
     for(var j=0;j<s.rows.length;j++){
-      var row=s.rows[j];
-      h+='<tr>';
-      h+='<td>'+row.ico+' '+row.nm+'</td>';
-      h+='<td><strong>'+row.n+'</strong></td>';
-      h+='<td>'+fV(row.vp)+'</td>';
-      h+='<td><strong>'+fV(row.tot)+'</strong></td>';
-      h+='<td>'+fM(row.c)+'</td>';
-      h+='<td><strong>'+fM(row.ctot)+'</strong></td>';
-      h+='<td>'+(row.opt?'<span style="font-size:10px;color:#22c55e">🌲 Torneo Foresta</span>':'')+'</td>';
-      h+='</tr>';
+      var rw=s.rows[j];
+      h+='<tr'+(rw.fore?' style="color:#22c55e"':'')+'>';
+      h+='<td>'+rw.ico+' '+rw.nm+(rw.fore?' <span style="font-size:10px;color:#555">(Torneo Foresta)</span>':'')+'</td>';
+      h+='<td><strong>'+rw.n+'</strong></td><td>'+fV(rw.vp)+'</td>';
+      h+='<td><strong>'+fV(rw.tot)+'</strong></td>';
+      h+='<td>'+fM(rw.cpk)+'</td><td><strong>'+fM(rw.ctot)+'</strong></td></tr>';
     }
-    // Totale riga
-    h+='<tr style="background:rgba(255,255,255,.03)">';
-    h+='<td colspan="3" style="color:#555;font-size:11px">Totale per Ragnarök (solo Lupo+Drago)</td>';
-    h+='<td><strong style="color:#f5a623">'+fV(s.vpr)+'</strong></td>';
-    h+='<td></td><td><strong>'+fM(s.wc+s.dc)+'</strong></td><td></td>';
-    h+='</tr>';
+    h+='<tr style="background:rgba(255,200,0,.06)"><td colspan="3" style="color:#f5a623;font-size:11px">Totale per Ragnarök (Lupo+Drago)</td>';
+    h+='<td><strong style="color:#f5a623">'+fV(s.vpr)+'</strong></td><td></td><td><strong>'+fM(s.wc+s.dc)+'</strong></td></tr>';
     h+='</table></div>';
   }
   document.getElementById('shops-content').innerHTML=h;
 }
 
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 // RENDER SIMULATORE
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
 function renderSim(){
   var i=gi();
-  var wolf=i.wolf,dragon=i.dragon,forest=i.forest;
-  var grades=['G5','G6','G7','G8'];
+  var wolf=i.wolf, dragon=i.dragon, forest=i.forest;
+  var gds=['G5','G6','G7','G8'];
   var h='';
-  for(var idx=0;idx<grades.length;idx++){
-    var g=grades[idx];
-    var sh=SHOPS[g];
-    var col=GCOL[g];
-    var sp=simPacks[g];
-    var vp_w=(sp.w||0)*sh.w.vp;
-    var vp_d=(sp.d||0)*sh.d.vp;
-    var vp_f1=sh.f1?(sp.f1||0)*sh.f1.vp:0;
-    var vp_f2=sh.f2?(sp.f2||0)*sh.f2.vp:0;
+  for(var idx=0;idx<gds.length;idx++){
+    var g=gds[idx], sh=SHOPS[g], col=GCOL[g], sp=simPacks[g];
+    var vp_w=(sp.w||0)*sh.w.vp, vp_d=(sp.d||0)*sh.d.vp;
+    var vp_f1=sh.f1?(sp.f1||0)*sh.f1.vp:0, vp_f2=sh.f2?(sp.f2||0)*sh.f2.vp:0;
     var vp_tot=vp_w+vp_d+vp_f1+vp_f2;
-    var cw=(sp.w||0)*sh.w.c;
-    var cd=(sp.d||0)*sh.d.c;
-    var cf1=sh.f1?(sp.f1||0)*sh.f1.c:0;
-    var cf2=sh.f2?(sp.f2||0)*sh.f2.c:0;
-    var wolf_after=Math.max(wolf-cw,0);
-    var drag_after=Math.max(dragon-cd,0);
-    var fore_after=Math.max(forest-cf1-cf2,0);
+    var cw=(sp.w||0)*sh.w.cpk, cd=(sp.d||0)*sh.d.cpk;
+    var cf1=sh.f1?(sp.f1||0)*sh.f1.cpk:0, cf2=sh.f2?(sp.f2||0)*sh.f2.cpk:0;
+    var wa=wolf, da=dragon, fa=forest;
+    var wo=Math.max(wolf-cw,0), doo=Math.max(dragon-cd,0), fo=Math.max(forest-cf1-cf2,0);
 
     h+='<div class="gb" style="margin-bottom:12px">';
     h+='<div class="gh" style="background:'+col+'20;border-left:4px solid '+col+';padding:10px 14px">';
-    h+='<div><div class="gt" style="color:'+col+';font-size:14px">'+g+' — Negozio '+sh.prev+'</div>';
-    h+='<div class="gsub">max '+fV(sh.vpr)+' VP per Ragnarök (Lupo+Drago)</div></div>';
+    h+='<div><div class="gt" style="color:'+col+';font-size:14px">'+g+' — Negozio G'+(parseInt(g.replace('G',''))-1)+'</div>';
+    h+='<div class="gsub">max '+fV(sh.vpr)+' VP per Ragnarök</div></div>';
     h+='<div style="background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center">';
     h+='<div style="font-size:20px;font-weight:700;color:'+col+'">'+fV(vp_tot)+'</div>';
-    h+='<div style="font-size:10px;color:#555">VP scelti</div></div></div>';
+    h+='<div style="font-size:10px;color:#555">VP acquistati</div></div></div>';
     h+='<div class="gbody"><div class="row2">';
 
     // Pack inputs
-    h+='<div class="sim-card">';
+    h+='<div style="background:#22263a;border-radius:8px;padding:12px">';
     h+='<div style="font-size:12px;font-weight:700;color:'+col+';margin-bottom:10px">Pack da comprare</div>';
-    var pack_defs=[
-      {key:'w', ico:'🐺', nm:'Lupo', max:sh.w.n, vp:sh.w.vp, c:sh.w.c},
-      {key:'d', ico:'🐉', nm:'Drago', max:sh.d.n, vp:sh.d.vp, c:sh.d.c}
-    ];
-    if(sh.f1) pack_defs.push({key:'f1',ico:'🌲',nm:'Foresta 1',max:sh.f1.n,vp:sh.f1.vp,c:sh.f1.c,fore:true});
-    if(sh.f2) pack_defs.push({key:'f2',ico:'🌲',nm:'Foresta 2',max:sh.f2.n,vp:sh.f2.vp,c:sh.f2.c,fore:true});
-    for(var pi=0;pi<pack_defs.length;pi++){
-      var pd=pack_defs[pi];
-      var nval=sp[pd.key]||0;
-      h+='<div class="sim-row">';
-      h+='<span class="sim-lbl">'+pd.ico+' '+pd.nm+'</span>';
-      h+='<input class="sim-inp" type="number" min="0" max="'+pd.max+'" value="'+nval+'" oninput="setPack(\''+g+'\',\''+pd.key+'\',this.value)">';
-      h+='<span class="sim-max">max '+pd.max+'</span>';
-      h+='</div>';
-      h+='<div style="font-size:10px;color:#555;margin:-2px 0 6px 0">→ '+fV(nval*pd.vp)+' VP · '+fM(nval*pd.c)+(pd.fore?' (Torneo Foresta)':'')+'</div>';
+    var pdefs=[{key:'w',ico:'🐺',nm:'Lupo',   max:sh.w.n, vp:sh.w.vp, c:sh.w.cpk},
+               {key:'d',ico:'🐉',nm:'Drago',  max:sh.d.n, vp:sh.d.vp, c:sh.d.cpk}];
+    if(sh.f1)pdefs.push({key:'f1',ico:'🌲',nm:'Foresta 1',max:sh.f1.n,vp:sh.f1.vp,c:sh.f1.cpk,fore:true});
+    if(sh.f2)pdefs.push({key:'f2',ico:'🌲',nm:'Foresta 2',max:sh.f2.n,vp:sh.f2.vp,c:sh.f2.cpk,fore:true});
+    for(var pi=0;pi<pdefs.length;pi++){
+      var pd=pdefs[pi], nv=sp[pd.key]||0;
+      h+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">';
+      h+='<span style="flex:1;font-size:12px;color:'+(pd.fore?'#22c55e':'#8b8fa8')+'">'+pd.ico+' '+pd.nm+'</span>';
+      h+='<input class="sim-inp" type="number" min="0" max="'+pd.max+'" value="'+nv+'" oninput="setPack(\''+g+'\',\''+pd.key+'\',this.value)">';
+      h+='<span style="font-size:10px;color:#444">max '+pd.max+'</span></div>';
+      h+='<div style="font-size:10px;color:#555;margin:-2px 0 8px 0">→ '+fV(nv*pd.vp)+' VP &nbsp;·&nbsp; costo '+fM(nv*pd.c)+(pd.fore?' (Foresta)':'')+'</div>';
     }
     h+='</div>';
 
-    // Saldo monete
-    h+='<div class="sim-card">';
+    // Saldo
+    h+='<div style="background:#22263a;border-radius:8px;padding:12px">';
     h+='<div style="font-size:12px;font-weight:700;color:'+col+';margin-bottom:10px">Saldo monete</div>';
-    h+='<div class="sim-coins">';
-    h+='<div class="scrow"><span style="color:#3b82f6">🐺 Lupo</span><span>'+fM(wolf)+'</span></div>';
-    h+='<div class="scrow"><span class="mutec">spesi</span><span class="warnc">−'+fM(cw)+'</span></div>';
-    h+='<div class="scrow" style="font-weight:700"><span>rimangono</span><span class="'+(wolf>=cw?'okc':'warnc')+'">'+fM(wolf_after)+'</span></div>';
-    h+='<div style="height:6px"></div>';
-    h+='<div class="scrow"><span style="color:#ef4444">🐉 Drago</span><span>'+fM(dragon)+'</span></div>';
-    h+='<div class="scrow"><span class="mutec">spesi</span><span class="warnc">−'+fM(cd)+'</span></div>';
-    h+='<div class="scrow" style="font-weight:700"><span>rimangono</span><span class="'+(dragon>=cd?'okc':'warnc')+'">'+fM(drag_after)+'</span></div>';
-    if(cf1>0||cf2>0){
-      h+='<div style="height:6px"></div>';
-      h+='<div class="scrow"><span style="color:#22c55e">🌲 Foresta</span><span>'+fM(forest)+'</span></div>';
-      h+='<div class="scrow"><span class="mutec">spesi</span><span class="warnc">−'+fM(cf1+cf2)+'</span></div>';
-      h+='<div class="scrow" style="font-weight:700"><span>rimangono</span><span class="'+(forest>=cf1+cf2?'okc':'warnc')+'">'+fM(fore_after)+'</span></div>';
+    function simCoinRow(ico,nm,av,cost,after,col2){
+      var s='<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid #1e2030">';
+      s+='<span style="color:'+col2+'">'+ico+' '+nm+'</span><span>'+fM(av)+'</span></div>';
+      s+='<div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid #1e2030">';
+      s+='<span class="mutec">spesi</span><span class="warnc">−'+fM(cost)+'</span></div>';
+      s+='<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid #2a2d3a;font-weight:700;margin-bottom:6px">';
+      s+='<span>rimangono</span><span style="color:'+(av>=cost?'#2ecc71':'#ff6b6b')+'">'+fM(Math.max(after,0))+'</span></div>';
+      return s;
     }
-    h+='</div></div></div></div></div>';
+    h+=simCoinRow('🐺','Lupo',wa,cw,wo,'#3b82f6');
+    h+=simCoinRow('🐉','Drago',da,cd,doo,'#ef4444');
+    if(cf1>0||cf2>0)h+=simCoinRow('🌲','Foresta',fa,cf1+cf2,fo,'#22c55e');
+    h+='</div></div></div></div>';
 
-    wolf=wolf_after;
-    dragon=drag_after;
-    forest=fore_after;
+    wolf=wo; dragon=doo; forest=fo;
   }
   document.getElementById('sim-content').innerHTML=h;
 }
 
-function setPack(g,type,val){
-  var sh=SHOPS[g],key_map={w:sh.w,d:sh.d,f1:sh.f1,f2:sh.f2};
-  var shop=key_map[type];
-  var max_val=shop?shop.n:0;
-  simPacks[g][type]=Math.min(Math.max(parseInt(val)||0,0),max_val);
+function setPack(g,k,v){
+  var sh=SHOPS[g], map={w:sh.w,d:sh.d,f1:sh.f1,f2:sh.f2};
+  var mx=map[k]?map[k].n:0;
+  simPacks[g][k]=Math.min(Math.max(parseInt(v)||0,0),mx);
   renderSim();
 }
 
-// ═══════════════════════════════════════════
-// COMPUTE PRINCIPALE
-// ═══════════════════════════════════════════
+// ═══════════════════════════════════════════════════════
+// COMPUTE
+// ═══════════════════════════════════════════════════════
 function compute(){
-  var d=calcAll();
-  var grades=['G5','G6','G7','G8'];
-  for(var j=0;j<grades.length;j++){
-    var g=grades[j];
-    var el=document.getElementById('c-'+g.toLowerCase());
-    if(el) el.innerHTML=renderGrade(g,d.res[g],d.i);
+  var d=calcAll(), i=d.i, res=d.res;
+
+  // Pagine grado
+  var gds=['G5','G6','G7','G8'];
+  for(var j=0;j<gds.length;j++){
+    var el=document.getElementById('c-'+gds[j].toLowerCase());
+    if(el)el.innerHTML=renderGrade(gds[j],res[gds[j]],i);
   }
-  renderSummary(d.i,d.res);
+
+  renderSummary(i,res);
   renderShops();
   renderSim();
+
+  // Quick status nella pagina dati
+  var grades=['G3','G4','G5','G6','G7','G8'];
+  var qs='';
+  for(var j=0;j<grades.length;j++){
+    var g=grades[j], r=res[g], col=GCOL[g], gn=parseInt(g.replace('G',''));
+    var done=i.guard>=gn, vp_ok=r.vp_tot>=r.q.vp;
+    var allOk=vp_ok&&!r.am&&!r.hm&&!r.pm&&!r.gm;
+    qs+='<div class="irow"><span class="ilb" style="color:'+col+';font-weight:700">'+g+'</span>';
+    qs+='<div style="text-align:right"><div class="iv '+(done||allOk?'okc':'vp_ok?\'infoc\':\'warnc\'')+'">';
+    qs+=done?'✅ Completato':allOk?'✅ Pronto':vp_ok?'⚡ VP ok, altri req.':'⚠️ Incompleto';
+    qs+='</div><div class="idet">';
+    qs+=done?'Grado raggiunto':!vp_ok?'VP: '+fV(r.vp_tot)+' / '+fV(r.q.vp)+(r.rn>0?' → '+r.rn+' Ragnarök':' → combatti'):r.am>0?'Acc: L'+i.acc+'→L'+r.q.acc:r.hm>0?'Eroe: Lv'+i.hero+'→Lv'+r.q.hero:r.pm>0?'Progetti: '+r.pm.toLocaleString()+' mancanti':'Tutti i requisiti ok';
+    qs+='</div></div></div>';
+  }
+  document.getElementById('quick-status').innerHTML=qs;
 }
 
 function goPage(id,el){
-  var pages=document.querySelectorAll('.pg');
-  for(var j=0;j<pages.length;j++) pages[j].classList.remove('on');
-  var tabs=document.querySelectorAll('.tab');
-  for(var j=0;j<tabs.length;j++) tabs[j].classList.remove('on');
+  document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
   document.getElementById('page-'+id).classList.add('on');
   el.classList.add('on');
 }
