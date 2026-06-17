@@ -246,7 +246,7 @@ var RES = {
   G8:[16.9,28,47,78,130,220,370,620,1000,1700]                     // Training cost VI
 };
 var GV={G5:0.9,G6:9,G7:90,G8:900};  // B per guardia
-var GN={G5:4,G6:4,G7:4,G8:1};       // N guardie obiettivo
+var GN={G5:4,G6:4,G7:4,G8:1};       // N  guards obiettivo
 
 // Requirements per grado
 var REQ={
@@ -362,7 +362,7 @@ function renderGrade(g,r,i){
   var h='<div class="gb"><div class="gh" style="background:'+col+'20;border-left:4px solid '+col+'">';
   h+='<div><div class="gt" style="color:'+col+'">Grade '+g+'</div>';
   h+='<div class="gsub">You are at G'+(gn-1)+' — complete research and unlock guards to advance to '+g+'</div></div>';
-  h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completato':allOk?'✅ Ready':'⚠️ Incompleto')+'</span>';
+  h+='<span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completed':allOk?'✅ Ready':'⚠️ Incomplete')+'</span>';
   h+='</div><div class="gbody">';
 
   // Research progress (solo visualizzazione — si edit in "Dati")
