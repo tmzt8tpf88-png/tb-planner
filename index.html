@@ -179,32 +179,35 @@ var GR = {
 // I pack foresta sono separati (Torneo Foresta, non Ragnarök)
 var SHOPS = {
   G5:{
-    w:{n:150,vp:0.310,c:0.5},   // lupo: 150pk × 310M VP, 500K/pk
-    d:{n:3,  vp:1.2,  c:0.65},  // drago: 3pk × 1.2B VP, 650K/pk
-    f1:{n:2,   vp:1.6,  c:1.0}, // foresta1: 2pk × 1.6B, 1M/pk
-    f2:{n:150, vp:0.186,c:0.5}, // foresta2: 150pk × 186M, 500K/pk
-    prev:'G4', wc:75, dc:1.95, vpr:50.1
+    // Negozio G4 — per sbloccare G5
+    w:{n:60,  vp:0.067,c:0.5},  // lupo:   60pk × 67M VP, 500K/pk
+    d:{n:2,   vp:0.320,c:0.65}, // drago:   2pk × 320M VP, 650K/pk
+    f1:{n:2,  vp:1.6,  c:1.0},  // foresta1: 2pk × 1.6B, 1M/pk
+    f2:{n:150,vp:0.186,c:0.5},  // foresta2: 150pk × 186M, 500K/pk
+    prev:'G4', wc:30, dc:1.3, vpr:4.66
   },
   G6:{
-    w:{n:190,vp:2.8,  c:0.5},
-    d:{n:3,  vp:13,   c:0.5},   // drago G6: 500K/pk
-    f1:{n:190,vp:1.68,c:0.65},
-    f2:{n:3,  vp:11.7,c:1.0},
-    prev:'G5', wc:95, dc:1.5, vpr:571
+    // Negozio G5 — per sbloccare G6
+    w:{n:150, vp:0.310,c:0.5},  // lupo:  150pk × 310M VP, 500K/pk
+    d:{n:3,   vp:1.2,  c:0.5},  // drago:   3pk × 1.2B VP, 500K/pk ✅
+    f1:{n:190,vp:1.68, c:0.65}, // foresta1
+    f2:{n:3,  vp:11.7, c:1.0},  // foresta2
+    prev:'G5', wc:75, dc:1.5, vpr:50.1  // dc: 3×0.5=1.5M ✅
   },
   G7:{
-    w:{n:510,vp:6.6,  c:0.5},
-    d:{n:4,  vp:27,   c:0.65},
-    f1:{n:8,  vp:24.3,c:0.65},
-    f2:{n:510,vp:3.96,c:0.65},
-    prev:'G6', wc:255, dc:2.6, vpr:3474
+    // Negozio G6 — per sbloccare G7
+    w:{n:190, vp:2.8,  c:0.5},  // lupo:  190pk × 2.8B VP, 500K/pk
+    d:{n:3,   vp:13,   c:0.5},  // drago:   3pk × 13B VP, 500K/pk
+    f1:{n:190,vp:1.68, c:0.65}, // foresta1
+    f2:{n:3,  vp:11.7, c:1.0},  // foresta2
+    prev:'G6', wc:95, dc:1.5, vpr:571
   },
   G8:{
-    // Per sbloccare G8 si usa il negozio G7 (stesso di G7)
-    w:{n:510,vp:6.6,  c:0.5},
-    d:{n:4,  vp:27,   c:0.65},
+    // Negozio G7 — per sbloccare G8 (stesso negozio G7)
+    w:{n:510, vp:6.6,  c:0.5},  // lupo:  510pk × 6.6B VP, 500K/pk
+    d:{n:4,   vp:27,   c:0.65}, // drago:   4pk × 27B VP, 650K/pk ✅
     // Nessuna foresta disponibile
-    prev:'G7', wc:255, dc:2.6, vpr:3474
+    prev:'G7', wc:255, dc:2.6, vpr:3474  // dc: 4×0.65=2.6M ✅
   }
 };
 
