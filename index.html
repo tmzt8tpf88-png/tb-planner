@@ -213,20 +213,25 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 // Ogni grado ha 2 ricerche identiche: Training cost + March speed
 // VP per livello (in B), 10 livelli ciascuna
 
+// VP per ricerca per livello lv1-10 (in B)
+// Per sbloccare Gn usi le ricerche di G(n-1): Training cost + March speed (stessi VP)
+// L'utente ha 2 slider separati: Training cost (lv 0-10) e March speed (lv 0-10)
+// VP rimanenti = somma(lv_t..10) + somma(lv_m..10) + guardie rimanenti
+//
+// G5: Training cost III  lv1-10 (da screen4)
+// G6: Training cost IV   lv1-10 (da screen3/2)
+// G7: Training cost V    lv1-10 (da screen2/1)
+// G8: Training cost VI   lv1-10 (da screen1)
 var RES_VP = {
-  // Ricerche necessarie per sbloccare G5 (Training cost IV + March speed IV)
-  G5: [0.12,0.23,0.35,0.58,1,2.1,3.5,5.2,8.1,12],  // B per livello lv1-10
-  // Ricerche necessarie per sbloccare G6 (Training cost V + March speed V)
-  G6: [1.7,3.5,5.2,8.6,16,31,52,78,120,170],
-  // Ricerche necessarie per sbloccare G7 (Training cost VI + March speed VI)
-  G7: [16.9,28,47,78,130,220,370,620,1000,1700],
-  // Ricerche per G8 = stesso livello VII (stesso schema di G7)
-  G8: [16.9,28,47,78,130,220,370,620,1000,1700]
+  G5: [0.0096,0.019,0.029,0.048,0.087,0.17,0.29,0.43,0.67,0.96],  // B - Training cost III
+  G6: [0.12,0.23,0.35,0.58,1,2.1,3.5,5.2,8.1,12],                  // B - Training cost IV
+  G7: [1.7,3.5,5.2,8.6,16,31,52,78,120,170],                        // B - Training cost V
+  G8: [16.9,28,47,78,130,220,370,620,1000,1700]                      // B - Training cost VI
 };
-// Costo sblocco 1 guardia per grado (B)
+// Costo sblocco 1 guardia (B) — dall'header negli screenshot
 var GUARD_VP = {G5:0.9, G6:9, G7:90, G8:900};
-// N. guardie Guardsman per grado
-var GUARD_N = 4;
+// N. guardie obiettivo (G8 = 1 sola guardia per i premi torneo)
+var GUARD_N = {G5:4, G6:4, G7:4, G8:1};
 
 // Funzione: VP totali rimanenti per un grado
 // lv_t = livello raggiunto Training cost (0-10)
@@ -234,10 +239,12 @@ var GUARD_N = 4;
 // guards_done = guardie già sbloccate (0-4)
 function vpRimanenti(g, lv_t, lv_m, guards_done){
   var rv = RES_VP[g]||[];
+  // Training cost: somma livelli da lv_t+1 a 10
   var vp_t = 0; for(var i=lv_t;i<rv.length;i++) vp_t+=rv[i];
+  // March speed: somma livelli da lv_m+1 a 10 (stessi valori di Training)
   var vp_m = 0; for(var i=lv_m;i<rv.length;i++) vp_m+=rv[i];
-  var guard_max = (g==='G8')?1:GUARD_N;
-  var vp_g = Math.max(0, guard_max - guards_done) * GUARD_VP[g];
+  // Guardie: costo × numero rimanenti
+  var vp_g = Math.max(0, GUARD_N[g] - guards_done) * GUARD_VP[g];
   return {research_t:vp_t, research_m:vp_m, guards:vp_g, total:vp_t+vp_m+vp_g};
 }
 
@@ -245,7 +252,7 @@ function vpRimanenti(g, lv_t, lv_m, guards_done){
 function vpTotale(g){
   var rv = RES_VP[g]||[];
   var tot = 0; for(var i=0;i<rv.length;i++) tot+=rv[i];
-  return tot*2 + GUARD_N*GUARD_VP[g];
+  return tot*2 + GUARD_N[g]*GUARD_VP[g];
 }
 
 // Negozi Ragnarök
