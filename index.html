@@ -471,21 +471,28 @@ function renderGrade(g,r,i){
   }
 
   // Risorse edifici — sempre visibili se non completato
-  if(!done && r.acc_req > i.acc){
+  if(!done && r.acc_req > 0){
     h+='<div class="slb">🪵 Risorse edifici (Legno / Ferro / Pietra)</div>';
     h+='<div class="ibox">';
-    var rn=r.rss_need; // in M
-    h+='<div class="irow"><span class="ilb">📊 Accademia</span><span class="iv mutec">L'+i.acc+' → L'+r.acc_req+' (servono '+fM(rn)+')</span></div>';
-    function rssRow(ico,nm,have,ok){
-      var miss=Math.max(rn-have,0);
-      return '<div class="irow"><span class="ilb">'+ico+' '+nm+'</span><div style="text-align:right">'+
-        '<div class="iv" style="color:'+(ok?'#2ecc71':'#ff6b6b')+'">'+fM(have)+'</div>'+
-        '<div class="idet">'+(ok?'✅ sufficienti':'⚠️ mancano '+fM(miss))+'</div>'+
-        '</div></div>';
+    var acc_ok = i.acc >= r.acc_req;
+    var rn = r.rss_need; // in M — è 0 se acc già raggiunta
+    // Se accademia già ok, RSS sono già state usate → mostra ✅
+    if(acc_ok){
+      h+='<div class="irow"><span class="ilb">📊 Accademia L'+r.acc_req+'</span><span class="iv okc">✅ Raggiunta (sei a L'+i.acc+')</span></div>';
+      h+='<div class="irow"><span class="ilb">🪵 Legno / ⚙️ Ferro / 🪨 Pietra</span><span class="iv okc">✅ Già utilizzate</span></div>';
+    } else {
+      h+='<div class="irow"><span class="ilb">📊 Accademia</span><span class="iv mutec">L'+i.acc+' → L'+r.acc_req+' (servono '+fM(rn)+')</span></div>';
+      function rssRow(ico,nm,have,ok){
+        var miss=Math.max(rn-have,0);
+        return '<div class="irow"><span class="ilb">'+ico+' '+nm+'</span><div style="text-align:right">'+
+          '<div class="iv" style="color:'+(ok?'#2ecc71':'#ff6b6b')+'">'+fM(have)+'</div>'+
+          '<div class="idet">'+(ok?'✅ sufficienti':'⚠️ mancano '+fM(miss))+'</div>'+
+          '</div></div>';
+      }
+      h+=rssRow('🪵','Legno',i.wood,r.rss_wood_ok);
+      h+=rssRow('⚙️','Ferro',i.iron,r.rss_iron_ok);
+      h+=rssRow('🪨','Pietra',i.stone,r.rss_stone_ok);
     }
-    h+=rssRow('🪵','Legno',i.wood,r.rss_wood_ok);
-    h+=rssRow('⚙️','Ferro',i.iron,r.rss_iron_ok);
-    h+=rssRow('🪨','Pietra',i.stone,r.rss_stone_ok);
     h+='</div>';
   }
 
