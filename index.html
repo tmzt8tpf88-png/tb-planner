@@ -397,11 +397,28 @@ function renderGrade(g,r,i){
     // Grado da completare
     h+='<div class="slb">Ricerche <span style="font-weight:400;color:#555">(modifica in ⚙️ Dati)</span></div>';
     h+='<div class="ibox">';
+    // Training cost
     h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv '+(r.lv_t===10?'okc':'infoc')+'">'+r.lv_t+'/10'+(r.lv_t===10?' ✅':'')+'</span></div>';
+    if(r.lv_t<10) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti training</span><span class="iv" style="color:#f5a623">'+fV(r.rem.t)+'</span></div>';
+    // March speed
     h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv '+(r.lv_m===10?'okc':'infoc')+'">'+r.lv_m+'/10'+(r.lv_m===10?' ✅':'')+'</span></div>';
+    if(r.lv_m<10) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti march</span><span class="iv" style="color:#f5a623">'+fV(r.rem.m)+'</span></div>';
+    // Guardie
     h+='<div class="irow"><span class="ilb">🛡️ Guardie sbloccate</span><span class="iv '+(r.gd>=GN[g]?'okc':'infoc')+'">'+r.gd+'/'+GN[g]+(r.gd>=GN[g]?' ✅':'')+'</span></div>';
+    if(r.gd<GN[g]){
+      var gd_miss=GN[g]-r.gd;
+      h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ Guardie da sbloccare</span><span class="iv" style="color:#f5a623">'+gd_miss+'× '+fV(GV[g])+' = '+fV(r.rem.g)+'</span></div>';
+    }
     h+='<div class="div"></div>';
-    h+='<div class="irow"><span class="ilb" style="font-weight:700">⚔️ VP ancora necessari</span><span class="iv" style="color:'+(r.vp_needed<0.001?'#2ecc71':'#ff6b6b')+';font-size:16px">'+fV(r.vp_needed)+'</span></div>';
+    // Totale con breakdown
+    h+='<div class="irow"><span class="ilb" style="font-weight:700">⚔️ VP totali ancora necessari</span><span class="iv" style="color:'+(r.vp_needed<0.001?'#2ecc71':'#ff6b6b')+';font-size:16px">'+fV(r.vp_needed)+'</span></div>';
+    if(r.vp_needed>0){
+      h+='<div style="background:#1a1d27;border-radius:6px;padding:8px 10px;margin-top:6px;font-size:11px">';
+      if(r.rem.t>0) h+='<div style="display:flex;justify-content:space-between;padding:2px 0"><span style="color:#666">📚 Training rimanenti</span><span style="color:#f5a623">'+fV(r.rem.t)+'</span></div>';
+      if(r.rem.m>0) h+='<div style="display:flex;justify-content:space-between;padding:2px 0"><span style="color:#666">⚡ March rimanenti</span><span style="color:#f5a623">'+fV(r.rem.m)+'</span></div>';
+      if(r.rem.g>0) h+='<div style="display:flex;justify-content:space-between;padding:2px 0"><span style="color:#666">🛡️ Guardie ('+( GN[g]-r.gd)+'× '+fV(GV[g])+')</span><span style="color:#f5a623">'+fV(r.rem.g)+'</span></div>';
+      h+='</div>';
+    }
     h+='</div>';
     // Tabella ricerche
     h+='<table class="rtbl"><tr><th>Lv</th><th>Training cost</th><th>March speed</th></tr>';
