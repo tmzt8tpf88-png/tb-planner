@@ -219,6 +219,22 @@ var GV = {G5:0.9, G6:9, G7:90, G8:900};
 // N. guards obiettivo per grado
 var GN = {G5:4, G6:4, G7:4, G8:1};
 
+// RSS cumulativi per livello accademia (in M) — Legno=Ferro=Pietra
+var RSS_CUM = {1:700,2:5900,3:10500,4:22000,5:46000,6:105000,7:200000,8:370000,
+  9:590000,10:960000,11:1600000,12:2450000,13:3400000,14:4900000,15:6600000,
+  16:9000000,17:11900000,18:15600000,19:21400000,20:28200000,21:35500000,
+  22:44000000,23:52500000,24:62000000,25:75000000,26:91000000,27:107000000,
+  28:126000000,29:152000000,30:181000000,31:210000000,32:242000000,33:281000000,
+  34:327000000,35:375000000,36:419000000,37:467000000,38:523000000,39:522000000,
+  40:654000000,41:729000000,42:600000000,43:668000000,44:746000000,45:1125000000};
+
+// Funzione: RSS necessari da livello A a livello B — restituisce in M (milioni)
+function rssNeed(from_lv, to_lv){
+  var a=RSS_CUM[Math.min(from_lv,45)]||0;
+  var b=RSS_CUM[Math.min(to_lv,45)]||0;
+  return Math.max(b-a, 0) / 1000000;  // in M
+}
+
 // Requirements per grado
 var REQ = {
   G5:{acc:25,hero:40, proj:25000, gold:256000},
@@ -287,6 +303,7 @@ function getI(){
     vp:gv('i_vp'), guard:guard, acc:sv('i_acc'), hero:sv('i_hero'),
     proj:sv('i_proj'), gold:sv('i_gold'),
     wolf:gv('i_wolf'), dragon:gv('i_dragon'), forest:gv('i_forest'),
+    wood:gv('i_wood'), iron:gv('i_iron'), stone:gv('i_stone'),
     // Research per G5 (non hanno select — se guard>=5 sono auto-complete)
     g5_t:guard>=5?10:0, g5_m:guard>=5?10:0, g5_g:guard>=5?GN.G5:0,
     // Research per G6 (select g6_t/g6_m/g6_g)
@@ -339,7 +356,12 @@ function calcAll(i){
       am:Math.max((q.acc||0)-i.acc,0), acc_req:q.acc||0,
       hm:Math.max((q.hero||0)-i.hero,0), hero_req:q.hero||0,
       pm:Math.max((q.proj||0)-i.proj,0), proj_req:q.proj||0,
-      gm:Math.max((q.gold||0)-i.gold,0)
+      gm:Math.max((q.gold||0)-i.gold,0),
+      // Building resources: rss_need in M, i.wood/iron/stone in M → confronto diretto
+      rss_need:rssNeed(i.acc, q.acc||i.acc),
+      rss_wood_ok:i.wood>=rssNeed(i.acc,q.acc||i.acc),
+      rss_iron_ok:i.iron>=rssNeed(i.acc,q.acc||i.acc),
+      rss_stone_ok:i.stone>=rssNeed(i.acc,q.acc||i.acc)
     };
     wolf=Math.max(wolf-wc,0);
     dragon=Math.max(dragon-dc,0);
@@ -424,6 +446,25 @@ function renderGrade(g,r,i){
       h+='<div class="ccst" style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+(r.d_ok?'✅ Remaining '+fM(r.doo):'⚠️ Missing '+fM(r.dc-r.da))+'</div></div>';
       h+='</div>';
     }
+  }
+
+  // Building resources — sempre visibili se non completato
+  if(!done && r.rss_need > 0){
+    h+='<div class="slb">🪵 Building resources (Legno / Ferro / Pietra)</div>';
+    h+='<div class="ibox">';
+    var rn=r.rss_need; // in M
+    h+='<div class="irow"><span class="ilb">📊 Academy</span><span class="iv mutec">L'+i.acc+' → L'+r.acc_req+' (needed '+fM(rn)+')</span></div>';
+    function rssRow(ico,nm,have,ok){
+      var miss=Math.max(rn-have,0);
+      return '<div class="irow"><span class="ilb">'+ico+' '+nm+'</span><div style="text-align:right">'+
+        '<div class="iv" style="color:'+(ok?'#2ecc71':'#ff6b6b')+'">'+fM(have)+'</div>'+
+        '<div class="idet">'+(ok?'✅ sufficient':'⚠️ missing '+fM(miss))+'</div>'+
+        '</div></div>';
+    }
+    h+=rssRow('🪵','Legno',i.wood,r.rss_wood_ok);
+    h+=rssRow('⚙️','Ferro',i.iron,r.rss_iron_ok);
+    h+=rssRow('🪨','Pietra',i.stone,r.rss_stone_ok);
+    h+='</div>';
   }
 
   // Requirements — sempre visibili
