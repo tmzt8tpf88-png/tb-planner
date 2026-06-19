@@ -7,9 +7,9 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Arial,sans-serif;font-size:14px;background:#0f1117;color:#e8eaf0;min-height:100vh}
-nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:center;padding:0 10px;position:sticky;top:0;z-index:99;overflow-x:auto}
-.logo{font-size:14px;font-weight:700;color:#f5a623;padding:12px 12px 12px 0;border-right:1px solid #2a2d3a;margin-right:2px;white-space:nowrap}
-.tab{padding:12px 10px;cursor:pointer;color:#8b8fa8;font-size:12px;border-bottom:2px solid transparent;white-space:nowrap;user-select:none}
+nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:center;padding:0 8px;position:sticky;top:0;z-index:99;overflow-x:auto}
+.logo{font-size:14px;font-weight:700;color:#f5a623;padding:12px 10px 12px 0;border-right:1px solid #2a2d3a;margin-right:2px;white-space:nowrap}
+.tab{padding:12px 9px;cursor:pointer;color:#8b8fa8;font-size:12px;border-bottom:2px solid transparent;white-space:nowrap;user-select:none}
 .tab.on{color:#f5a623;border-bottom-color:#f5a623}
 .pg{display:none;padding:14px 12px;max-width:900px;margin:0 auto}
 .pg.on{display:block}
@@ -17,6 +17,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 .ct{font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.8px;margin-bottom:11px}
 .r2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+.r4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px}
 .fg{display:flex;flex-direction:column;gap:4px}
 .fg label{font-size:11px;color:#8b8fa8}
 .fg input,.fg select{background:#22263a;border:1px solid #333;border-radius:6px;color:#e8eaf0;font-size:14px;font-weight:700;padding:8px 9px;outline:none;width:100%}
@@ -35,6 +36,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 .irow:last-child{border-bottom:none}
 .ilb{color:#8b8fa8;font-size:12px;flex:1;padding-top:2px}
 .iv{font-size:13px;font-weight:700;text-align:right;white-space:nowrap}
+.idet{font-size:11px;color:#666;text-align:right;margin-top:2px}
 .pbar{height:5px;background:#1a1d27;border-radius:3px;margin-top:6px;overflow:hidden}
 .pfill{height:100%;border-radius:3px;transition:width .3s}
 .rtbl{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
@@ -61,8 +63,10 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 .div{height:1px;background:#2a2d3a;margin:10px 0}
 .note{font-size:12px;color:#555;font-style:italic;line-height:1.5}
 .okc{color:#2ecc71}.warnc{color:#ff6b6b}.infoc{color:#f5a623}.mutec{color:#666}
-.res-blk{border-radius:8px;padding:12px}
-@media(max-width:580px){.r2,.r3,.ccg{grid-template-columns:1fr}}
+.unit-sel{display:flex;gap:4px;margin-bottom:10px}
+.unit-btn{flex:1;background:#22263a;border:1px solid #333;border-radius:6px;color:#8b8fa8;font-size:12px;font-weight:700;padding:8px;text-align:center;cursor:pointer;user-select:none}
+.unit-btn.on{background:#f5a62322;border-color:#f5a623;color:#f5a623}
+@media(max-width:580px){.r2,.r3,.r4,.ccg{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -70,6 +74,9 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
   <div class="logo">⚔️ TB</div>
   <div class="tab on" onclick="goPage('data',this)">⚙️ Dati</div>
   <div class="tab"    onclick="goPage('summary',this)">📋 Riepilogo</div>
+  <div class="tab"    onclick="goPage('g2',this)">G2</div>
+  <div class="tab"    onclick="goPage('g3',this)">G3</div>
+  <div class="tab"    onclick="goPage('g4',this)">G4</div>
   <div class="tab"    onclick="goPage('g5',this)">G5</div>
   <div class="tab"    onclick="goPage('g6',this)">G6</div>
   <div class="tab"    onclick="goPage('g7',this)">G7</div>
@@ -80,12 +87,23 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 
 <div id="page-data" class="pg on">
   <div class="card">
+    <div class="ct">🔢 Unità di misura preferita</div>
+    <p class="note" style="margin-bottom:10px">Scegli come vuoi vedere i numeri grandi nell'app.</p>
+    <div class="unit-sel">
+      <div class="unit-btn" data-u="auto" onclick="setUnit('auto')">Auto</div>
+      <div class="unit-btn" data-u="K" onclick="setUnit('K')">K</div>
+      <div class="unit-btn" data-u="M" onclick="setUnit('M')">M</div>
+      <div class="unit-btn" data-u="B" onclick="setUnit('B')">B</div>
+      <div class="unit-btn" data-u="T" onclick="setUnit('T')">T</div>
+    </div>
+  </div>
+  <div class="card">
     <div class="ct">Il tuo stato</div>
     <div class="r2">
       <div class="fg"><label>⚔️ VP attuali (B)</label><input type="number" id="i_vp" value="" min="0" step="any" oninput="compute()" onchange="compute()"><div class="hint">VP totali in miliardi</div></div>
-      <div class="fg"><label>🏰 Grado Guardie attuale</label><input type="number" id="i_guard" value="2" min="2" max="8" oninput="compute()"></div>
-      <div class="fg"><label>🏛️ Livello Accademia</label><input type="number" id="i_acc" value="1" min="1" max="45" oninput="compute()"></div>
-      <div class="fg"><label>🦸 Livello Eroe</label><input type="number" id="i_hero" value="1" min="1" oninput="compute()"></div>
+      <div class="fg"><label>🏰 Grado Guardie attuale</label><input type="number" id="i_guard" value="2" min="2" max="8" oninput="compute()" onchange="compute()"></div>
+      <div class="fg"><label>🏛️ Livello Accademia</label><input type="number" id="i_acc" value="1" min="1" max="45" oninput="compute()" onchange="compute()"></div>
+      <div class="fg"><label>🦸 Livello Eroe</label><input type="number" id="i_hero" value="1" min="1" oninput="compute()" onchange="compute()"></div>
       <div class="fg"><label>📜 Progetti</label><input type="number" id="i_proj" value="" min="0" oninput="compute()" onchange="compute()"></div>
       <div class="fg"><label>💰 Oro</label><input type="number" id="i_gold" value="" min="0" oninput="compute()" onchange="compute()"></div>
     </div>
@@ -108,67 +126,8 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
   </div>
   <div class="card">
     <div class="ct">📚 Avanzamento ricerche — il grado successivo al tuo</div>
-    <p class="note" style="margin-bottom:12px">Inserisci a che punto sei con le ricerche per sbloccare il prossimo grado. I gradi già completati vengono saltati automaticamente.</p>
-    <div class="r2">
-      <div class="res-blk" style="border:1px solid #e5393544">
-        <div style="font-size:12px;font-weight:700;color:#e53935;margin-bottom:4px">📋 Per sbloccare G6</div>
-        <div style="font-size:11px;color:#555;margin-bottom:10px">Ricerche Training cost IV + March speed IV</div>
-        <div class="r3">
-          <div class="fg"><label>📚 Training cost</label>
-            <select id="g6_t" onchange="compute()">
-              <option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option>
-            </select></div>
-          <div class="fg"><label>⚡ March speed</label>
-            <select id="g6_m" onchange="compute()">
-              <option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option>
-            </select></div>
-          <div class="fg"><label>🛡️ Guardie (0-4)</label>
-            <select id="g6_g" onchange="compute()">
-              <option value="0">0/4</option><option value="1">1/4</option><option value="2">2/4</option><option value="3">3/4</option><option value="4">4/4 ✅</option>
-            </select></div>
-        </div>
-      </div>
-      <div class="res-blk" style="border:1px solid #c6282844">
-        <div style="font-size:12px;font-weight:700;color:#c62828;margin-bottom:4px">📋 Per sbloccare G7</div>
-        <div style="font-size:11px;color:#555;margin-bottom:10px">Ricerche Training cost V + March speed V</div>
-        <div class="r3">
-          <div class="fg"><label>📚 Training cost</label>
-            <select id="g7_t" onchange="compute()">
-              <option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option>
-            </select></div>
-          <div class="fg"><label>⚡ March speed</label>
-            <select id="g7_m" onchange="compute()">
-              <option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option>
-            </select></div>
-          <div class="fg"><label>🛡️ Guardie (0-4)</label>
-            <select id="g7_g" onchange="compute()">
-              <option value="0">0/4</option><option value="1">1/4</option><option value="2">2/4</option><option value="3">3/4</option><option value="4">4/4 ✅</option>
-            </select></div>
-        </div>
-      </div>
-      <div class="res-blk" style="border:1px solid #7b1fa244">
-        <div style="font-size:12px;font-weight:700;color:#7b1fa2;margin-bottom:4px">📋 Per sbloccare G8</div>
-        <div style="font-size:11px;color:#555;margin-bottom:10px">Ricerche Training cost VI + March speed VI</div>
-        <div class="r3">
-          <div class="fg"><label>📚 Training cost</label>
-            <select id="g8_t" onchange="compute()">
-              <option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option>
-            </select></div>
-          <div class="fg"><label>⚡ March speed</label>
-            <select id="g8_m" onchange="compute()">
-              <option value="0">0/10</option><option value="1">1/10</option><option value="2">2/10</option><option value="3">3/10</option><option value="4">4/10</option><option value="5">5/10</option><option value="6">6/10</option><option value="7">7/10</option><option value="8">8/10</option><option value="9">9/10</option><option value="10">10/10 ✅</option>
-            </select></div>
-          <div class="fg"><label>🛡️ Guardia G8</label>
-            <select id="g8_g" onchange="compute()">
-              <option value="0">0/1</option><option value="1">1/1 ✅</option>
-            </select></div>
-        </div>
-      </div>
-      <div class="res-blk" style="border:1px solid #1565c022;opacity:0.6">
-        <div style="font-size:12px;font-weight:700;color:#1565c0;margin-bottom:4px">🔵 G8 — obiettivo minimo</div>
-        <div style="font-size:11px;color:#555">Usa i dati di "Per sbloccare G8" sopra.<br>Obiettivo: 1 sola guardia G8 per i premi torneo.</div>
-      </div>
-    </div>
+    <p class="note" style="margin-bottom:12px">Inserisci a che punto sei. I gradi già completati vengono saltati automaticamente.</p>
+    <div class="r2" id="research-blocks"></div>
   </div>
   <div class="card" style="border-color:#f5a623">
     <div class="ct" style="color:#f5a623">⚡ Stato rapido</div>
@@ -181,6 +140,9 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
   <div class="card"><div class="ct">Budget monete G5 → G8</div><div id="sum-coins"></div></div>
 </div>
 
+<div id="page-g2" class="pg"><div id="c-g2"></div></div>
+<div id="page-g3" class="pg"><div id="c-g3"></div></div>
+<div id="page-g4" class="pg"><div id="c-g4"></div></div>
 <div id="page-g5" class="pg"><div id="c-g5"></div></div>
 <div id="page-g6" class="pg"><div id="c-g6"></div></div>
 <div id="page-g7" class="pg"><div id="c-g7"></div></div>
@@ -189,7 +151,7 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 <div id="page-shops" class="pg">
   <div class="card">
     <div class="ct">Tabella negozi Ragnarök</div>
-    <p class="note" style="margin-bottom:12px">Per sbloccare un grado usi il negozio del grado precedente. La Foresta è un torneo separato.</p>
+    <p class="note" style="margin-bottom:12px">Per sbloccare un grado usi il negozio del grado precedente (solo G5-G8). La Foresta è un torneo separato.</p>
     <div id="shops-content"></div>
   </div>
 </div>
@@ -205,21 +167,31 @@ nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:
 // ═══════════════════════════════════════════════════════
 // COSTANTI
 // ═══════════════════════════════════════════════════════
-
-// VP per livello di ricerca (B) — una singola ricerca (Training cost = March speed)
-// Per sbloccare Gn: Training cost G(n-1) + March speed G(n-1) + guardie G(n-1)
 var RES = {
-  G5:[0.0096,0.019,0.029,0.048,0.087,0.17,0.29,0.43,0.67,0.96], // Training cost III
-  G6:[0.12,0.23,0.35,0.58,1,2.1,3.5,5.2,8.1,12],                 // Training cost IV
-  G7:[1.7,3.5,5.2,8.6,16,31,52,78,120,170],                       // Training cost V
-  G8:[16.9,28,47,78,130,220,370,620,1000,1700]                     // Training cost VI
+  G5:[0.0096,0.019,0.029,0.048,0.087,0.17,0.29,0.43,0.67,0.96],
+  G6:[0.12,0.23,0.35,0.58,1,2.1,3.5,5.2,8.1,12],
+  G7:[1.7,3.5,5.2,8.6,16,31,52,78,120,170],
+  G8:[16.9,28,47,78,130,220,370,620,1000,1700]
 };
-// Costo 1 guardia per grado (B) — dall'header negli screenshot
-var GV = {G5:0.9, G6:9, G7:90, G8:900};
+// Target fissi ricerche per G2/G3/G4 (in B) — no breakdown per livello
+var RES_FIXED_B = {G2:0.0000146, G3:0.0256, G4:0.4};
+// Costo 1 guardia per grado (B)
+var GV = {G2:0, G3:0.0085, G4:0.08, G5:0.9, G6:9, G7:90, G8:900};
 // N. guardie obiettivo per grado
-var GN = {G5:4, G6:4, G7:4, G8:1};
-
-// RSS cumulativi per livello accademia (in M) — Legno=Ferro=Pietra
+var GN = {G2:0, G3:3, G4:3, G5:4, G6:4, G7:4, G8:1};
+// Grado precedente (per etichette "ricerche di Gn-1")
+var PREV = {G2:1, G3:2, G4:3, G5:4, G6:5, G7:6, G8:7};
+// Requisiti per grado
+var REQ = {
+  G2:{acc:10, hero:0,  proj:0,     gold:0},
+  G3:{acc:15, hero:0,  proj:0,     gold:0},
+  G4:{acc:20, hero:0,  proj:0,     gold:0},
+  G5:{acc:25, hero:40, proj:25000, gold:256000},
+  G6:{acc:30, hero:100,proj:51000, gold:510000},
+  G7:{acc:35, hero:140,proj:112000,gold:1120000},
+  G8:{acc:40, hero:200,proj:196000,gold:1960000}
+};
+// RSS cumulativi per livello accademia (unità) — Legno=Ferro=Pietra
 var RSS_CUM = {1:700,2:5900,3:10500,4:22000,5:46000,6:105000,7:200000,8:370000,
   9:590000,10:960000,11:1600000,12:2450000,13:3400000,14:4900000,15:6600000,
   16:9000000,17:11900000,18:15600000,19:21400000,20:28200000,21:35500000,
@@ -227,23 +199,7 @@ var RSS_CUM = {1:700,2:5900,3:10500,4:22000,5:46000,6:105000,7:200000,8:370000,
   28:126000000,29:152000000,30:181000000,31:210000000,32:242000000,33:281000000,
   34:327000000,35:375000000,36:419000000,37:467000000,38:523000000,39:522000000,
   40:654000000,41:729000000,42:600000000,43:668000000,44:746000000,45:1125000000};
-
-// Funzione: RSS necessari da livello A a livello B — restituisce in M (milioni)
-function rssNeed(from_lv, to_lv){
-  var a=RSS_CUM[Math.min(from_lv,45)]||0;
-  var b=RSS_CUM[Math.min(to_lv,45)]||0;
-  return Math.max(b-a, 0) / 1000000;  // in M
-}
-
-// Requisiti per grado
-var REQ = {
-  G5:{acc:25,hero:40, proj:25000, gold:256000},
-  G6:{acc:30,hero:100,proj:51000, gold:510000},
-  G7:{acc:35,hero:140,proj:112000,gold:1120000},
-  G8:{acc:40,hero:200,proj:196000,gold:1960000}
-};
-
-// Negozi Ragnarök
+// Negozi Ragnarök (solo G5-G8)
 var SH = {
   G5:{neg:'G4',vpr_ld:4.66,vpr_all:4.66,wc:30,dc:1.3,
       w:{n:60,vp:.067,cpk:.5},d:{n:2,vp:.32,cpk:.65}},
@@ -257,23 +213,54 @@ var SH = {
       w:{n:510,vp:6.6,cpk:.5},d:{n:4,vp:27,cpk:.65},
       f1:{n:8,vp:24.3,cpk:.65},f2:{n:510,vp:3.96,cpk:.65}}
 };
-
 var GCOL = {G2:'#78909c',G3:'#f97316',G4:'#eab308',G5:'#e53935',G6:'#c62828',G7:'#7b1fa2',G8:'#1565c0'};
 var simPacks = {G5:{w:0,d:0},G6:{w:0,d:0,f1:0,f2:0},G7:{w:0,d:0,f1:0,f2:0},G8:{w:0,d:0,f1:0,f2:0}};
+var unitPref = 'auto'; // K, M, B, T, auto
 
 // ═══════════════════════════════════════════════════════
-// HELPERS
+// HELPERS — formattazione con unità dinamiche
 // ═══════════════════════════════════════════════════════
-function fV(v){if(!v&&v!==0)return'—';v=+v;if(v>=1000)return+(v/1000).toFixed(3).replace(/\.?0+$/,'')+'T';if(v>=1)return+v.toFixed(2)+'B';return Math.round(v*1000)+'M';}
-function fM(v){if(!v&&v!==0)return'—';v=+v;var a=Math.abs(v),s=v<0?'-':'';if(a>=1000)return s+(a/1000).toFixed(2).replace(/\.?0+$/,'')+'B';if(a>=1)return s+a.toFixed(2).replace(/\.?0+$/,'')+'M';return s+Math.round(a*1000)+'K';}
+function fV(v){ // v in B (miliardi)
+  if(!v&&v!==0)return'—';
+  v=+v;
+  if(unitPref==='auto'){
+    if(v>=1000)return+(v/1000).toFixed(3).replace(/\.?0+$/,'')+'T';
+    if(v>=1)return+v.toFixed(2)+'B';
+    if(v>=0.001)return Math.round(v*1000)+'M';
+    return +(v*1000000).toFixed(0)+'K';
+  }
+  if(unitPref==='T')return+(v/1000).toFixed(4).replace(/\.?0+$/,'')+'T';
+  if(unitPref==='B')return+v.toFixed(3).replace(/\.?0+$/,'')+'B';
+  if(unitPref==='M')return Math.round(v*1000).toLocaleString()+'M';
+  if(unitPref==='K')return Math.round(v*1000000).toLocaleString()+'K';
+  return v+'';
+}
+function fM(v){ // v in M (milioni)
+  if(!v&&v!==0)return'—';
+  v=+v; var a=Math.abs(v),s=v<0?'-':'';
+  if(unitPref==='auto'){
+    if(a>=1000000)return s+(a/1000000).toFixed(3).replace(/\.?0+$/,'')+'T';
+    if(a>=1000)return s+(a/1000).toFixed(2).replace(/\.?0+$/,'')+'B';
+    if(a>=1)return s+a.toFixed(2).replace(/\.?0+$/,'')+'M';
+    return s+Math.round(a*1000)+'K';
+  }
+  if(unitPref==='T')return s+(a/1000000).toFixed(4).replace(/\.?0+$/,'')+'T';
+  if(unitPref==='B')return s+(a/1000).toFixed(3).replace(/\.?0+$/,'')+'B';
+  if(unitPref==='M')return s+a.toFixed(2).replace(/\.?0+$/,'')+'M';
+  if(unitPref==='K')return s+Math.round(a*1000).toLocaleString()+'K';
+  return v+'';
+}
 function bar(p,ok){return '<div class="pbar"><div class="pfill" style="width:'+Math.min(+p||0,100).toFixed(1)+'%;background:'+(ok?'#2ecc71':'#e74c3c')+'"></div></div>';}
 function gv(id){var el=document.getElementById(id);if(!el)return 0;var v=parseFloat(el.value);return isNaN(v)?0:v;}
 function sv(id){var el=document.getElementById(id);if(!el)return 0;var v=parseInt(el.value);return isNaN(v)?0:v;}
 
-// VP rimanenti per completare le ricerche di un grado
-// lv_t = livello Training cost raggiunto (0-10)
-// lv_m = livello March speed raggiunto (0-10)
-// gd   = guardie già sbloccate
+function setUnit(u){
+  unitPref=u;
+  document.querySelectorAll('.unit-btn').forEach(function(b){b.classList.toggle('on', b.dataset.u===u);});
+  compute();
+}
+
+// VP rimanenti per G5-G8 (con tabella dettagliata)
 function vpRem(g, lv_t, lv_m, gd){
   var rv=RES[g]||[], vt=0, vm=0;
   for(var i=lv_t;i<rv.length;i++) vt+=rv[i];
@@ -281,36 +268,45 @@ function vpRem(g, lv_t, lv_m, gd){
   var vg=Math.max(0,GN[g]-gd)*GV[g];
   return{t:vt, m:vm, g:vg, total:vt+vm+vg};
 }
-
-// VP totali per completare un grado da zero
+// VP totale per G5-G8 da zero
 function vpTot(g){
   var rv=RES[g]||[], s=0;
   for(var i=0;i<rv.length;i++) s+=rv[i];
   return s*2 + GN[g]*GV[g];
 }
+// VP rimanenti per G2/G3/G4 (con % completamento)
+function vpRemFixed(g, pct, gd){
+  var base=RES_FIXED_B[g]||0;
+  var remaining_research = base*(1-pct/100);
+  var vg=Math.max(0,GN[g]-gd)*GV[g];
+  return{research:remaining_research, g:vg, total:remaining_research+vg};
+}
+function vpTotFixed(g){
+  return (RES_FIXED_B[g]||0) + GN[g]*GV[g];
+}
+
 
 // ═══════════════════════════════════════════════════════
 // LEGGI INPUT
 // ═══════════════════════════════════════════════════════
 function getI(){
   var guard=sv('i_guard');
-  // Se il giocatore ha già superato un grado, quelle ricerche sono COMPLETE
-  // g6_t/g6_m/g6_g = ricerche per sbloccare G6 (fatte quando si è G5)
-  // Se guard >= 6 → G6 già sbloccato → ricerche G6 complete
   function aT(gn,id){return guard>=gn?10:sv(id);}
   function aG(gn,id,mx){return guard>=gn?mx:sv(id);}
+  function aPct(gn,id){return guard>=gn?100:sv(id);}
   return{
     vp:gv('i_vp'), guard:guard, acc:sv('i_acc'), hero:sv('i_hero'),
     proj:sv('i_proj'), gold:sv('i_gold'),
     wolf:gv('i_wolf'), dragon:gv('i_dragon'), forest:gv('i_forest'),
     wood:gv('i_wood'), iron:gv('i_iron'), stone:gv('i_stone'),
-    // Ricerche per G5 (non hanno select — se guard>=5 sono auto-complete)
-    g5_t:guard>=5?10:0, g5_m:guard>=5?10:0, g5_g:guard>=5?GN.G5:0,
-    // Ricerche per G6 (select g6_t/g6_m/g6_g)
+    // G2/G3/G4: % completamento ricerche + guardie
+    g2_pct:aPct(2,'g2_pct'), g2_g:0,
+    g3_pct:aPct(3,'g3_pct'), g3_g:aG(3,'g3_g',GN.G3),
+    g4_pct:aPct(4,'g4_pct'), g4_g:aG(4,'g4_g',GN.G4),
+    // G5-G8: livelli dettagliati Training/March + guardie
+    g5_t:aT(5,'g5_t'), g5_m:aT(5,'g5_m'), g5_g:aG(5,'g5_g',GN.G5),
     g6_t:aT(6,'g6_t'), g6_m:aT(6,'g6_m'), g6_g:aG(6,'g6_g',GN.G6),
-    // Ricerche per G7
     g7_t:aT(7,'g7_t'), g7_m:aT(7,'g7_m'), g7_g:aG(7,'g7_g',GN.G7),
-    // Ricerche per G8
     g8_t:aT(8,'g8_t'), g8_m:aT(8,'g8_m'), g8_g:aG(8,'g8_g',GN.G8)
   };
 }
@@ -320,181 +316,236 @@ function getI(){
 // ═══════════════════════════════════════════════════════
 function calcAll(i){
   var wolf=i.wolf, dragon=i.dragon, res={};
-  var proj_have=i.proj, gold_have=i.gold;  // si consumano in cascata come monete
-  var grades=['G5','G6','G7','G8'];
+  var proj_have=i.proj, gold_have=i.gold;
   var guard=i.guard;
-
-  // I VP attuali sono il saldo CORRENTE del giocatore.
-  // I VP già spesi nei gradi precedenti NON vanno sottratti —
-  // il giocatore ha già fatto quei conti e ci dice quanto ha ora.
-  // L'unica eccezione: per i gradi FUTURI, i VP vengono "consumati"
-  // dalle ricerche del grado corrente che non ha ancora fatto.
+  var grades=['G2','G3','G4','G5','G6','G7','G8'];
 
   grades.forEach(function(g){
-    var sh=SH[g], lk=g.toLowerCase();
-    var lv_t=i[lk+'_t'], lv_m=i[lk+'_m'], gd=i[lk+'_g'];
-    var rem=vpRem(g,lv_t,lv_m,gd);
-    var vp_needed=rem.total;
+    var gn=parseInt(g.replace('G',''));
+    var lk=g.toLowerCase();
+    var sh=SH[g]; // undefined per G2/G3/G4
+    var hasDetailedResearch = !!RES[g];
+    var rem, vp_needed;
 
-    // VP disponibili = VP attuali del giocatore (saldo corrente)
-    // Non sottraiamo niente per i gradi già completati
-    var vp_avail=Math.max(i.vp, 0);
+    if(hasDetailedResearch){
+      var lv_t=i[lk+'_t'], lv_m=i[lk+'_m'], gd=i[lk+'_g'];
+      rem=vpRem(g,lv_t,lv_m,gd);
+      vp_needed=rem.total;
+    } else {
+      var pct=i[lk+'_pct'], gd=i[lk+'_g'];
+      var remF=vpRemFixed(g,pct,gd);
+      rem={t:remF.research, m:0, g:remF.g, total:remF.total};
+      vp_needed=remF.total;
+    }
+
+    var vp_avail=Math.max(i.vp,0);
     var vp_miss=Math.max(vp_needed-vp_avail,0);
 
-    var use_f=i.forest>0&&sh.vpr_all>sh.vpr_ld;
-    var vpr=use_f?sh.vpr_all:sh.vpr_ld;
-    var rn=vp_miss>0?Math.ceil(vp_miss/vpr):0;
-    var rn_nf=vp_miss>0?Math.ceil(vp_miss/sh.vpr_ld):0;
-    var wc=rn*sh.wc, dc=rn*sh.dc;
+    var use_f=i.forest>0 && sh && sh.vpr_all>sh.vpr_ld;
+    var vpr=sh?(use_f?sh.vpr_all:sh.vpr_ld):0;
+    var rn=(sh && vp_miss>0)?Math.ceil(vp_miss/vpr):0;
+    var rn_nf=(sh && vp_miss>0)?Math.ceil(vp_miss/sh.vpr_ld):0;
+    var wc=sh?rn*sh.wc:0, dc=sh?rn*sh.dc:0;
+
     var q=REQ[g]||{};
+    var pm=Math.max((q.proj||0)-proj_have,0);
+    var gold_need=pm*10;
+    var gm=Math.max(gold_need-gold_have,0);
+
     res[g]={
+      hasDetailedResearch:hasDetailedResearch,
       rem:rem, vp_needed:vp_needed, vp_avail:vp_avail, vp_miss:vp_miss,
       rn:rn, rn_nf:rn_nf, vpr:vpr, sh:sh,
       wc:wc, dc:dc, wa:wolf, da:dragon,
       wo:Math.max(wolf-wc,0), doo:Math.max(dragon-dc,0),
       w_ok:wolf>=wc, d_ok:dragon>=dc,
       vp_ok:vp_avail+rn*vpr>=vp_needed,
-      lv_t:lv_t, lv_m:lv_m, gd:gd,
+      lv_t:i[lk+'_t']||0, lv_m:i[lk+'_m']||0, gd:i[lk+'_g']||0, pct:i[lk+'_pct']||0,
       am:Math.max((q.acc||0)-i.acc,0), acc_req:q.acc||0,
       hm:Math.max((q.hero||0)-i.hero,0), hero_req:q.hero||0,
-      // Progetti e oro: confronto diretto, valori cumulativi dal foglio dati
-      pm:Math.max((q.proj||0)-proj_have,0), proj_req:q.proj||0, proj_have_now:proj_have,
-      // Oro necessario = SOLO per i progetti mancanti (1 progetto = 10 oro)
-      // Non il valore fisso del grado, perché i progetti che hai già non ti costano oro ora
-      gold_need:(function(){var pm=Math.max((q.proj||0)-proj_have,0);return pm*10;}()),
-      gold_have_now:gold_have,
-      gm:(function(){var pm=Math.max((q.proj||0)-proj_have,0);return Math.max(pm*10-gold_have,0);}()),
-      // Risorse edifici: rss_need in M, i.wood/iron/stone in M → confronto diretto
+      pm:pm, proj_req:q.proj||0, proj_have_now:proj_have,
+      gold_need:gold_need, gold_have_now:gold_have, gm:gm,
       rss_need:rssNeed(i.acc, q.acc||i.acc),
       rss_wood_ok:i.wood>=rssNeed(i.acc,q.acc||i.acc),
       rss_iron_ok:i.iron>=rssNeed(i.acc,q.acc||i.acc),
       rss_stone_ok:i.stone>=rssNeed(i.acc,q.acc||i.acc)
     };
+
     wolf=Math.max(wolf-wc,0);
     dragon=Math.max(dragon-dc,0);
-    // Consuma progetti/oro solo se questo grado non è già stato completato
-    var gn_loop=parseInt(g.replace('G',''));
-    if(guard < gn_loop){
-      var pm_loop=Math.max((q.proj||0)-proj_have,0);
-      var gold_used=pm_loop*10; // oro speso per comprare i progetti mancanti
-      // Progetti: dopo aver raggiunto il target, ne restano 0 (li hai usati tutti per il grado)
-      proj_have=0;  // tutti i progetti (vecchi + comprati) vengono spesi per il grado
-      gold_have=Math.max(gold_have-gold_used,0);
+    if(guard < gn){
+      proj_have=0;
+      gold_have=Math.max(gold_have-gold_need,0);
     }
   });
   return res;
+}
+
+function rssNeed(from_lv, to_lv){
+  var a=RSS_CUM[Math.min(from_lv,45)]||0;
+  var b=RSS_CUM[Math.min(to_lv,45)]||0;
+  return Math.max(b-a, 0) / 1000000; // in M
+}
+
+// ═══════════════════════════════════════════════════════
+// RENDER RESEARCH BLOCKS (pagina Dati)
+// ═══════════════════════════════════════════════════════
+function renderResearchBlocks(){
+  var html='';
+  var configs=[
+    {g:'G2',col:GCOL.G2,label:'Per sbloccare G2',desc:'Ricerche base livello G1'},
+    {g:'G3',col:GCOL.G3,label:'Per sbloccare G3',desc:'Ricerche Training/March II'},
+    {g:'G4',col:GCOL.G4,label:'Per sbloccare G4',desc:'Ricerche Training/March III'},
+    {g:'G5',col:GCOL.G5,label:'Per sbloccare G5',desc:'Training cost III + March speed III'},
+    {g:'G6',col:GCOL.G6,label:'Per sbloccare G6',desc:'Training cost IV + March speed IV'},
+    {g:'G7',col:GCOL.G7,label:'Per sbloccare G7',desc:'Training cost V + March speed V'},
+    {g:'G8',col:GCOL.G8,label:'Per sbloccare G8',desc:'Training cost VI + March speed VI'}
+  ];
+  configs.forEach(function(cfg){
+    var g=cfg.g, lk=g.toLowerCase();
+    var hasDetailed=!!RES[g];
+    html+='<div style="border:1px solid '+cfg.col+'44;border-radius:8px;padding:12px">';
+    html+='<div style="font-size:12px;font-weight:700;color:'+cfg.col+';margin-bottom:4px">📋 '+cfg.label+'</div>';
+    html+='<div style="font-size:11px;color:#555;margin-bottom:10px">'+cfg.desc+'</div>';
+    if(hasDetailed){
+      html+='<div class="r3">';
+      html+='<div class="fg"><label>📚 Training cost</label><select id="'+lk+'_t" onchange="compute()">';
+      for(var v=0;v<=10;v++) html+='<option value="'+v+'">'+v+'/10'+(v===10?' ✅':'')+'</option>';
+      html+='</select></div>';
+      html+='<div class="fg"><label>⚡ March speed</label><select id="'+lk+'_m" onchange="compute()">';
+      for(var v=0;v<=10;v++) html+='<option value="'+v+'">'+v+'/10'+(v===10?' ✅':'')+'</option>';
+      html+='</select></div>';
+      var maxg=GN[g];
+      html+='<div class="fg"><label>🛡️ Guardie (0-'+maxg+')</label><select id="'+lk+'_g" onchange="compute()">';
+      for(var v=0;v<=maxg;v++) html+='<option value="'+v+'">'+v+'/'+maxg+(v===maxg?' ✅':'')+'</option>';
+      html+='</select></div></div>';
+    } else {
+      html+='<div class="r2">';
+      html+='<div class="fg"><label>📊 % Ricerche completate</label><select id="'+lk+'_pct" onchange="compute()">';
+      [0,10,20,30,40,50,60,70,80,90,100].forEach(function(v){
+        html+='<option value="'+v+'">'+v+'%'+(v===100?' ✅':'')+'</option>';
+      });
+      html+='</select></div>';
+      var maxg=GN[g];
+      if(maxg>0){
+        html+='<div class="fg"><label>🛡️ Guardie (0-'+maxg+')</label><select id="'+lk+'_g" onchange="compute()">';
+        for(var v=0;v<=maxg;v++) html+='<option value="'+v+'">'+v+'/'+maxg+(v===maxg?' ✅':'')+'</option>';
+        html+='</select></div>';
+      }
+      html+='</div>';
+    }
+    html+='</div>';
+  });
+  var el=document.getElementById('research-blocks');
+  if(el) el.innerHTML=html;
 }
 
 // ═══════════════════════════════════════════════════════
 // RENDER GRADO
 // ═══════════════════════════════════════════════════════
 function renderGrade(g,r,i){
-  var col=GCOL[g], sh=r.sh, rv=RES[g]||[];
+  var col=GCOL[g], sh=r.sh;
   var gn=parseInt(g.replace('G',''));
   var done=i.guard>=gn;
-  var allOk=r.vp_ok&&!r.am&&!r.hm&&!r.pm&&!r.gm;
+  var allOk=r.vp_ok && !r.am && !r.hm && !r.pm && !r.gm;
+  var prevG=PREV[g];
 
   var h='<div class="gb"><div class="gh" style="background:'+col+'20;border-left:4px solid '+col+'">';
   h+='<div><div class="gt" style="color:'+col+'">Grado '+g+'</div>';
   if(done) h+='<div class="gsub">✅ Hai già sbloccato '+g+' — ricerche completate</div>';
-  else h+='<div class="gsub">Per sbloccare '+g+': completa le ricerche di G'+(gn-1)+' e le guardie G'+(gn-1)+'</div>';
+  else h+='<div class="gsub">Per sbloccare '+g+': completa le ricerche di G'+prevG+' e le guardie G'+prevG+'</div>';
   h+='</div><span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completato':allOk?'✅ Pronto':'⚠️ Incompleto')+'</span>';
   h+='</div><div class="gbody">';
 
   if(done){
-    // Grado completato: riepilogo pulito
     h+='<div class="ibox">';
-    h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv okc">10/10 ✅</span></div>';
-    h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv okc">10/10 ✅</span></div>';
-    h+='<div class="irow"><span class="ilb">🛡️ Guardie</span><span class="iv okc">'+GN[g]+'/'+GN[g]+' ✅</span></div>';
-    h+='<div class="irow"><span class="ilb">⚔️ VP totali spesi</span><span class="iv okc">'+fV(vpTot(g))+' ✅</span></div>';
+    if(r.hasDetailedResearch){
+      h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv okc">10/10 ✅</span></div>';
+      h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv okc">10/10 ✅</span></div>';
+    } else {
+      h+='<div class="irow"><span class="ilb">📊 Ricerche</span><span class="iv okc">100% ✅</span></div>';
+    }
+    if(GN[g]>0) h+='<div class="irow"><span class="ilb">🛡️ Guardie</span><span class="iv okc">'+GN[g]+'/'+GN[g]+' ✅</span></div>';
+    var totVP = r.hasDetailedResearch ? vpTot(g) : vpTotFixed(g);
+    h+='<div class="irow"><span class="ilb">⚔️ VP totali spesi</span><span class="iv okc">'+fV(totVP)+' ✅</span></div>';
     h+='</div>';
   } else {
-    // Grado da completare
     h+='<div class="slb">Ricerche <span style="font-weight:400;color:#555">(modifica in ⚙️ Dati)</span></div>';
     h+='<div class="ibox">';
-    // Training cost
-    h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv '+(r.lv_t===10?'okc':'infoc')+'">'+r.lv_t+'/10'+(r.lv_t===10?' ✅':'')+'</span></div>';
-    if(r.lv_t<10) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti training</span><span class="iv" style="color:#f5a623">'+fV(r.rem.t)+'</span></div>';
-    // March speed
-    h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv '+(r.lv_m===10?'okc':'infoc')+'">'+r.lv_m+'/10'+(r.lv_m===10?' ✅':'')+'</span></div>';
-    if(r.lv_m<10) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti march</span><span class="iv" style="color:#f5a623">'+fV(r.rem.m)+'</span></div>';
-    // Guardie
-    h+='<div class="irow"><span class="ilb">🛡️ Guardie sbloccate</span><span class="iv '+(r.gd>=GN[g]?'okc':'infoc')+'">'+r.gd+'/'+GN[g]+(r.gd>=GN[g]?' ✅':'')+'</span></div>';
-    if(r.gd<GN[g]){
-      var gd_miss=GN[g]-r.gd;
-      h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ Guardie da sbloccare</span><span class="iv" style="color:#f5a623">'+gd_miss+'× '+fV(GV[g])+' = '+fV(r.rem.g)+'</span></div>';
+    if(r.hasDetailedResearch){
+      h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv '+(r.lv_t===10?'okc':'infoc')+'">'+r.lv_t+'/10'+(r.lv_t===10?' ✅':'')+'</span></div>';
+      if(r.lv_t<10) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti training</span><span class="iv" style="color:#f5a623">'+fV(r.rem.t)+'</span></div>';
+      h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv '+(r.lv_m===10?'okc':'infoc')+'">'+r.lv_m+'/10'+(r.lv_m===10?' ✅':'')+'</span></div>';
+      if(r.lv_m<10) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti march</span><span class="iv" style="color:#f5a623">'+fV(r.rem.m)+'</span></div>';
+    } else {
+      h+='<div class="irow"><span class="ilb">📊 Ricerche completate</span><span class="iv '+(r.pct===100?'okc':'infoc')+'">'+r.pct+'%'+(r.pct===100?' ✅':'')+'</span></div>';
+      if(r.pct<100) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti ricerche</span><span class="iv" style="color:#f5a623">'+fV(r.rem.t)+'</span></div>';
+    }
+    if(GN[g]>0){
+      h+='<div class="irow"><span class="ilb">🛡️ Guardie sbloccate</span><span class="iv '+(r.gd>=GN[g]?'okc':'infoc')+'">'+r.gd+'/'+GN[g]+(r.gd>=GN[g]?' ✅':'')+'</span></div>';
+      if(r.gd<GN[g]) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ Guardie da sbloccare</span><span class="iv" style="color:#f5a623">'+(GN[g]-r.gd)+'× '+fV(GV[g])+' = '+fV(r.rem.g)+'</span></div>';
     }
     h+='<div class="div"></div>';
-    // Totale con breakdown
-    h+='<div class="irow"><span class="ilb" style="font-weight:700">⚔️ VP totali ancora necessari</span><span class="iv" style="color:'+(r.vp_needed<0.001?'#2ecc71':'#ff6b6b')+';font-size:16px">'+fV(r.vp_needed)+'</span></div>';
+    h+='<div class="irow"><span class="ilb" style="font-weight:700">⚔️ VP totali ancora necessari</span><span class="iv" style="color:'+(r.vp_needed<0.0000001?'#2ecc71':'#ff6b6b')+';font-size:16px">'+fV(r.vp_needed)+'</span></div>';
     if(r.vp_needed>0){
       h+='<div style="background:#1a1d27;border-radius:6px;padding:8px 10px;margin-top:6px;font-size:11px">';
-      if(r.rem.t>0) h+='<div style="display:flex;justify-content:space-between;padding:2px 0"><span style="color:#666">📚 Training rimanenti</span><span style="color:#f5a623">'+fV(r.rem.t)+'</span></div>';
+      if(r.rem.t>0) h+='<div style="display:flex;justify-content:space-between;padding:2px 0"><span style="color:#666">'+(r.hasDetailedResearch?'📚 Training':'📊 Ricerche')+' rimanenti</span><span style="color:#f5a623">'+fV(r.rem.t)+'</span></div>';
       if(r.rem.m>0) h+='<div style="display:flex;justify-content:space-between;padding:2px 0"><span style="color:#666">⚡ March rimanenti</span><span style="color:#f5a623">'+fV(r.rem.m)+'</span></div>';
-      if(r.rem.g>0) h+='<div style="display:flex;justify-content:space-between;padding:2px 0"><span style="color:#666">🛡️ Guardie ('+( GN[g]-r.gd)+'× '+fV(GV[g])+')</span><span style="color:#f5a623">'+fV(r.rem.g)+'</span></div>';
+      if(r.rem.g>0) h+='<div style="display:flex;justify-content:space-between;padding:2px 0"><span style="color:#666">🛡️ Guardie ('+(GN[g]-r.gd)+'× '+fV(GV[g])+')</span><span style="color:#f5a623">'+fV(r.rem.g)+'</span></div>';
       h+='</div>';
     }
     h+='</div>';
-    // Tabella ricerche
-    h+='<table class="rtbl"><tr><th>Lv</th><th>Training cost</th><th>March speed</th></tr>';
-    for(var j=0;j<rv.length;j++){
-      var lv=j+1,td=r.lv_t>=lv,md=r.lv_m>=lv;
-      h+='<tr'+(td&&md?' class="r-done"':'')+'><td>'+lv+'</td>';
-      h+='<td style="color:'+(td?'#2ecc71':'#e8eaf0')+'">'+(td?'✅ ':'')+fV(rv[j])+'</td>';
-      h+='<td style="color:'+(md?'#2ecc71':'#e8eaf0')+'">'+(md?'✅ ':'')+fV(rv[j])+'</td></tr>';
-    }
-    h+='</table>';
 
-    // Piano VP
-    h+='<div class="slb" style="margin-top:12px">Piano VP e Ragnarök</div>';
-    h+='<div class="ibox">';
-    h+='<div class="irow"><span class="ilb">⚔️ VP da combattimento disponibili</span><span class="iv" style="color:'+col+'">'+fV(r.vp_avail)+'</span></div>';
-    if(r.vp_miss>0){
-      h+='<div class="irow"><span class="ilb">❌ VP ancora mancanti</span><span class="iv warnc">'+fV(r.vp_miss)+'</span></div>';
-      if(sh.vpr_all>sh.vpr_ld&&r.rn<r.rn_nf){
-        h+='<div class="irow"><span class="ilb">Ragnarök senza Foresta</span><span class="iv mutec">'+r.rn_nf+'×</span></div>';
-        h+='<div class="irow"><span class="ilb">🌲 Con Foresta</span><span class="iv okc">'+r.rn+'× (risparmio '+(r.rn_nf-r.rn)+')</span></div>';
+    // Piano VP + Ragnarök — solo se ha negozio (G5-G8)
+    if(sh){
+      h+='<div class="slb" style="margin-top:12px">Piano VP e Ragnarök</div>';
+      h+='<div class="ibox">';
+      h+='<div class="irow"><span class="ilb">⚔️ VP da combattimento disponibili</span><span class="iv" style="color:'+col+'">'+fV(r.vp_avail)+'</span></div>';
+      if(r.vp_miss>0){
+        h+='<div class="irow"><span class="ilb">❌ VP ancora mancanti</span><span class="iv warnc">'+fV(r.vp_miss)+'</span></div>';
+        if(sh.vpr_all>sh.vpr_ld && r.rn<r.rn_nf){
+          h+='<div class="irow"><span class="ilb">Ragnarök senza Foresta</span><span class="iv mutec">'+r.rn_nf+'×</span></div>';
+          h+='<div class="irow"><span class="ilb">🌲 Con Foresta</span><span class="iv okc">'+r.rn+'× (risparmio '+(r.rn_nf-r.rn)+')</span></div>';
+        } else {
+          h+='<div class="irow"><span class="ilb">🏪 Ragnarök necessari (neg. G'+prevG+')</span><span class="iv infoc" style="font-size:18px">'+r.rn+'×</span></div>';
+        }
+        h+='<div class="irow"><span class="ilb">📦 VP dai Ragnarök</span><span class="iv" style="color:#93c5fd">+'+fV(r.rn*r.vpr)+'</span></div>';
       } else {
-        h+='<div class="irow"><span class="ilb">🏪 Ragnarök necessari (neg. G'+(gn-1)+')</span><span class="iv infoc" style="font-size:18px">'+r.rn+'×</span></div>';
+        h+='<div class="irow"><span class="ilb">✅ VP sufficienti</span><span class="iv okc">Nessun Ragnarök necessario</span></div>';
       }
-      h+='<div class="irow"><span class="ilb">📦 VP dai Ragnarök</span><span class="iv" style="color:#93c5fd">+'+fV(r.rn*r.vpr)+'</span></div>';
-    } else {
-      h+='<div class="irow"><span class="ilb">✅ VP sufficienti</span><span class="iv okc">Nessun Ragnarök necessario</span></div>';
-    }
-    var vp_tot=r.vp_avail+r.rn*r.vpr;
-    h+='<div class="div"></div>';
-    h+='<div class="irow"><span class="ilb" style="font-weight:700">Totale VP disponibili</span><span class="iv" style="font-size:16px;color:'+(r.vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(vp_tot)+'</span></div>';
-    h+=bar(Math.min(100,r.vp_avail/(r.vp_needed||1)*100),r.vp_ok);
-    h+='</div>';
-
-    // Monete
-    if(r.rn>0){
-      h+='<div class="slb">Monete per '+r.rn+' Ragnarök</div><div class="ccg">';
-      h+='<div class="cc" style="border-top:3px solid #3b82f6"><div class="ccnm">🐺 Monete Lupo</div><div class="ccav">'+fM(r.wa)+'</div>';
-      h+='<div class="ccdt">Servono: '+fM(r.wc)+' ('+r.rn+'×'+fM(sh.wc)+')</div>';
-      h+='<div class="ccst" style="color:'+(r.w_ok?'#2ecc71':'#ff6b6b')+'">'+(r.w_ok?'✅ Rimangono '+fM(r.wo):'⚠️ Mancano '+fM(r.wc-r.wa))+'</div></div>';
-      h+='<div class="cc" style="border-top:3px solid #ef4444"><div class="ccnm">🐉 Monete Drago</div><div class="ccav">'+fM(r.da)+'</div>';
-      h+='<div class="ccdt">Servono: '+fM(r.dc)+' ('+r.rn+'×'+fM(sh.dc)+')</div>';
-      h+='<div class="ccst" style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+(r.d_ok?'✅ Rimangono '+fM(r.doo):'⚠️ Mancano '+fM(r.dc-r.da))+'</div></div>';
+      var vp_tot_avail=r.vp_avail+r.rn*r.vpr;
+      h+='<div class="div"></div>';
+      h+='<div class="irow"><span class="ilb" style="font-weight:700">Totale VP disponibili</span><span class="iv" style="font-size:16px;color:'+(r.vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(vp_tot_avail)+'</span></div>';
+      h+=bar(Math.min(100,r.vp_avail/(r.vp_needed||1)*100),r.vp_ok);
       h+='</div>';
+
+      if(r.rn>0){
+        h+='<div class="slb">Monete per '+r.rn+' Ragnarök</div><div class="ccg">';
+        h+='<div class="cc" style="border-top:3px solid #3b82f6"><div class="ccnm">🐺 Monete Lupo</div><div class="ccav">'+fM(r.wa)+'</div>';
+        h+='<div class="ccdt">Servono: '+fM(r.wc)+' ('+r.rn+'×'+fM(sh.wc)+')</div>';
+        h+='<div class="ccst" style="color:'+(r.w_ok?'#2ecc71':'#ff6b6b')+'">'+(r.w_ok?'✅ Rimangono '+fM(r.wo):'⚠️ Mancano '+fM(r.wc-r.wa))+'</div></div>';
+        h+='<div class="cc" style="border-top:3px solid #ef4444"><div class="ccnm">🐉 Monete Drago</div><div class="ccav">'+fM(r.da)+'</div>';
+        h+='<div class="ccdt">Servono: '+fM(r.dc)+' ('+r.rn+'×'+fM(sh.dc)+')</div>';
+        h+='<div class="ccst" style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+(r.d_ok?'✅ Rimangono '+fM(r.doo):'⚠️ Mancano '+fM(r.dc-r.da))+'</div></div></div>';
+      }
+    } else {
+      h+='<p class="note" style="padding:8px 0">⚔️ Accumula VP combattendo — nessun negozio Ragnarök dedicato a questo grado.</p>';
     }
   }
 
-  // Risorse edifici — sempre visibili se non completato
+  // Risorse edifici — sempre visibili se acc_req>0
   if(!done && r.acc_req > 0){
     h+='<div class="slb">🪵 Risorse edifici (Legno / Ferro / Pietra)</div>';
     h+='<div class="ibox">';
     var acc_ok = i.acc >= r.acc_req;
-    var rn = r.rss_need; // in M — è 0 se acc già raggiunta
-    // Se accademia già ok, RSS sono già state usate → mostra ✅
+    var rn_rss = r.rss_need;
     if(acc_ok){
       h+='<div class="irow"><span class="ilb">📊 Accademia L'+r.acc_req+'</span><span class="iv okc">✅ Raggiunta (sei a L'+i.acc+')</span></div>';
       h+='<div class="irow"><span class="ilb">🪵 Legno / ⚙️ Ferro / 🪨 Pietra</span><span class="iv okc">✅ Già utilizzate</span></div>';
     } else {
-      h+='<div class="irow"><span class="ilb">📊 Accademia</span><span class="iv mutec">L'+i.acc+' → L'+r.acc_req+' (servono '+fM(rn)+')</span></div>';
+      h+='<div class="irow"><span class="ilb">📊 Accademia</span><span class="iv mutec">L'+i.acc+' → L'+r.acc_req+' (servono '+fM(rn_rss)+')</span></div>';
       function rssRow(ico,nm,have,ok){
-        var miss=Math.max(rn-have,0);
+        var miss=Math.max(rn_rss-have,0);
         return '<div class="irow"><span class="ilb">'+ico+' '+nm+'</span><div style="text-align:right">'+
           '<div class="iv" style="color:'+(ok?'#2ecc71':'#ff6b6b')+'">'+fM(have)+'</div>'+
           '<div class="idet">'+(ok?'✅ sufficienti':'⚠️ mancano '+fM(miss))+'</div>'+
@@ -507,12 +558,25 @@ function renderGrade(g,r,i){
     h+='</div>';
   }
 
-  // Requisiti — sempre visibili
+  // Requisiti
   h+='<div class="slb">Requisiti</div><div class="ibox">';
   h+='<div class="irow"><span class="ilb">🏛️ Accademia</span><span class="iv '+(r.am===0?'okc':'warnc')+'">'+(r.am===0?'✅ L'+r.acc_req:'→ L'+r.acc_req+' (sei L'+i.acc+', mancano '+r.am+')')+'</span></div>';
   if(r.hero_req>0) h+='<div class="irow"><span class="ilb">🦸 Eroe</span><span class="iv '+(r.hm===0?'okc':'warnc')+'">'+(r.hm===0?'✅ Lv'+r.hero_req:'→ Lv'+r.hero_req+' (sei Lv'+i.hero+')')+'</span></div>';
-  if(r.proj_req>0) h+='<div class="irow"><span class="ilb">📜 Progetti</span><span class="iv '+(r.pm===0?'okc':'warnc')+'">'+(r.pm===0?'✅ '+r.proj_req.toLocaleString():'→ Compra '+r.pm.toLocaleString())+'</span></div>';
-  if(r.gm>0) h+='<div class="irow"><span class="ilb">💰 Oro</span><span class="iv warnc">⚠️ Mancano '+r.gm.toLocaleString()+'</span></div>';
+  if(r.proj_req>0){
+    h+='<div class="irow"><span class="ilb">📜 Progetti</span><div style="text-align:right">';
+    h+='<div class="iv '+(r.pm===0?'okc':'warnc')+'">'+(r.pm===0?'✅ '+r.proj_req.toLocaleString():'Hai '+r.proj_have_now.toLocaleString()+' / '+r.proj_req.toLocaleString())+'</div>';
+    if(r.pm>0) h+='<div class="idet">⚠️ Mancano '+r.pm.toLocaleString()+' progetti</div>';
+    h+='</div></div>';
+    h+='<div class="irow"><span class="ilb">💰 Oro</span><div style="text-align:right">';
+    if(r.pm===0){
+      h+='<div class="iv okc">✅ Non serve oro aggiuntivo</div>';
+    } else {
+      h+='<div class="iv '+(r.gm===0?'okc':'warnc')+'">'+(r.gm===0?'✅ Hai abbastanza ('+r.gold_have_now.toLocaleString()+')':'Servono '+r.gold_need.toLocaleString())+'</div>';
+      h+='<div class="idet">Per '+r.pm.toLocaleString()+' progetti × 10 = '+r.gold_need.toLocaleString()+' oro</div>';
+      if(r.gm>0) h+='<div class="idet">⚠️ Hai '+r.gold_have_now.toLocaleString()+' — mancano '+r.gm.toLocaleString()+'</div>';
+    }
+    h+='</div></div>';
+  }
   h+='</div></div></div>';
   return h;
 }
@@ -521,23 +585,23 @@ function renderGrade(g,r,i){
 // RENDER SUMMARY
 // ═══════════════════════════════════════════════════════
 function renderSummary(i,res){
-  var h='<table class="stbl"><tr><th>Grado</th><th>Stato</th><th>VP target</th><th>VP disponibili</th><th>Ricerche</th><th>Guardie</th><th>Ragnarök</th><th>🐺 Rimane</th><th>🐉 Rimane</th></tr>';
-  [{g:'G2',vp:.051},{g:'G3',vp:.64},{g:'G4',vp:9}].forEach(function(s){
-    var done=i.guard>=parseInt(s.g.replace('G',''));
-    h+='<tr><td style="font-weight:700;color:'+GCOL[s.g]+'">'+s.g+'</td><td>'+(done?'<span class="okc">✅</span>':'<span class="mutec">—</span>')+'</td><td class="mutec">'+fV(s.vp)+'</td><td class="mutec">—</td><td class="mutec">—</td><td class="mutec">—</td><td class="mutec">—</td><td class="mutec">—</td><td class="mutec">—</td></tr>';
-  });
-  ['G5','G6','G7','G8'].forEach(function(g){
+  var h='<table class="stbl"><tr><th>Grado</th><th>Stato</th><th>VP target</th><th>VP disp.</th><th>Ricerche</th><th>Guardie</th><th>Ragnarök</th><th>🐺 Rimane</th><th>🐉 Rimane</th></tr>';
+  ['G2','G3','G4','G5','G6','G7','G8'].forEach(function(g){
     var r=res[g],col=GCOL[g],gn=parseInt(g.replace('G',''));
-    var done=i.guard>=gn, allOk=r.vp_ok&&!r.am&&!r.hm&&!r.pm&&!r.gm;
+    var done=i.guard>=gn, allOk=r.vp_ok && !r.am && !r.hm && !r.pm && !r.gm;
     h+='<tr><td style="font-weight:700;color:'+col+'">'+g+'</td>';
     h+='<td>'+(done?'<span class="okc">✅ Fatto</span>':allOk?'<span class="okc">✅</span>':r.vp_ok?'<span class="infoc">⚡</span>':'<span class="warnc">⚠️</span>')+'</td>';
     h+='<td class="mutec">'+fV(r.vp_needed)+'</td>';
     h+='<td style="color:'+(r.vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_avail)+'</td>';
-    h+='<td style="color:'+(r.lv_t===10&&r.lv_m===10?'#2ecc71':'#f5a623')+'">T:'+r.lv_t+'/10 M:'+r.lv_m+'/10</td>';
-    h+='<td style="color:'+(r.gd>=GN[g]?'#2ecc71':'#f5a623')+'">'+r.gd+'/'+GN[g]+'</td>';
-    h+='<td class="infoc">'+(r.rn>0?r.rn+'×':'✅')+'</td>';
-    h+='<td style="color:'+(r.w_ok?'#2ecc71':'#ff6b6b')+'">'+fM(r.wo)+'</td>';
-    h+='<td style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+fM(r.doo)+'</td></tr>';
+    if(r.hasDetailedResearch){
+      h+='<td style="color:'+(r.lv_t===10&&r.lv_m===10?'#2ecc71':'#f5a623')+'">T:'+r.lv_t+'/10 M:'+r.lv_m+'/10</td>';
+    } else {
+      h+='<td style="color:'+(r.pct===100?'#2ecc71':'#f5a623')+'">'+r.pct+'%</td>';
+    }
+    h+='<td style="color:'+(GN[g]===0?'#666':(r.gd>=GN[g]?'#2ecc71':'#f5a623'))+'">'+(GN[g]===0?'—':r.gd+'/'+GN[g])+'</td>';
+    h+='<td class="infoc">'+(r.sh?(r.rn>0?r.rn+'×':'✅'):'—')+'</td>';
+    h+='<td style="color:'+(r.sh?(r.w_ok?'#2ecc71':'#ff6b6b'):'#666')+'">'+(r.sh?fM(r.wo):'—')+'</td>';
+    h+='<td style="color:'+(r.sh?(r.d_ok?'#2ecc71':'#ff6b6b'):'#666')+'">'+(r.sh?fM(r.doo):'—')+'</td></tr>';
   });
   h+='</table>';
   var st=document.getElementById('sum-table');if(st)st.innerHTML=h;
@@ -570,10 +634,10 @@ function renderSummary(i,res){
 // ═══════════════════════════════════════════════════════
 function renderShops(){
   var defs=[
-    {g:'G5',neg:'G4',vpr_ld:4.66,vpr_all:4.66,wc:30,dc:1.3,rows:[{ico:'🐺',nm:'Lupo',n:60,vp:.067,tot:4.02,cpk:.5,ctot:30},{ico:'🐉',nm:'Drago',n:2,vp:.32,tot:.64,cpk:.65,ctot:1.3}]},
-    {g:'G6',neg:'G5',vpr_ld:50.1,vpr_all:81.2,wc:75,dc:1.95,rows:[{ico:'🐺',nm:'Lupo',n:150,vp:.31,tot:46.5,cpk:.5,ctot:75},{ico:'🐉',nm:'Drago',n:3,vp:1.2,tot:3.6,cpk:.65,ctot:1.95},{ico:'🌲',nm:'Foresta 1',n:2,vp:1.6,tot:3.2,cpk:1,ctot:2,fore:true},{ico:'🌲',nm:'Foresta 2',n:150,vp:.186,tot:27.9,cpk:.5,ctot:75,fore:true}]},
-    {g:'G7',neg:'G6',vpr_ld:571,vpr_all:925.3,wc:95,dc:1.5,rows:[{ico:'🐺',nm:'Lupo',n:190,vp:2.8,tot:532,cpk:.5,ctot:95},{ico:'🐉',nm:'Drago',n:3,vp:13,tot:39,cpk:.5,ctot:1.5},{ico:'🌲',nm:'Foresta 1',n:190,vp:1.68,tot:319.2,cpk:.65,ctot:123.5,fore:true},{ico:'🌲',nm:'Foresta 2',n:3,vp:11.7,tot:35.1,cpk:1,ctot:3,fore:true}]},
-    {g:'G8',neg:'G7',vpr_ld:3474,vpr_all:5688,wc:255,dc:2.6,rows:[{ico:'🐺',nm:'Lupo',n:510,vp:6.6,tot:3366,cpk:.5,ctot:255},{ico:'🐉',nm:'Drago',n:4,vp:27,tot:108,cpk:.65,ctot:2.6},{ico:'🌲',nm:'Foresta 1',n:8,vp:24.3,tot:194.4,cpk:.65,ctot:5.2,fore:true},{ico:'🌲',nm:'Foresta 2',n:510,vp:3.96,tot:2020,cpk:.65,ctot:331.5,fore:true}]}
+    {g:'G5',neg:'G4',vpr_ld:4.66,vpr_all:4.66,rows:[{ico:'🐺',nm:'Lupo',n:60,vp:.067,tot:4.02,cpk:.5,ctot:30},{ico:'🐉',nm:'Drago',n:2,vp:.32,tot:.64,cpk:.65,ctot:1.3}]},
+    {g:'G6',neg:'G5',vpr_ld:50.1,vpr_all:81.2,rows:[{ico:'🐺',nm:'Lupo',n:150,vp:.31,tot:46.5,cpk:.5,ctot:75},{ico:'🐉',nm:'Drago',n:3,vp:1.2,tot:3.6,cpk:.65,ctot:1.95},{ico:'🌲',nm:'Foresta 1',n:2,vp:1.6,tot:3.2,cpk:1,ctot:2,fore:true},{ico:'🌲',nm:'Foresta 2',n:150,vp:.186,tot:27.9,cpk:.5,ctot:75,fore:true}]},
+    {g:'G7',neg:'G6',vpr_ld:571,vpr_all:925.3,rows:[{ico:'🐺',nm:'Lupo',n:190,vp:2.8,tot:532,cpk:.5,ctot:95},{ico:'🐉',nm:'Drago',n:3,vp:13,tot:39,cpk:.5,ctot:1.5},{ico:'🌲',nm:'Foresta 1',n:190,vp:1.68,tot:319.2,cpk:.65,ctot:123.5,fore:true},{ico:'🌲',nm:'Foresta 2',n:3,vp:11.7,tot:35.1,cpk:1,ctot:3,fore:true}]},
+    {g:'G8',neg:'G7',vpr_ld:3474,vpr_all:5688,rows:[{ico:'🐺',nm:'Lupo',n:510,vp:6.6,tot:3366,cpk:.5,ctot:255},{ico:'🐉',nm:'Drago',n:4,vp:27,tot:108,cpk:.65,ctot:2.6},{ico:'🌲',nm:'Foresta 1',n:8,vp:24.3,tot:194.4,cpk:.65,ctot:5.2,fore:true},{ico:'🌲',nm:'Foresta 2',n:510,vp:3.96,tot:2020,cpk:.65,ctot:331.5,fore:true}]}
   ];
   var h='';
   defs.forEach(function(s){
@@ -654,7 +718,7 @@ function spk(g,k,v){
 // ═══════════════════════════════════════════════════════
 function compute(){
   var i=getI(), res=calcAll(i);
-  ['G5','G6','G7','G8'].forEach(function(g){
+  ['G2','G3','G4','G5','G6','G7','G8'].forEach(function(g){
     var el=document.getElementById('c-'+g.toLowerCase());
     if(el) el.innerHTML=renderGrade(g,res[g],i);
   });
@@ -663,12 +727,16 @@ function compute(){
   renderSim();
   // Stato rapido
   var qs='';
-  ['G5','G6','G7','G8'].forEach(function(g){
+  ['G2','G3','G4','G5','G6','G7','G8'].forEach(function(g){
     var r=res[g],col=GCOL[g],gn=parseInt(g.replace('G',''));
-    var done=i.guard>=gn, allOk=r.vp_ok&&!r.am&&!r.hm&&!r.pm&&!r.gm;
+    var done=i.guard>=gn, allOk=r.vp_ok && !r.am && !r.hm && !r.pm && !r.gm;
     qs+='<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #1e2030">';
     qs+='<span style="font-weight:700;color:'+col+'">'+g+'</span>';
-    qs+='<span style="font-size:11px;color:#555">T:'+r.lv_t+'/10 · M:'+r.lv_m+'/10 · 🛡️'+r.gd+'/'+GN[g]+'</span>';
+    if(r.hasDetailedResearch){
+      qs+='<span style="font-size:11px;color:#555">T:'+r.lv_t+'/10 · M:'+r.lv_m+'/10'+(GN[g]>0?' · 🛡️'+r.gd+'/'+GN[g]:'')+'</span>';
+    } else {
+      qs+='<span style="font-size:11px;color:#555">'+r.pct+'%'+(GN[g]>0?' · 🛡️'+r.gd+'/'+GN[g]:'')+'</span>';
+    }
     qs+='<span style="font-size:12px;font-weight:700;color:'+(done||allOk?'#2ecc71':r.vp_ok?'#f5a623':'#ff6b6b')+'">';
     qs+=(done?'✅ Fatto':allOk?'✅ Pronto':r.vp_ok?'⚡ VP ok':'⚠️ '+fV(r.vp_miss)+' VP');
     if(r.rn>0&&!done) qs+=' ('+r.rn+'× Ragnarök)';
@@ -684,6 +752,9 @@ function goPage(id,el){
   el.classList.add('on');
 }
 
+// Inizializza
+document.querySelector('.unit-btn[data-u="auto"]').classList.add('on');
+renderResearchBlocks();
 compute();
 </script>
 </body>
