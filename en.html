@@ -355,13 +355,10 @@ function calcAll(i){
       lv_t:lv_t, lv_m:lv_m, gd:gd,
       am:Math.max((q.acc||0)-i.acc,0), acc_req:q.acc||0,
       hm:Math.max((q.hero||0)-i.hero,0), hero_req:q.hero||0,
+      // Progetti e oro: confronto diretto, valori cumulativi dal foglio dati
       pm:Math.max((q.proj||0)-i.proj,0), proj_req:q.proj||0,
-      // Oro: serve solo per comprare i projects mancanti (1 progetto = 10 gold)
-      // L'gold "base" del grado = proj_req × 10 (non c'è gold per accademia separato)
-      // Oro necessario = proj_mancanti × 10
-      // Oro mancante = max(gold_necessario - gold_hai, 0)
-      gold_need:(function(){var pm=Math.max((q.proj||0)-i.proj,0);return pm*10;}()),
-      gm:(function(){var pm=Math.max((q.proj||0)-i.proj,0);return Math.max(pm*10-i.gold,0);}()),
+      gold_need:q.gold||0,
+      gm:Math.max((q.gold||0)-i.gold,0),
       // Building resources: rss_need in M, i.wood/iron/stone in M → confronto diretto
       rss_need:rssNeed(i.acc, q.acc||i.acc),
       rss_wood_ok:i.wood>=rssNeed(i.acc,q.acc||i.acc),
@@ -500,7 +497,7 @@ function renderGrade(g,r,i){
   h+='<div class="slb">Requirements</div><div class="ibox">';
   h+='<div class="irow"><span class="ilb">🏛️ Academy</span><span class="iv '+(r.am===0?'okc':'warnc')+'">'+(r.am===0?'✅ L'+r.acc_req:'→ L'+r.acc_req+' (sei L'+i.acc+', missing '+r.am+')')+'</span></div>';
   if(r.hero_req>0) h+='<div class="irow"><span class="ilb">🦸 Hero</span><span class="iv '+(r.hm===0?'okc':'warnc')+'">'+(r.hm===0?'✅ Lv'+r.hero_req:'→ Lv'+r.hero_req+' (sei Lv'+i.hero+')')+'</span></div>';
-  if(r.proj_req>0) h+='<div class="irow"><span class="ilb">📜 Projects</span><span class="iv '+(r.pm===0?'okc':'warnc')+'">'+(r.pm===0?'✅ '+r.proj_req.toLocaleString():'→ Buy '+r.pm.toLocaleString())+'</span></div>';
+  if(r.proj_req>0) h+='<div class="irow"><span class="ilb">📜 Projects</span><span class="iv '+(r.pm===0?'okc':'warnc')+'">'+(r.pm===0?'✅ '+r.proj_req.toLocaleString():'→ Compra '+r.pm.toLocaleString())+'</span></div>';
   if(r.gm>0) h+='<div class="irow"><span class="ilb">💰 Gold</span><span class="iv warnc">⚠️ Mancano '+r.gm.toLocaleString()+'</span></div>';
   h+='</div></div></div>';
   return h;
