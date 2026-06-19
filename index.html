@@ -359,8 +359,11 @@ function calcAll(i){
       hm:Math.max((q.hero||0)-i.hero,0), hero_req:q.hero||0,
       // Progetti e oro: confronto diretto, valori cumulativi dal foglio dati
       pm:Math.max((q.proj||0)-proj_have,0), proj_req:q.proj||0, proj_have_now:proj_have,
-      gold_need:q.gold||0, gold_have_now:gold_have,
-      gm:Math.max((q.gold||0)-gold_have,0),
+      // Oro necessario = SOLO per i progetti mancanti (1 progetto = 10 oro)
+      // Non il valore fisso del grado, perché i progetti che hai già non ti costano oro ora
+      gold_need:(function(){var pm=Math.max((q.proj||0)-proj_have,0);return pm*10;}()),
+      gold_have_now:gold_have,
+      gm:(function(){var pm=Math.max((q.proj||0)-proj_have,0);return Math.max(pm*10-gold_have,0);}()),
       // Risorse edifici: rss_need in M, i.wood/iron/stone in M → confronto diretto
       rss_need:rssNeed(i.acc, q.acc||i.acc),
       rss_wood_ok:i.wood>=rssNeed(i.acc,q.acc||i.acc),
@@ -370,12 +373,13 @@ function calcAll(i){
     wolf=Math.max(wolf-wc,0);
     dragon=Math.max(dragon-dc,0);
     // Consuma progetti/oro solo se questo grado non è già stato completato
-    // (se già completato, guard>=gn, i progetti/oro erano già stati spesi nel passato
-    //  e non vanno sottratti dal saldo ATTUALE che l'utente ci dà)
     var gn_loop=parseInt(g.replace('G',''));
     if(guard < gn_loop){
-      proj_have=Math.max(proj_have-(q.proj||0),0);
-      gold_have=Math.max(gold_have-(q.gold||0),0);
+      var pm_loop=Math.max((q.proj||0)-proj_have,0);
+      var gold_used=pm_loop*10; // oro speso per comprare i progetti mancanti
+      // Progetti: dopo aver raggiunto il target, ne restano 0 (li hai usati tutti per il grado)
+      proj_have=0;  // tutti i progetti (vecchi + comprati) vengono spesi per il grado
+      gold_have=Math.max(gold_have-gold_used,0);
     }
   });
   return res;
