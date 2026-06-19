@@ -373,8 +373,10 @@ function calcAll(i){
 
     wolf=Math.max(wolf-wc,0);
     dragon=Math.max(dragon-dc,0);
-    if(guard < gn){
-      proj_have=0;
+    if(guard < gn && (q.proj||0) > 0){
+      // Consuma SOLO i progetti necessari per questo grado (q.proj), non tutti
+      // Se hai 90.000 e servono 25.000, restano 65.000 per il grado successivo
+      proj_have=Math.max(proj_have-(q.proj||0),0);
       gold_have=Math.max(gold_have-gold_need,0);
     }
   });
