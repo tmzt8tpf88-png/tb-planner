@@ -355,13 +355,10 @@ function calcAll(i){
       lv_t:lv_t, lv_m:lv_m, gd:gd,
       am:Math.max((q.acc||0)-i.acc,0), acc_req:q.acc||0,
       hm:Math.max((q.hero||0)-i.hero,0), hero_req:q.hero||0,
+      // Progetti e oro: confronto diretto, valori cumulativi dal foglio dati
       pm:Math.max((q.proj||0)-i.proj,0), proj_req:q.proj||0,
-      // Oro: serve solo per comprare i progetti mancanti (1 progetto = 10 oro)
-      // L'oro "base" del grado = proj_req × 10 (non c'è oro per accademia separato)
-      // Oro necessario = proj_mancanti × 10
-      // Oro mancante = max(oro_necessario - oro_hai, 0)
-      gold_need:(function(){var pm=Math.max((q.proj||0)-i.proj,0);return pm*10;}()),
-      gm:(function(){var pm=Math.max((q.proj||0)-i.proj,0);return Math.max(pm*10-i.gold,0);}()),
+      gold_need:q.gold||0,
+      gm:Math.max((q.gold||0)-i.gold,0),
       // Risorse edifici: rss_need in M, i.wood/iron/stone in M → confronto diretto
       rss_need:rssNeed(i.acc, q.acc||i.acc),
       rss_wood_ok:i.wood>=rssNeed(i.acc,q.acc||i.acc),
