@@ -6,67 +6,80 @@
 <title>Total Battle — Pianificatore Guardie</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;font-size:14px;background:#0f1117;color:#e8eaf0;min-height:100vh}
-nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:center;padding:0 8px;position:sticky;top:0;z-index:99;overflow-x:auto}
-.logo{font-size:14px;font-weight:700;color:#f5a623;padding:12px 10px 12px 0;border-right:1px solid #2a2d3a;margin-right:2px;white-space:nowrap}
-.tab{padding:12px 9px;cursor:pointer;color:#8b8fa8;font-size:12px;border-bottom:2px solid transparent;white-space:nowrap;user-select:none}
+body{font-family:-apple-system,Arial,sans-serif;font-size:16px;background:#0f1117;color:#e8eaf0;min-height:100vh;-webkit-tap-highlight-color:transparent}
+nav{background:#1a1d27;border-bottom:1px solid #2a2d3a;display:flex;align-items:center;padding:0 6px;position:sticky;top:0;z-index:99;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+.logo{font-size:16px;font-weight:700;color:#f5a623;padding:14px 12px 14px 6px;border-right:1px solid #2a2d3a;margin-right:2px;white-space:nowrap}
+.tab{padding:14px 13px;cursor:pointer;color:#8b8fa8;font-size:14px;font-weight:600;border-bottom:3px solid transparent;white-space:nowrap;user-select:none;-webkit-user-select:none}
 .tab.on{color:#f5a623;border-bottom-color:#f5a623}
-.pg{display:none;padding:14px 12px;max-width:900px;margin:0 auto}
+.pg{display:none;padding:14px 14px 40px;max-width:900px;margin:0 auto}
 .pg.on{display:block}
-.card{background:#1a1d27;border:1px solid #2a2d3a;border-radius:10px;padding:14px;margin-bottom:12px}
-.ct{font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.8px;margin-bottom:11px}
-.r2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
-.r4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px}
-.fg{display:flex;flex-direction:column;gap:4px}
-.fg label{font-size:11px;color:#8b8fa8}
-.fg input,.fg select{background:#22263a;border:1px solid #333;border-radius:6px;color:#e8eaf0;font-size:14px;font-weight:700;padding:8px 9px;outline:none;width:100%}
+.card{background:#1a1d27;border:1px solid #2a2d3a;border-radius:12px;padding:16px;margin-bottom:14px}
+.ct{font-size:12px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.8px;margin-bottom:13px}
+.r2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.r3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.r4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:7px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:12px;color:#9ba1b8;font-weight:500}
+.fg input,.fg select{background:#22263a;border:1.5px solid #333;border-radius:8px;color:#e8eaf0;font-size:17px;font-weight:700;padding:12px 12px;outline:none;width:100%;min-height:48px}
 .fg input:focus,.fg select:focus{border-color:#f5a623}
-.hint{font-size:11px;color:#444;margin-top:2px}
-.gb{border-radius:10px;overflow:hidden;margin-bottom:13px;border:1px solid #2a2d3a}
-.gh{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;flex-wrap:wrap;gap:6px}
-.gt{font-size:15px;font-weight:700}
-.gsub{font-size:11px;color:rgba(255,255,255,.4);margin-top:2px}
-.gst{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
-.ok-b{background:rgba(46,204,113,.15);color:#2ecc71}
-.warn-b{background:rgba(255,107,107,.15);color:#ff6b6b}
-.gbody{background:#1a1d27;padding:12px 14px}
-.ibox{background:#22263a;border-radius:8px;padding:11px 13px;margin-bottom:10px}
-.irow{display:flex;align-items:flex-start;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1e2030;gap:8px}
+.hint{font-size:11px;color:#555;margin-top:2px}
+.gb{border-radius:12px;overflow:hidden;margin-bottom:14px;border:1px solid #2a2d3a}
+.gh{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;flex-wrap:wrap;gap:8px}
+.gt{font-size:18px;font-weight:700}
+.gsub{font-size:12px;color:rgba(255,255,255,.45);margin-top:3px;line-height:1.4}
+.gst{font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px}
+.ok-b{background:rgba(46,204,113,.18);color:#2ecc71}
+.warn-b{background:rgba(255,107,107,.18);color:#ff6b6b}
+.gbody{background:#1a1d27;padding:14px 16px}
+.ibox{background:#22263a;border-radius:10px;padding:13px 14px;margin-bottom:11px}
+.irow{display:flex;align-items:flex-start;justify-content:space-between;padding:8px 0;border-bottom:1px solid #1e2030;gap:10px;min-height:32px}
 .irow:last-child{border-bottom:none}
-.ilb{color:#8b8fa8;font-size:12px;flex:1;padding-top:2px}
-.iv{font-size:13px;font-weight:700;text-align:right;white-space:nowrap}
-.idet{font-size:11px;color:#666;text-align:right;margin-top:2px}
-.pbar{height:5px;background:#1a1d27;border-radius:3px;margin-top:6px;overflow:hidden}
+.ilb{color:#9ba1b8;font-size:13px;flex:1;padding-top:2px}
+.iv{font-size:15px;font-weight:700;text-align:right;white-space:nowrap}
+.idet{font-size:12px;color:#6a7088;text-align:right;margin-top:3px}
+.pbar{height:6px;background:#1a1d27;border-radius:3px;margin-top:8px;overflow:hidden}
 .pfill{height:100%;border-radius:3px;transition:width .3s}
-.rtbl{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
-.rtbl th{background:#1a1d27;color:#555;font-size:10px;text-transform:uppercase;padding:5px 7px;text-align:center;border-bottom:1px solid #2a2d3a}
-.rtbl td{padding:5px 7px;border-bottom:1px solid #1e2030;text-align:center}
-.rtbl td:first-child{text-align:left;color:#8b8fa8;font-size:11px}
+.rtbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+.rtbl th{background:#1a1d27;color:#666;font-size:11px;text-transform:uppercase;padding:7px 8px;text-align:center;border-bottom:1px solid #2a2d3a}
+.rtbl td{padding:7px 8px;border-bottom:1px solid #1e2030;text-align:center}
+.rtbl td:first-child{text-align:left;color:#9ba1b8;font-size:12px}
 .r-done{color:#2ecc71!important;background:rgba(46,204,113,.05)}
-.ccg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
-.cc{background:#22263a;border-radius:8px;padding:10px 11px}
-.ccnm{font-size:11px;color:#666;margin-bottom:4px}
-.ccav{font-size:15px;font-weight:700}
-.ccdt{font-size:11px;color:#666;margin-top:3px}
-.ccst{font-size:12px;font-weight:700;margin-top:4px}
-.stbl{width:100%;border-collapse:collapse;font-size:12px}
-.stbl th{background:#22263a;color:#555;font-size:10px;text-transform:uppercase;letter-spacing:.4px;padding:7px 8px;text-align:left;border-bottom:1px solid #2a2d3a}
-.stbl td{padding:7px 8px;border-bottom:1px solid #1e2030;vertical-align:middle}
+.ccg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px}
+.cc{background:#22263a;border-radius:10px;padding:12px 13px}
+.ccnm{font-size:12px;color:#777;margin-bottom:5px}
+.ccav{font-size:17px;font-weight:700}
+.ccdt{font-size:12px;color:#6a7088;margin-top:4px}
+.ccst{font-size:13px;font-weight:700;margin-top:5px}
+.stbl{width:100%;border-collapse:collapse;font-size:13px}
+.stbl th{background:#22263a;color:#666;font-size:11px;text-transform:uppercase;letter-spacing:.4px;padding:8px 9px;text-align:left;border-bottom:1px solid #2a2d3a}
+.stbl td{padding:9px 9px;border-bottom:1px solid #1e2030;vertical-align:middle}
 .stbl tr:last-child td{border-bottom:none}
-.shop-tbl{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:18px}
-.shop-tbl th{background:#22263a;color:#555;font-size:10px;text-transform:uppercase;padding:6px 8px;text-align:left;border-bottom:1px solid #2a2d3a}
-.shop-tbl td{padding:6px 8px;border-bottom:1px solid #1e2030}
-.sim-inp{width:68px;background:#0f1117;border:1px solid #333;border-radius:5px;color:#e8eaf0;font-size:13px;font-weight:700;padding:5px 6px;text-align:center;outline:none}
+.shop-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:18px}
+.shop-tbl th{background:#22263a;color:#666;font-size:11px;text-transform:uppercase;padding:7px 9px;text-align:left;border-bottom:1px solid #2a2d3a}
+.shop-tbl td{padding:7px 9px;border-bottom:1px solid #1e2030}
+.sim-inp{width:74px;background:#0f1117;border:1.5px solid #333;border-radius:7px;color:#e8eaf0;font-size:15px;font-weight:700;padding:8px 7px;text-align:center;outline:none;min-height:42px}
 .sim-inp:focus{border-color:#f5a623}
-.slb{font-size:10px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.8px;margin:12px 0 7px}
-.div{height:1px;background:#2a2d3a;margin:10px 0}
-.note{font-size:12px;color:#555;font-style:italic;line-height:1.5}
-.okc{color:#2ecc71}.warnc{color:#ff6b6b}.infoc{color:#f5a623}.mutec{color:#666}
-.unit-sel{display:flex;gap:4px;margin-bottom:10px}
-.unit-btn{flex:1;background:#22263a;border:1px solid #333;border-radius:6px;color:#8b8fa8;font-size:12px;font-weight:700;padding:8px;text-align:center;cursor:pointer;user-select:none}
+.slb{font-size:11px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.8px;margin:14px 0 8px}
+.div{height:1px;background:#2a2d3a;margin:11px 0}
+.note{font-size:13px;color:#666;font-style:italic;line-height:1.55}
+.okc{color:#2ecc71}.warnc{color:#ff6b6b}.infoc{color:#f5a623}.mutec{color:#6a7088}
+.unit-sel{display:flex;gap:5px;margin-bottom:10px}
+.unit-btn{flex:1;background:#22263a;border:1.5px solid #333;border-radius:8px;color:#9ba1b8;font-size:13px;font-weight:700;padding:11px 6px;text-align:center;cursor:pointer;user-select:none;min-height:46px;display:flex;align-items:center;justify-content:center}
 .unit-btn.on{background:#f5a62322;border-color:#f5a623;color:#f5a623}
-@media(max-width:580px){.r2,.r3,.r4,.ccg{grid-template-columns:1fr}}
+/* COLLAPSIBLE SECTIONS */
+.collapse-head{display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:4px 0;user-select:none;-webkit-user-select:none}
+.collapse-head .chevron{font-size:13px;color:#666;transition:transform .25s;margin-left:8px}
+.collapse-head.open .chevron{transform:rotate(180deg)}
+.collapse-body{display:none;overflow:hidden}
+.collapse-body.open{display:block}
+/* BIG SUMMARY NUMBERS for quick glance */
+.bignum{font-size:22px;font-weight:800;line-height:1.1}
+.bignum-lbl{font-size:11px;color:#777;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.hero-stat{background:#22263a;border-radius:12px;padding:14px;text-align:center}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:12px}
+@media(max-width:580px){.r2,.r3,.r4,.ccg,.hero-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:400px){.r3{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -454,138 +467,143 @@ function renderGrade(g,r,i){
 
   var h='<div class="gb"><div class="gh" style="background:'+col+'20;border-left:4px solid '+col+'">';
   h+='<div><div class="gt" style="color:'+col+'">Grado '+g+'</div>';
-  if(done) h+='<div class="gsub">✅ Hai già sbloccato '+g+' — ricerche completate</div>';
-  else h+='<div class="gsub">Per sbloccare '+g+': completa le ricerche di G'+prevG+' e le guardie G'+prevG+'</div>';
-  h+='</div><span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Completato':allOk?'✅ Pronto':'⚠️ Incompleto')+'</span>';
+  if(done) h+='<div class="gsub">✅ Hai già sbloccato '+g+'</div>';
+  else h+='<div class="gsub">Per sbloccare: ricerche e guardie G'+prevG+'</div>';
+  h+='</div><span class="gst '+(done?'ok-b':allOk?'ok-b':'warn-b')+'">'+(done?'✅ Fatto':allOk?'✅ Pronto':'⚠️ Incompleto')+'</span>';
   h+='</div><div class="gbody">';
 
   if(done){
-    h+='<div class="ibox">';
-    if(r.hasDetailedResearch){
-      h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv okc">10/10 ✅</span></div>';
-      h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv okc">10/10 ✅</span></div>';
-    } else {
-      h+='<div class="irow"><span class="ilb">📊 Ricerche</span><span class="iv okc">100% ✅</span></div>';
-    }
-    if(GN[g]>0) h+='<div class="irow"><span class="ilb">🛡️ Guardie</span><span class="iv okc">'+GN[g]+'/'+GN[g]+' ✅</span></div>';
+    // ── HERO: vista rapida quando completato ──
+    h+='<div class="hero-stat"><div class="bignum okc">✅ Completato</div>';
     var totVP = r.hasDetailedResearch ? vpTot(g) : vpTotFixed(g);
-    h+='<div class="irow"><span class="ilb">⚔️ VP totali spesi</span><span class="iv okc">'+fV(totVP)+' ✅</span></div>';
-    h+='</div>';
+    h+='<div class="bignum-lbl">'+fV(totVP)+' VP totali spesi</div></div>';
   } else {
-    h+='<div class="slb">Ricerche <span style="font-weight:400;color:#555">(modifica in ⚙️ Dati)</span></div>';
-    h+='<div class="ibox">';
-    if(r.hasDetailedResearch){
-      h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv '+(r.lv_t===10?'okc':'infoc')+'">'+r.lv_t+'/10'+(r.lv_t===10?' ✅':'')+'</span></div>';
-      if(r.lv_t<10) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti training</span><span class="iv" style="color:#f5a623">'+fV(r.rem.t)+'</span></div>';
-      h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv '+(r.lv_m===10?'okc':'infoc')+'">'+r.lv_m+'/10'+(r.lv_m===10?' ✅':'')+'</span></div>';
-      if(r.lv_m<10) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti march</span><span class="iv" style="color:#f5a623">'+fV(r.rem.m)+'</span></div>';
-    } else {
-      h+='<div class="irow"><span class="ilb">📊 Ricerche completate</span><span class="iv '+(r.pct===100?'okc':'infoc')+'">'+r.pct+'%'+(r.pct===100?' ✅':'')+'</span></div>';
-      if(r.pct<100) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti ricerche</span><span class="iv" style="color:#f5a623">'+fV(r.rem.t)+'</span></div>';
-    }
-    if(GN[g]>0){
-      h+='<div class="irow"><span class="ilb">🛡️ Guardie sbloccate</span><span class="iv '+(r.gd>=GN[g]?'okc':'infoc')+'">'+r.gd+'/'+GN[g]+(r.gd>=GN[g]?' ✅':'')+'</span></div>';
-      if(r.gd<GN[g]) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ Guardie da sbloccare</span><span class="iv" style="color:#f5a623">'+(GN[g]-r.gd)+'× '+fV(GV[g])+' = '+fV(r.rem.g)+'</span></div>';
-    }
-    h+='<div class="div"></div>';
-    h+='<div class="irow"><span class="ilb" style="font-weight:700">⚔️ VP totali ancora necessari</span><span class="iv" style="color:'+(r.vp_needed<0.0000001?'#2ecc71':'#ff6b6b')+';font-size:16px">'+fV(r.vp_needed)+'</span></div>';
-    if(r.vp_needed>0){
-      h+='<div style="background:#1a1d27;border-radius:6px;padding:8px 10px;margin-top:6px;font-size:11px">';
-      if(r.rem.t>0) h+='<div style="display:flex;justify-content:space-between;padding:2px 0"><span style="color:#666">'+(r.hasDetailedResearch?'📚 Training':'📊 Ricerche')+' rimanenti</span><span style="color:#f5a623">'+fV(r.rem.t)+'</span></div>';
-      if(r.rem.m>0) h+='<div style="display:flex;justify-content:space-between;padding:2px 0"><span style="color:#666">⚡ March rimanenti</span><span style="color:#f5a623">'+fV(r.rem.m)+'</span></div>';
-      if(r.rem.g>0) h+='<div style="display:flex;justify-content:space-between;padding:2px 0"><span style="color:#666">🛡️ Guardie ('+(GN[g]-r.gd)+'× '+fV(GV[g])+')</span><span style="color:#f5a623">'+fV(r.rem.g)+'</span></div>';
-      h+='</div>';
-    }
-    h+='</div>';
-
-    // Piano VP + Ragnarök — solo se ha negozio (G5-G8)
+    // ── HERO: i 2 numeri più importanti a colpo d'occhio ──
+    h+='<div class="hero-grid">';
+    h+='<div class="hero-stat"><div class="bignum" style="color:'+(r.vp_needed<0.0000001?'#2ecc71':'#ff6b6b')+'">'+fV(r.vp_needed)+'</div><div class="bignum-lbl">VP ancora necessari</div></div>';
     if(sh){
-      h+='<div class="slb" style="margin-top:12px">Piano VP e Ragnarök</div>';
-      h+='<div class="ibox">';
-      h+='<div class="irow"><span class="ilb">⚔️ VP da combattimento disponibili</span><span class="iv" style="color:'+col+'">'+fV(r.vp_avail)+'</span></div>';
-      if(r.vp_miss>0){
-        h+='<div class="irow"><span class="ilb">❌ VP ancora mancanti</span><span class="iv warnc">'+fV(r.vp_miss)+'</span></div>';
-        if(sh.vpr_all>sh.vpr_ld && r.rn<r.rn_nf){
-          h+='<div class="irow"><span class="ilb">Ragnarök senza Foresta</span><span class="iv mutec">'+r.rn_nf+'×</span></div>';
-          h+='<div class="irow"><span class="ilb">🌲 Con Foresta</span><span class="iv okc">'+r.rn+'× (risparmio '+(r.rn_nf-r.rn)+')</span></div>';
-        } else {
-          h+='<div class="irow"><span class="ilb">🏪 Ragnarök necessari (neg. G'+prevG+')</span><span class="iv infoc" style="font-size:18px">'+r.rn+'×</span></div>';
-        }
-        h+='<div class="irow"><span class="ilb">📦 VP dai Ragnarök</span><span class="iv" style="color:#93c5fd">+'+fV(r.rn*r.vpr)+'</span></div>';
-      } else {
-        h+='<div class="irow"><span class="ilb">✅ VP sufficienti</span><span class="iv okc">Nessun Ragnarök necessario</span></div>';
-      }
-      var vp_tot_avail=r.vp_avail+r.rn*r.vpr;
-      h+='<div class="div"></div>';
-      h+='<div class="irow"><span class="ilb" style="font-weight:700">Totale VP disponibili</span><span class="iv" style="font-size:16px;color:'+(r.vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(vp_tot_avail)+'</span></div>';
-      h+=bar(Math.min(100,r.vp_avail/(r.vp_needed||1)*100),r.vp_ok);
-      h+='</div>';
-
-      if(r.rn>0){
-        h+='<div class="slb">Monete per '+r.rn+' Ragnarök</div><div class="ccg">';
-        h+='<div class="cc" style="border-top:3px solid #3b82f6"><div class="ccnm">🐺 Monete Lupo</div><div class="ccav">'+fM(r.wa)+'</div>';
-        h+='<div class="ccdt">Servono: '+fM(r.wc)+' ('+r.rn+'×'+fM(sh.wc)+')</div>';
-        h+='<div class="ccst" style="color:'+(r.w_ok?'#2ecc71':'#ff6b6b')+'">'+(r.w_ok?'✅ Rimangono '+fM(r.wo):'⚠️ Mancano '+fM(r.wc-r.wa))+'</div></div>';
-        h+='<div class="cc" style="border-top:3px solid #ef4444"><div class="ccnm">🐉 Monete Drago</div><div class="ccav">'+fM(r.da)+'</div>';
-        h+='<div class="ccdt">Servono: '+fM(r.dc)+' ('+r.rn+'×'+fM(sh.dc)+')</div>';
-        h+='<div class="ccst" style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+(r.d_ok?'✅ Rimangono '+fM(r.doo):'⚠️ Mancano '+fM(r.dc-r.da))+'</div></div></div>';
-      }
+      h+='<div class="hero-stat"><div class="bignum infoc">'+(r.rn>0?r.rn+'×':'✅')+'</div><div class="bignum-lbl">'+(r.rn>0?'Ragnarök (neg. G'+prevG+')':'Nessun Ragnarök')+'</div></div>';
     } else {
-      h+='<p class="note" style="padding:8px 0">⚔️ Accumula VP combattendo — nessun negozio Ragnarök dedicato a questo grado.</p>';
-    }
-  }
-
-  // Risorse edifici — sempre visibili se acc_req>0
-  if(!done && r.acc_req > 0){
-    h+='<div class="slb">🪵 Risorse edifici (Legno / Ferro / Pietra)</div>';
-    h+='<div class="ibox">';
-    var acc_ok = i.acc >= r.acc_req;
-    var rn_rss = r.rss_need;
-    if(acc_ok){
-      h+='<div class="irow"><span class="ilb">📊 Accademia L'+r.acc_req+'</span><span class="iv okc">✅ Raggiunta (sei a L'+i.acc+')</span></div>';
-      h+='<div class="irow"><span class="ilb">🪵 Legno / ⚙️ Ferro / 🪨 Pietra</span><span class="iv okc">✅ Già utilizzate</span></div>';
-    } else {
-      h+='<div class="irow"><span class="ilb">📊 Accademia</span><span class="iv mutec">L'+i.acc+' → L'+r.acc_req+' (servono '+fM(rn_rss)+')</span></div>';
-      function rssRow(ico,nm,have,ok){
-        var miss=Math.max(rn_rss-have,0);
-        return '<div class="irow"><span class="ilb">'+ico+' '+nm+'</span><div style="text-align:right">'+
-          '<div class="iv" style="color:'+(ok?'#2ecc71':'#ff6b6b')+'">'+fM(have)+'</div>'+
-          '<div class="idet">'+(ok?'✅ sufficienti':'⚠️ mancano '+fM(miss))+'</div>'+
-          '</div></div>';
-      }
-      h+=rssRow('🪵','Legno',i.wood,r.rss_wood_ok);
-      h+=rssRow('⚙️','Ferro',i.iron,r.rss_iron_ok);
-      h+=rssRow('🪨','Pietra',i.stone,r.rss_stone_ok);
+      h+='<div class="hero-stat"><div class="bignum" style="color:'+(r.pm===0?'#2ecc71':'#f5a623')+'">'+(r.hasDetailedResearch?(r.lv_t+'/'+'10'):(r.pct+'%'))+'</div><div class="bignum-lbl">Ricerche fatte</div></div>';
     }
     h+='</div>';
+    h+=bar(Math.min(100,r.vp_avail/(r.vp_needed||1)*100),r.vp_ok);
   }
 
-  // Requisiti
-  h+='<div class="slb">Requisiti</div><div class="ibox">';
-  h+='<div class="irow"><span class="ilb">🏛️ Accademia</span><span class="iv '+(r.am===0?'okc':'warnc')+'">'+(r.am===0?'✅ L'+r.acc_req:'→ L'+r.acc_req+' (sei L'+i.acc+', mancano '+r.am+')')+'</span></div>';
-  if(r.hero_req>0) h+='<div class="irow"><span class="ilb">🦸 Eroe</span><span class="iv '+(r.hm===0?'okc':'warnc')+'">'+(r.hm===0?'✅ Lv'+r.hero_req:'→ Lv'+r.hero_req+' (sei Lv'+i.hero+')')+'</span></div>';
-  if(r.proj_req>0){
-    h+='<div class="irow"><span class="ilb">📜 Progetti</span><div style="text-align:right">';
-    h+='<div class="iv '+(r.pm===0?'okc':'warnc')+'">'+(r.pm===0?'✅ '+r.proj_req.toLocaleString():'Hai '+r.proj_have_now.toLocaleString()+' / '+r.proj_req.toLocaleString())+'</div>';
-    if(r.pm>0) h+='<div class="idet">⚠️ Mancano '+r.pm.toLocaleString()+' progetti</div>';
-    h+='</div></div>';
-    h+='<div class="irow"><span class="ilb">💰 Oro</span><div style="text-align:right">';
-    if(r.pm===0){
-      h+='<div class="iv okc">✅ Non serve oro aggiuntivo</div>';
+  // ── SEZIONE: Ricerche (collassabile) ──
+  var cid1='col-'+g+'-res';
+  h+='<div class="collapse-head" onclick="toggleCol(\''+cid1+'\')"><span class="slb" style="margin:14px 0 0">📚 Ricerche</span><span class="chevron">▾</span></div>';
+  h+='<div class="collapse-body" id="'+cid1+'">';
+  h+='<div class="ibox" style="margin-top:8px">';
+  if(r.hasDetailedResearch){
+    h+='<div class="irow"><span class="ilb">📚 Training cost</span><span class="iv '+(r.lv_t===10?'okc':'infoc')+'">'+r.lv_t+'/10'+(r.lv_t===10?' ✅':'')+'</span></div>';
+    if(r.lv_t<10) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti</span><span class="iv" style="color:#f5a623">'+fV(r.rem.t)+'</span></div>';
+    h+='<div class="irow"><span class="ilb">⚡ March speed</span><span class="iv '+(r.lv_m===10?'okc':'infoc')+'">'+r.lv_m+'/10'+(r.lv_m===10?' ✅':'')+'</span></div>';
+    if(r.lv_m<10) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti</span><span class="iv" style="color:#f5a623">'+fV(r.rem.m)+'</span></div>';
+  } else {
+    h+='<div class="irow"><span class="ilb">📊 Ricerche completate</span><span class="iv '+(r.pct===100?'okc':'infoc')+'">'+r.pct+'%'+(r.pct===100?' ✅':'')+'</span></div>';
+    if(r.pct<100) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ VP rimanenti</span><span class="iv" style="color:#f5a623">'+fV(r.rem.t)+'</span></div>';
+  }
+  if(GN[g]>0){
+    h+='<div class="irow"><span class="ilb">🛡️ Guardie sbloccate</span><span class="iv '+(r.gd>=GN[g]?'okc':'infoc')+'">'+r.gd+'/'+GN[g]+(r.gd>=GN[g]?' ✅':'')+'</span></div>';
+    if(r.gd<GN[g]) h+='<div class="irow"><span class="ilb" style="padding-left:12px;color:#666">↳ Da sbloccare</span><span class="iv" style="color:#f5a623">'+(GN[g]-r.gd)+'× '+fV(GV[g])+' = '+fV(r.rem.g)+'</span></div>';
+  }
+  h+='<div class="hint" style="margin-top:8px">Modifica i livelli in ⚙️ Dati</div>';
+  h+='</div>';
+  // Tabella dettagliata livelli (solo G5-G8) — sotto-collassabile
+  if(r.hasDetailedResearch){
+    var rv=RES[g];
+    var cid2='col-'+g+'-tbl';
+    h+='<div class="collapse-head" onclick="toggleCol(\''+cid2+'\')" style="margin-top:6px"><span style="font-size:12px;color:#777">Vedi tabella livelli 1-10</span><span class="chevron" style="font-size:11px">▾</span></div>';
+    h+='<div class="collapse-body" id="'+cid2+'">';
+    h+='<table class="rtbl"><tr><th>Lv</th><th>Training</th><th>March</th></tr>';
+    for(var j=0;j<rv.length;j++){
+      var lv=j+1,t_ok=r.lv_t>=lv,m_ok=r.lv_m>=lv;
+      h+='<tr><td>'+lv+'</td>';
+      h+='<td class="'+(t_ok?'r-done':'')+'">'+(t_ok?'✅ ':'')+'<span style="color:'+(t_ok?'#2ecc71':'#e8eaf0')+'">'+fV(rv[j])+'</span></td>';
+      h+='<td class="'+(m_ok?'r-done':'')+'">'+(m_ok?'✅ ':'')+'<span style="color:'+(m_ok?'#2ecc71':'#e8eaf0')+'">'+fV(rv[j])+'</span></td></tr>';
+    }
+    h+='</table></div>';
+  }
+  h+='</div>'; // end collapse-body res
+
+  // ── SEZIONE: Piano VP/Ragnarök (collassabile, solo se non done e ha negozio) ──
+  if(!done && sh){
+    var cid3='col-'+g+'-vp';
+    h+='<div class="collapse-head" onclick="toggleCol(\''+cid3+'\')"><span class="slb" style="margin:14px 0 0">⚔️ Piano VP e Ragnarök</span><span class="chevron">▾</span></div>';
+    h+='<div class="collapse-body" id="'+cid3+'">';
+    h+='<div class="ibox" style="margin-top:8px">';
+    h+='<div class="irow"><span class="ilb">⚔️ VP disponibili</span><span class="iv" style="color:'+col+'">'+fV(r.vp_avail)+'</span></div>';
+    if(r.vp_miss>0){
+      h+='<div class="irow"><span class="ilb">❌ VP mancanti</span><span class="iv warnc">'+fV(r.vp_miss)+'</span></div>';
+      if(sh.vpr_all>sh.vpr_ld && r.rn<r.rn_nf){
+        h+='<div class="irow"><span class="ilb">Senza Foresta</span><span class="iv mutec">'+r.rn_nf+'×</span></div>';
+        h+='<div class="irow"><span class="ilb">🌲 Con Foresta</span><span class="iv okc">'+r.rn+'× (−'+(r.rn_nf-r.rn)+')</span></div>';
+      } else {
+        h+='<div class="irow"><span class="ilb">🏪 Ragnarök (neg. G'+prevG+')</span><span class="iv infoc" style="font-size:18px">'+r.rn+'×</span></div>';
+      }
+      h+='<div class="irow"><span class="ilb">📦 VP dai Ragnarök</span><span class="iv" style="color:#93c5fd">+'+fV(r.rn*r.vpr)+'</span></div>';
     } else {
-      h+='<div class="iv '+(r.gm===0?'okc':'warnc')+'">'+(r.gm===0?'✅ Hai abbastanza ('+r.gold_have_now.toLocaleString()+')':'Servono '+r.gold_need.toLocaleString())+'</div>';
-      h+='<div class="idet">Per '+r.pm.toLocaleString()+' progetti × 10 = '+r.gold_need.toLocaleString()+' oro</div>';
-      if(r.gm>0) h+='<div class="idet">⚠️ Hai '+r.gold_have_now.toLocaleString()+' — mancano '+r.gm.toLocaleString()+'</div>';
+      h+='<div class="irow"><span class="ilb">✅ VP sufficienti</span><span class="iv okc">Nessun Ragnarök</span></div>';
+    }
+    var vp_tot_avail=r.vp_avail+r.rn*r.vpr;
+    h+='<div class="div"></div>';
+    h+='<div class="irow"><span class="ilb" style="font-weight:700">Totale disponibile</span><span class="iv" style="font-size:16px;color:'+(r.vp_ok?'#2ecc71':'#ff6b6b')+'">'+fV(vp_tot_avail)+'</span></div>';
+    h+='</div>';
+    if(r.rn>0){
+      h+='<div class="ccg">';
+      h+='<div class="cc" style="border-top:3px solid #3b82f6"><div class="ccnm">🐺 Lupo</div><div class="ccav">'+fM(r.wa)+'</div>';
+      h+='<div class="ccdt">Servono '+fM(r.wc)+'</div>';
+      h+='<div class="ccst" style="color:'+(r.w_ok?'#2ecc71':'#ff6b6b')+'">'+(r.w_ok?'✅ +'+fM(r.wo):'⚠️ −'+fM(r.wc-r.wa))+'</div></div>';
+      h+='<div class="cc" style="border-top:3px solid #ef4444"><div class="ccnm">🐉 Drago</div><div class="ccav">'+fM(r.da)+'</div>';
+      h+='<div class="ccdt">Servono '+fM(r.dc)+'</div>';
+      h+='<div class="ccst" style="color:'+(r.d_ok?'#2ecc71':'#ff6b6b')+'">'+(r.d_ok?'✅ +'+fM(r.doo):'⚠️ −'+fM(r.dc-r.da))+'</div></div>';
+      h+='</div>';
+    }
+    h+='</div>';
+  } else if(!done && !sh){
+    h+='<p class="note" style="padding:8px 0">⚔️ Accumula VP combattendo — nessun negozio Ragnarök per questo grado.</p>';
+  }
+
+  // ── SEZIONE: Risorse + Requisiti (collassabile) ──
+  if(!done){
+    var cid4='col-'+g+'-req';
+    var hasIssue = r.am>0 || r.hm>0 || r.pm>0 || r.gm>0;
+    h+='<div class="collapse-head" onclick="toggleCol(\''+cid4+'\')"><span class="slb" style="margin:14px 0 0">📋 Requisiti e risorse '+(hasIssue?'⚠️':'✅')+'</span><span class="chevron">▾</span></div>';
+    h+='<div class="collapse-body" id="'+cid4+'">';
+    if(r.acc_req>0){
+      h+='<div class="ibox" style="margin-top:8px">';
+      var acc_ok = i.acc >= r.acc_req;
+      if(acc_ok){
+        h+='<div class="irow"><span class="ilb">📊 Accademia L'+r.acc_req+'</span><span class="iv okc">✅ Raggiunta</span></div>';
+      } else {
+        h+='<div class="irow"><span class="ilb">📊 Accademia</span><span class="iv mutec">L'+i.acc+' → L'+r.acc_req+'</span></div>';
+        function rssRow(ico,nm,have,ok){
+          var miss=Math.max(r.rss_need-have,0);
+          return '<div class="irow"><span class="ilb">'+ico+' '+nm+'</span><div style="text-align:right">'+
+            '<div class="iv" style="color:'+(ok?'#2ecc71':'#ff6b6b')+'">'+fM(have)+'</div>'+
+            '<div class="idet">'+(ok?'✅ ok':'⚠️ −'+fM(miss))+'</div></div></div>';
+        }
+        h+=rssRow('🪵','Legno',i.wood,r.rss_wood_ok);
+        h+=rssRow('⚙️','Ferro',i.iron,r.rss_iron_ok);
+        h+=rssRow('🪨','Pietra',i.stone,r.rss_stone_ok);
+      }
+      h+='</div>';
+    }
+    h+='<div class="ibox">';
+    h+='<div class="irow"><span class="ilb">🏛️ Accademia (liv.)</span><span class="iv '+(r.am===0?'okc':'warnc')+'">'+(r.am===0?'✅ ok':'mancano '+r.am)+'</span></div>';
+    if(r.hero_req>0) h+='<div class="irow"><span class="ilb">🦸 Eroe</span><span class="iv '+(r.hm===0?'okc':'warnc')+'">'+(r.hm===0?'✅ Lv'+r.hero_req:'→ Lv'+r.hero_req)+'</span></div>';
+    if(r.proj_req>0){
+      h+='<div class="irow"><span class="ilb">📜 Progetti</span><span class="iv '+(r.pm===0?'okc':'warnc')+'">'+(r.pm===0?'✅ ok':'−'+r.pm.toLocaleString())+'</span></div>';
+      h+='<div class="irow"><span class="ilb">💰 Oro</span><span class="iv '+(r.gm===0?'okc':'warnc')+'">'+(r.pm===0?'✅ non serve':(r.gm===0?'✅ ok':'−'+r.gm.toLocaleString()))+'</span></div>';
     }
     h+='</div></div>';
   }
-  h+='</div></div></div>';
+
+  h+='</div></div>';
   return h;
 }
 
-// ═══════════════════════════════════════════════════════
-// RENDER SUMMARY
-// ═══════════════════════════════════════════════════════
 function renderSummary(i,res){
   var h='<table class="stbl"><tr><th>Grado</th><th>Stato</th><th>VP target</th><th>VP disp.</th><th>Ricerche</th><th>Guardie</th><th>Ragnarök</th><th>🐺 Rimane</th><th>🐉 Rimane</th></tr>';
   ['G2','G3','G4','G5','G6','G7','G8'].forEach(function(g){
@@ -745,6 +763,14 @@ function compute(){
     qs+='</span></div>';
   });
   var qel=document.getElementById('quick-status');if(qel)qel.innerHTML=qs;
+}
+
+function toggleCol(id){
+  var el=document.getElementById(id);
+  if(!el) return;
+  el.classList.toggle('open');
+  var head=el.previousElementSibling;
+  if(head && head.classList.contains('collapse-head')) head.classList.toggle('open');
 }
 
 function goPage(id,el){
